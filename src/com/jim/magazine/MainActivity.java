@@ -3,8 +3,9 @@ package com.jim.magazine;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import com.jim.magazine.R;
+
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -14,34 +15,33 @@ import android.support.v4.app.FragmentTabHost;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.content.Intent;
 import android.os.Handler;
-import android.provider.Settings.Secure;
-import android.util.Log;
 
 /**
  * 主页的activity
+ * 主要是一个fragmentTabhost
  * 
- * @author stone 主要是一个fragmentTabhost
+ * @author jim 
  */
 @SuppressLint("NewApi")
 public class MainActivity extends FragmentActivity {
 
 	private FragmentTabHost ftabhost;// 定义一个fragmenttabhost
 	private String[] tabtag = { "home_page",
-			                    "rankinglist", 
-			                    "exosure", 
+			                    "bookself", 
+			                    "group", 
 			                    "mine", };// 给tab取得别名
 	private String[] tabtext = { "首页",
 			                     "书架" ,
 			                     "圈子", 
 			                     "我绘" };// 选项卡里面设置的名字
-	private static Class[] cla = { HomePageFragment.class,
-		                           RankingListFragment.class,
-		                           ExosureFragment.class,
+	private static Class[] cla = { HomeFragment.class,
+		                           BookselfFragment.class,
+		                           GroupFragment.class,
 		                           MineFragment.class };
 	// 没有被选中的图片的id
 	private int[] imageid = { R.drawable.homepage_a,
@@ -62,7 +62,11 @@ public class MainActivity extends FragmentActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		
+		//透明状态栏
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        //透明导航栏
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
+ 
 		initDate();
 	}
 		
@@ -94,17 +98,21 @@ public class MainActivity extends FragmentActivity {
 		inflater = LayoutInflater.from(MainActivity.this);
 		ftabhost = (FragmentTabHost) this.findViewById(android.R.id.tabhost);
 		FragmentManager t = getSupportFragmentManager();
-		ftabhost.setup(this, getSupportFragmentManager(), android.R.id.tabcontent);
+		//ftabhost.setup(this, getSupportFragmentManager(), com.jim.magazine.R.id.realtabcontent);
+		int my_id = R.id.realtabcontent;
+//		ftabhost.setup(this, getSupportFragmentManager());
+		ftabhost.setup(this, getSupportFragmentManager(), my_id);
+		//ftabhost.setup(getActivity(), getChildFragmentManager(), my_id);
 		preferences = this.getSharedPreferences("Statuse",
 				Context.MODE_PRIVATE);
 		editor = preferences.edit();
 		
-		int i=0;
-		//for (int i = 0; i < tabtext.length; i++) {
+		
+		for (int i = 0; i < tabtext.length; i++) {
 			ftabhost.addTab(
 					ftabhost.newTabSpec(this.tabtag[i]).setIndicator(getView(i)),
 					MainActivity.cla[i], null);
-		//}
+		}
 	}
 
 	private View getView(int i) {
@@ -130,6 +138,7 @@ public class MainActivity extends FragmentActivity {
 	}
 
 	
+	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 		if (keyCode == KeyEvent.KEYCODE_BACK) {
 			exitBy2Click(); // 调用双击退出函数

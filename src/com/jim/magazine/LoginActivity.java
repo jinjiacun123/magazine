@@ -1,11 +1,21 @@
 package com.jim.magazine;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.apache.http.NameValuePair;
+
+import com.jim.magazine.R;
 import com.jim.magazine.bean.BeanUser;
+import com.jim.magazine.bean.BeanBase.API_METHOD_INDEX;
+import com.jim.magazine.entity.User;
 import com.jim.magazine.help.DialogUtil;
+import com.jim.magazine.help.HttpPostThread;
 import com.jim.magazine.help.KeyBoardUtil;
+import com.jim.magazine.help.NetworkUtil;
 import com.jim.magazine.help.Util;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -29,16 +39,16 @@ import android.widget.Toast;
  * 
  */
 public class LoginActivity extends FragmentActivity implements OnClickListener {
-	private EditText       txt_name;
-	private EditText       txt_passwd;
-	private ImageView      iv_login;
-	private ProgressBar    pb_login;
-	private String         openid;
-	private String         nickname;
-	private String         headimgurl;
-	private CheckBox       cb_pwd;
-	public  static LoginActivity   login_page;
-	private RelativeLayout iv_ActionBar;
+	private EditText       txtName;
+	private EditText       txtPasswd;
+	private ImageView      ivLogin;
+	private ProgressBar    pbLogin;
+	private String         openId;
+	private String         nickName;
+	private String         headImgUrl;
+	private CheckBox       cbPwd;
+	public  static LoginActivity   loginPage;
+	private RelativeLayout ivActionBar;
 	
 	private BeanUser bean_user = new BeanUser();
 	
@@ -67,8 +77,8 @@ public class LoginActivity extends FragmentActivity implements OnClickListener {
 				switch (msg.what) {
 				case 0:
 					String result = (String) msg.obj;
-					bean_user = new BeanUser(result);
-					if (bean_user != null) {
+					User user = bean_user.ParseLoginResult(result);
+					if (user != null) {
 						switch (bean_user.getStatus()) {
 						case 0:
 							getMessage(0);
@@ -76,9 +86,9 @@ public class LoginActivity extends FragmentActivity implements OnClickListener {
 							getSharedPreferences("Login_UserInfo", Context.MODE_PRIVATE)
 									.edit()
 									.putBoolean("login_type", true)
-									.putLong("id",       Long.valueOf(bean_user.getUser().getId()))
-									.putString("nickname",    bean_user.getUser().getNickname())
-									.putString("sex",         bean_user.getUser().getSex())
+									.putLong("id",       Long.valueOf(user.getId()))
+									.putString("nickname",    user.getNickname())
+									.putString("sex",         user.getSex())
 									.commit();
 							
 							//if (Util.getRegisterType(LoginActivity.this)) {
@@ -135,18 +145,18 @@ public class LoginActivity extends FragmentActivity implements OnClickListener {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_login);
-		login_page=this;
+		loginPage=this;
 		initView();		
 	}
 
 	private void initView() {		
 		// 进度条
-		pb_login = (ProgressBar) findViewById(R.id.pb_login);
+		pbLogin = (ProgressBar) findViewById(R.id.pb_login);
 		
 		// 标题
-		iv_ActionBar = (RelativeLayout) findViewById(R.id.iv_ActionBar);
-		iv_ActionBar.setVisibility(View.VISIBLE);
-		iv_ActionBar.setOnClickListener(this);
+		ivActionBar = (RelativeLayout) findViewById(R.id.iv_ActionBar);
+		ivActionBar.setVisibility(View.VISIBLE);
+		ivActionBar.setOnClickListener(this);
 		
 		TextView tv_ClassName = (TextView) findViewById(R.id.tv_ClassName);
 		tv_ClassName.setText(tipMessage[8]);
@@ -156,13 +166,13 @@ public class LoginActivity extends FragmentActivity implements OnClickListener {
 		iv_home.setVisibility(View.VISIBLE);
 		iv_home.setOnClickListener(this);
 		
-		txt_name   = (EditText) findViewById(R.id.input_user);    // 账号
-		txt_passwd = (EditText) findViewById(R.id.input_pwd);     // 密码		
+		txtName   = (EditText) findViewById(R.id.input_user);    // 账号
+		txtPasswd = (EditText) findViewById(R.id.input_pwd);     // 密码		
 		findViewById(R.id.jump_findpwd).setOnClickListener(this); // 找回密码
 		
 		//登录
-		iv_login = (ImageView) findViewById(R.id.iv_login);
-		iv_login.setOnClickListener(this);
+		ivLogin = (ImageView) findViewById(R.id.iv_login);
+		ivLogin.setOnClickListener(this);
 	}
 	
 	@Override
@@ -189,13 +199,12 @@ public class LoginActivity extends FragmentActivity implements OnClickListener {
 			KeyBoardUtil.is_openKeyBoard(getApplicationContext(),LoginActivity.this);
 
 			// 登录
-			String name    = txt_name.getText().toString();
-			String passwd  = txt_passwd.getText().toString();
+			String name    = txtName.getText().toString();
+			String passwd  = txtPasswd.getText().toString();
 			
 			//临时跳转到主页
 			Intent intent = new Intent(LoginActivity.this,MainActivity.class);
-			startActivity(intent);
-			/*
+			startActivity(intent);			
 			if (name != null 
 			 && passwd != null
 			 && !"".equals(name)
@@ -203,9 +212,12 @@ public class LoginActivity extends FragmentActivity implements OnClickListener {
 				// 判断网络是否正常
 				boolean networkConnected = NetworkUtil.isNetworkConnected(LoginActivity.this);
 				if (networkConnected) {
-
 					DialogUtil.showProgressDialog(LoginActivity.this, tipMessage[7], 0 );
-					List<NameValuePair> params = bean_user.CallLogin(name, passwd);
+					Map<String,Object> my_request = new HashMap<String, Object>();
+					my_request.put("name", name);
+					my_request.put("passwd", passwd);
+					List<NameValuePair> params = bean_user.CallApi(API_METHOD_INDEX.API_USER_LOGIN, 
+							                                       my_request);
 					new HttpPostThread(params, handler, 0).start();
 				} else {					
 					DialogUtil.dismissProgressDialog();
@@ -214,18 +226,14 @@ public class LoginActivity extends FragmentActivity implements OnClickListener {
 			} else {
 				getMessage(6);
 			}
-			*/
 			break;
 		case R.id.iv_ActionBar:
 			// 返回上一页
 			finish();
 			break;
-		case R.id.iv_home:
-			// 注册
-			/*
-			Intent intent2 = new Intent(MineFragment_Login.this, MineFragment_Register.class);
+		case R.id.iv_home:// 注册
+			Intent intent2 = new Intent(LoginActivity.this, RegisterActivity.class);
 			startActivity(intent2);
-			*/
 			break;
 		default:
 			break;
