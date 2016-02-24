@@ -38,7 +38,7 @@ public class StartActivity extends Activity{
 				*/
 				
 				//临时测试
-				int type = 3;
+				int type = 5;
 				switch(type)
 				{
 					case 0://到注册
@@ -62,6 +62,18 @@ public class StartActivity extends Activity{
 					case 3://滑动菜单
 					{
 						Intent intent=new Intent(StartActivity.this,SlidingActivity.class);
+						startActivity(intent);
+					}
+					break;
+					case 4://欢迎界面
+					{
+						Intent intent=new Intent(StartActivity.this,WelcomeActivity.class);
+						startActivity(intent);
+					}
+					break;
+					case 5:
+					{
+						Intent intent=new Intent(StartActivity.this,MainActivity.class);
 						startActivity(intent);
 					}
 					break;

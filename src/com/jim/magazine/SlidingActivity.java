@@ -1,9 +1,5 @@
 package com.jim.magazine;
 
-import java.util.List;
-import java.util.ArrayList;
-
-import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTabHost;
@@ -93,12 +89,11 @@ public class SlidingActivity extends SlidingFragmentActivity
 		FragmentManager t = getSupportFragmentManager();
 		ftabhost.setup(this, getSupportFragmentManager(), R.id.realtabcontent);
 		
-		int i=0;
-		//for (int i = 0; i < tabtext.length; i++) {
+		for (int i = 0; i < tabtext.length; i++) {
 			ftabhost.addTab(
 					ftabhost.newTabSpec(this.tabtag[i]).setIndicator(getView(i)),
 					SlidingActivity.cla[i], null);
-		//}
+		}
 	}
 
 	private View getView(int i) {
