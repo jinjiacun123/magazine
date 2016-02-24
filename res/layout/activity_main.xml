@@ -1,35 +1,38 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:tools="http://schemas.android.com/tools"
-android:layout_width="match_parent"
-android:layout_height="match_parent"
-android:orientation="vertical"
-android:background="#ffffff"
-android:windowSoftInputMode="stateAlwaysHidden|adjustPan"
-tools:context="${packageName}.${activityClass}" >
-	
-	<FrameLayout
-		android:id="@+id/realtabcontent"
-		android:layout_width="wrap_content"
-		android:layout_height="0dp"
-		android:layout_weight="1"/>
-	
-	<android.support.v4.app.FragmentTabHost
-	android:id="@android:id/tabhost"
-	android:layout_width="match_parent"
-	android:layout_height="wrap_content"
-	android:background="#000000">
-	<FrameLayout
-	android:id="@android:id/tabcontent"
-	android:layout_width="0dp"
-	android:layout_height="0dp"
-	android:layout_weight="0"/>
-		
-		<TabWidget
-		android:id="@android:id/tabs"
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:orientation="horizontal"/>
-	
-	</android.support.v4.app.FragmentTabHost>
-</LinearLayout>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <LinearLayout
+        android:id="@+id/buttom_bar_group"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:gravity="center_vertical"
+        android:orientation="horizontal" >
+
+        <RelativeLayout style="@style/ButtomBar" >
+
+            <ImageButton
+                android:id="@+id/buttom_news"
+                style="@style/ButtomBarImgBtn"
+                android:background="@drawable/bar_home"
+                android:contentDescription="@string/app_name" />
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/line"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_above="@id/buttom_bar_group"
+        android:background="@color/devide_line" />
+
+    <FrameLayout
+        android:id="@+id/fl_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/line" />
+
+</RelativeLayout>
