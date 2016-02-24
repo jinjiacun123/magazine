@@ -4,6 +4,11 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
+    <com.jim.magazine.view.TitleBarView 
+        android:id="@+id/title_bar"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"/>
+    
     <!-- 上面红色的部分 -->
 
     <RelativeLayout
