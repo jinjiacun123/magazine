@@ -122,4 +122,16 @@
 <string name="register_name_digits">  
   "".@0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLIMNOPQRSTUVWXYZ  
 </string> 
+<string name="app_change_user">注销用户</string>
+<string name="app_exit_user">退出</string>
+<string name="app_cancle">取消</string>
+<string name="group">分组</string>
+<string name="all">全部</string>
+<string name="pop_chat">多人聊天</string>
+<string name="pop_sangzhao">分享</string>
+<string name="pop_camera">水印相机</string>
+<string name="pop_scan">扫一扫</string>
+<string name="cnews">消息</string>
+<string name="call">通话</string>
+<string name="brand">一绘</string>
 </resources>

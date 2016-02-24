@@ -26,4 +26,9 @@
     <color name="success_stroke_color">#A5DC86</color>
     <color name="trans_success_stroke_color">#33A5DC86</color>
     <color name="warning_stroke_color">#F8BB86</color>
+    
+    <color name="devide_line">#CBCED2</color>
+    <color name="whites">#ffffff</color>
+    <color name="common_title">#F9F9F9</color>
+    <color name="gray_font">#818181</color>
 </resources>
