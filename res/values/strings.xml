@@ -34,7 +34,7 @@
     <string name="image_right">下载app,挑选优质平台</string>
     <!-- 登录 -->
     <string name="user_name">账    号:</string>
-    <string name="ed_user_name">请输入用户名</string>
+    <string name="ed_user_name">请输入手机号码</string>
     <string name="user_pwd">密     码:</string>
     <string name="ed_user_pwd">请输入登录密码</string>
     <string name="checkbox_name">显示密码</string>
@@ -53,7 +53,7 @@
     <string name="code_name">验证码:</string>
     <string name="ed_code_name">请输入验证码</string>
     <string name="clause_name">我已阅读并同意</string>
-    <string name="clause_content">《口碑网用户服务协议》</string>
+    <string name="clause_content">《名城绘杂志服务规范》</string>
     <!-- 找回密码 -->
     <string name="fp_phone">请输入注册/绑定手机号码</string>
     <string name="phone_left">请输入手机</string>
