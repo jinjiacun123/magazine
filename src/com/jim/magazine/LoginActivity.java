@@ -167,8 +167,7 @@ public class LoginActivity extends FragmentActivity implements OnClickListener {
 		iv_home.setOnClickListener(this);
 		
 		txtName   = (EditText) findViewById(R.id.input_user);    // 账号
-		txtPasswd = (EditText) findViewById(R.id.input_pwd);     // 密码		
-		findViewById(R.id.jump_findpwd).setOnClickListener(this); // 找回密码
+		txtPasswd = (EditText) findViewById(R.id.input_pwd);     // 密码
 		
 		//登录
 		ivLogin = (ImageView) findViewById(R.id.iv_login);
@@ -189,12 +188,6 @@ public class LoginActivity extends FragmentActivity implements OnClickListener {
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
-		case R.id.jump_findpwd:// 找回密码			
-			/*
-			Intent intent = new Intent(MineFragment_Login.this, MineFragment_FindPwd.class);
-			startActivity(intent);
-			*/
-			break;
 		case R.id.iv_login:
 			KeyBoardUtil.is_openKeyBoard(getApplicationContext(),LoginActivity.this);
 
