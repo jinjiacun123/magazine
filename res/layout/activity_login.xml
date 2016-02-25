@@ -10,24 +10,7 @@
         android:id="@+id/ic_login"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        layout="@layout/activity_title" />
-
-    <!-- 登录logo -->
-
-    <RelativeLayout
-        android:id="@+id/rl_logo"
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:layout_below="@+id/ic_login" >
-
-        <ImageView
-            android:id="@+id/iv_mine_logo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:src="@drawable/login_logo" />
-    </RelativeLayout>
+        layout="@layout/activity_title" />    
 
     <!-- 账号编辑框 -->
 
@@ -35,15 +18,15 @@
         android:id="@+id/rl_user"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/rl_logo" >
+        android:layout_below="@+id/ic_login" >
 
         <RelativeLayout
-            android:layout_width="wrap_content"
+            android:layout_width="fill_parent"
             android:layout_height="@dimen/dimen_70_dip"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
+            android:layout_marginLeft="0dp"
+            android:layout_marginRight="0dp"
             android:background="@drawable/mine_user" >
 
             <TextView
@@ -88,8 +71,8 @@
             android:layout_height="@dimen/dimen_70_dip"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
+            android:layout_marginLeft="0dp"
+            android:layout_marginRight="0dp"
             android:background="@drawable/mine_user" >
 
             <TextView
@@ -130,8 +113,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/rl_pwd"
         android:layout_centerHorizontal="true"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         android:layout_marginTop="15dp"
         android:src="@drawable/bt_login" />
     
@@ -146,25 +129,7 @@
         android:layout_marginRight="25dp"
         android:layout_marginTop="15dp" >
 
-       <!-- <CheckBox
-            android:id="@+id/cb_pwd"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/checkbox_name"
-            android:textColor="#000000"
-            android:textSize="@dimen/small_middle_text_size" />
- 		--> 
-        <!-- 忘记密码 -->
-
-        <TextView
-            android:id="@+id/jump_findpwd"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:text="@string/find_name"
-            android:textColor="#6FAECF"
-            android:textSize="@dimen/small_middle_text_size" />
+      
     </RelativeLayout>
 
     <ProgressBar
