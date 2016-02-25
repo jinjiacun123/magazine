@@ -142,7 +142,7 @@ public class RegisterActivity extends Activity implements OnClickListener {
 		iv_ActionBar.setVisibility(View.VISIBLE);
 		iv_ActionBar.setOnClickListener(this);
 		TextView tv_ClassName = (TextView) findViewById(R.id.tv_ClassName);
-		tv_ClassName.setText("用户注册");
+		tv_ClassName.setText("注册");
 		// tv_ClassName.setMovementMethod(movement);
 		// 用户名
 		txt_name = (EditText) findViewById(R.id.register_ed_phone);
