@@ -1,92 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
-    android:layout_height="match_parent" 
-    android:background="@color/white">
-    <!-- 头部 -->
-    <Button
-            android:id="@+id/btn_leftTop"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="10dip"
-            android:text="返回"
-            android:textColor="#ffffff"/>
+    android:layout_height="fill_parent" >
+    <LinearLayout
+        android:id="@+id/head"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:orientation="vertical" 
+        android:background="@color/white">
 
         <TextView
-            android:id="@+id/tv_head"
+            android:id="@+id/ed_search"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:shadowColor="#ff000000"
-            android:shadowDx="2"
-            android:shadowDy="0"
-            android:shadowRadius="1"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center_vertical|center_horizontal"
+            android:layout_marginLeft="10dp"
+            android:background="@null"
+            android:hint="AAAAAA"
             android:text="我的收藏"
-            android:textColor="#ffffff"
-            android:textSize="18dp"
-            android:textStyle="bold"
-            android:layout_alignTop="@id/btn_leftTop" 
-            />
-        <!-- 头部 -->
-    
-    <LinearLayout
-        android:id="@+id/buttom_bar_group"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_alignParentTop="true"
-        android:gravity="center_vertical"
-        android:orientation="horizontal" 
-        android:layout_marginTop="40dp">
+            android:textCursorDrawable="@null" />
 
-        <RelativeLayout style="@style/ButtomBar" >
-
-            <ImageButton
-                android:id="@+id/buttom_news"
-                style="@style/ButtomBarImgBtn"
-                android:background="@drawable/bar_home"
-                android:contentDescription="@string/app_name" />
-        </RelativeLayout>
-		 <RelativeLayout style="@style/ButtomBar" >
-
-            <ImageButton
-                android:id="@+id/buttom_news"
-                style="@style/ButtomBarImgBtn"
-                android:background="@drawable/bar_home"
-                android:contentDescription="@string/app_name" />
-        </RelativeLayout>
-         <RelativeLayout style="@style/ButtomBar" >
-
-            <ImageButton
-                android:id="@+id/buttom_news"
-                style="@style/ButtomBarImgBtn"
-                android:background="@drawable/bar_home"
-                android:contentDescription="@string/app_name" />
-        </RelativeLayout>
-         <RelativeLayout style="@style/ButtomBar" >
-
-            <ImageButton
-                android:id="@+id/buttom_news"
-                style="@style/ButtomBarImgBtn"
-                android:background="@drawable/bar_home"
-                android:contentDescription="@string/app_name" />
-        </RelativeLayout>
     </LinearLayout>
-   
-    <View
-        android:id="@+id/line"
-        android:layout_width="match_parent"
-        android:layout_height="0.5dp"
-        android:layout_above="@id/buttom_bar_group"
-        android:background="@color/devide_line" />
-
-    <!-- 正体 -->
-    <FrameLayout
-        android:id="@+id/fl_content"
+<TabHost
+    android:id="@android:id/tabhost"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_below="@id/head">
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/buttom_bar_group" />
-
+        android:orientation="vertical" >
+        <TabWidget
+            android:id="@android:id/tabs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right|center_vertical" />
+        <FrameLayout
+            android:id="@android:id/tabcontent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+            <android.support.v4.view.ViewPager
+                android:id="@+id/viewPager1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </FrameLayout>
+    </LinearLayout>
+</TabHost>
 </RelativeLayout>
