@@ -1,133 +1,115 @@
 package com.jim.magazine;
 
-import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
-import com.jeremyfeinstein.slidingmenu.lib.app.SlidingFragmentActivity;
-
+import java.util.Random;
+import com.jim.magazine.R;
+import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
-import android.view.Gravity;
-import android.view.KeyEvent;
+import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewPager;
+import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.ViewGroup.LayoutParams;
-import android.widget.ArrayAdapter;
-import android.widget.ImageButton;
-import android.widget.LinearLayout;
-import android.widget.ListView;
-import android.widget.PopupWindow;
+import android.view.ViewGroup;
+import android.widget.TabHost;
+import android.widget.TabHost.OnTabChangeListener;
+import android.widget.TabWidget;
 import android.widget.TextView;
-import android.app.Activity;
-import android.content.Context;
-import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
-
-public class CollectActivity extends FragmentActivity {
-
-	protected static final String TAG = "MainActivity";
-	private Context mContext;
-	private ImageButton mHome,mConstact,mDeynaimic,mSetting;
-	private View mPopView;
-	private View currentButton;
-	
-	private TextView app_cancle;
-	private TextView app_exit;
-	private TextView app_change;
-	
-	private int mLevel=1;
-	private PopupWindow mPopupWindow;
-	private LinearLayout buttomBarGroup;
-	
-	ListView listView ;
-	@Override
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_collect);
-		mContext=this;
-		
-		findView();
-		init();
-			
-	}
-	
-	private void findView(){
-		mPopView=LayoutInflater.from(mContext).inflate(R.layout.app_exit, null);
-		buttomBarGroup=(LinearLayout) findViewById(R.id.buttom_bar_group);
-		mHome=(ImageButton) findViewById(R.id.buttom_news);
-		
-		app_cancle=(TextView) mPopView.findViewById(R.id.app_cancle);
-		app_change=(TextView) mPopView.findViewById(R.id.app_change_user);
-		app_exit=(TextView) mPopView.findViewById(R.id.app_exit);
-	}
-	
-	private void init(){
-		mHome.setOnClickListener(newsOnClickListener);
-		
-		mHome.performClick();
-		
-		mPopupWindow=new PopupWindow(mPopView, LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT, true);
-		
-		app_cancle.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				mPopupWindow.dismiss();
-			}
-		});
-		
-		app_change.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				Intent intent=new Intent(mContext, LoginActivity.class);
-				startActivity(intent);
-				((Activity)mContext).overridePendingTransition(R.anim.activity_up, R.anim.fade_out);
-				finish();
-			}
-		});
-		
-		app_exit.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				finish();
-			}
-		});
-	}
-	
-	private OnClickListener newsOnClickListener=new OnClickListener() {
-		@Override
-		public void onClick(View v) {
-			FragmentManager fm=getSupportFragmentManager();
-			FragmentTransaction ft=fm.beginTransaction();
-			Bookself newsFatherFragment= new Bookself();
-			ft.replace(R.id.fl_content, newsFatherFragment,MainActivity.TAG);
-			ft.commit();
-			setButton(v);
-			
-		}
-	};
-	
-	private void setButton(View v){
-		if(currentButton!=null&&currentButton.getId()!=v.getId()){
-			currentButton.setEnabled(true);
-		}
-		v.setEnabled(false);
-		currentButton=v;
-	}
-
-	@Override
-	public boolean onKeyDown(int keyCode, KeyEvent event) {
-		if(keyCode==KeyEvent.KEYCODE_MENU){
-			mPopupWindow.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#b0000000")));
-			mPopupWindow.showAtLocation(buttomBarGroup, Gravity.BOTTOM, 0, 0);
-			mPopupWindow.setAnimationStyle(R.style.app_pop);
-			mPopupWindow.setOutsideTouchable(true);
-			mPopupWindow.setFocusable(true);
-			mPopupWindow.update();
-		}
-		return super.onKeyDown(keyCode, event);
-		
-	}
-
+/**
+ * 我的收藏
+ * 
+ * @author jim
+ * @email jinjiacun@gmail.com
+ * @version 1.0
+ */
+public class CollectActivity extends FragmentActivity
+{
+    private static final String TAG = "AndroidDemos.SlideTabs1";
+    private TabHost mTabHost;
+    private ViewPager mViewPager;
+    private PagerAdapter mPagerAdapter;
+    private String[] addresses = { "book", "article", "message","card" };
+    
+    @Override
+    protected void onCreate(Bundle arg0)
+    {
+        super.onCreate(arg0);
+        setContentView(R.layout.activity_collect);
+        mViewPager = (ViewPager) findViewById(R.id.viewPager1);
+        mPagerAdapter = new MyPagerAdapter(getSupportFragmentManager());
+        mViewPager.setAdapter(mPagerAdapter);
+        mTabHost = (TabHost) findViewById(android.R.id.tabhost);
+        mTabHost.setup();
+        mTabHost.addTab(mTabHost.newTabSpec("book").setIndicator("我的书架")
+                .setContent(R.id.viewPager1));
+        mTabHost.addTab(mTabHost.newTabSpec("article").setIndicator("文章")
+                .setContent(R.id.viewPager1));
+        mTabHost.addTab(mTabHost.newTabSpec("message").setIndicator("资讯")
+                .setContent(R.id.viewPager1));
+        mTabHost.addTab(mTabHost.newTabSpec("card").setIndicator("帖子")
+                .setContent(R.id.viewPager1));
+        TabWidget tabWidget = mTabHost.getTabWidget();
+        int count = tabWidget.getChildCount();
+        for (int i = 0; i != count; i++)
+        {
+            final int index = i;
+            tabWidget.getChildAt(i).setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View v)
+                {
+                    mTabHost.setCurrentTab(index);
+                    mViewPager.setCurrentItem(index);
+                }
+            });
+        }
+        tabWidget.getChildAt(1).performClick();
+        tabWidget.getChildAt(0).performClick();
+        mTabHost.setOnTabChangedListener(new OnTabChangeListener() {
+            @Override
+            public void onTabChanged(String tabId)
+            {
+                //ELog.i(TAG, "@--> onTabChanged by tabId: " + tabId);
+            }
+        });
+        mViewPager.setOnPageChangeListener(new OnPageChangeListener() {
+            @Override
+            public void onPageSelected(int arg0)
+            {
+                //ELog.i(TAG, "@--> onPageSelected: " + arg0);
+                mTabHost.setCurrentTab(arg0);
+            }
+            @Override
+            public void onPageScrolled(int arg0, float arg1, int arg2)
+            {
+            }
+            @Override
+            public void onPageScrollStateChanged(int arg0)
+            {
+            }
+        });
+    }
+    private class MyPagerAdapter extends FragmentStatePagerAdapter
+    {
+        public MyPagerAdapter(FragmentManager fm)
+        {
+            super(fm);
+        }
+        @Override
+        public Fragment getItem(int position)
+        {
+            //ELog.i(TAG, "@--> getItem by position" + position);
+            //ELog.i(TAG, "@--> getItem by position" + position);
+            //return MyFragment.create(addresses[position]);
+        	return new BookselfFragment().create(addresses[position]);
+        }
+        @Override
+        public int getCount()
+        {
+            return addresses.length;
+        }
+    }   
 }
