@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import com.jeremyfeinstein.slidingmenu.lib.app.SlidingFragmentActivity;
+import com.jim.magazine.fragment.HomeFragment;
 
 public class SlidingActivity extends SlidingFragmentActivity
 {

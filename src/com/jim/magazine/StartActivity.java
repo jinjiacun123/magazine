@@ -1,6 +1,8 @@
 package com.jim.magazine;
 
 import com.jim.magazine.R;
+import com.jim.magazine.fragment.AppManager;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;

@@ -2,6 +2,7 @@ package com.jim.magazine;
 
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import com.jeremyfeinstein.slidingmenu.lib.app.SlidingFragmentActivity;
+import com.jim.magazine.fragment.HomeFragment;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;

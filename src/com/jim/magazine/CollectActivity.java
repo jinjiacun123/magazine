@@ -1,7 +1,10 @@
 package com.jim.magazine;
 
 import java.util.Random;
+
 import com.jim.magazine.R;
+import com.jim.magazine.fragment.BookselfFragment;
+
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;

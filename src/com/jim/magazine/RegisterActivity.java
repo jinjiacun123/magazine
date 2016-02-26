@@ -6,10 +6,13 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.http.NameValuePair;
+
 import com.jim.magazine.R;
 import com.jim.magazine.bean.BeanUser;
 import com.jim.magazine.bean.BeanBase.API_METHOD_INDEX;
 import com.jim.magazine.entity.User;
+import com.jim.magazine.fragment.AgreementFragment;
+import com.jim.magazine.fragment.AppManager;
 import com.jim.magazine.help.Code;
 import com.jim.magazine.help.HttpPostThread;
 import com.jim.magazine.help.KeyBoardUtil;
