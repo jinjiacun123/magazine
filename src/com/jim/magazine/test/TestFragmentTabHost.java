@@ -1,8 +1,9 @@
 package com.jim.magazine.test;
 
-import com.jim.magazine.BookselfFragment;
-import com.jim.magazine.HomeFragment;
 import com.jim.magazine.R;
+import com.jim.magazine.fragment.BookselfFragment;
+import com.jim.magazine.fragment.HomeFragment;
+
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTabHost;
