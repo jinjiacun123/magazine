@@ -51,7 +51,7 @@ public class MainActivity extends SlidingFragmentActivity {
 		
 		findView();
 		init();
-		
+				
 		setBehindContentView(R.layout.leftmenu);
 		// configure the SlidingMenu
 		SlidingMenu menu = getSlidingMenu();
@@ -73,7 +73,7 @@ public class MainActivity extends SlidingFragmentActivity {
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
           android.R.layout.simple_list_item_1, android.R.id.text1, values);
 
-        listView.setAdapter(adapter); 
+        listView.setAdapter(adapter);
 	}
 	
 	private void findView(){
@@ -139,10 +139,10 @@ public class MainActivity extends SlidingFragmentActivity {
 		currentButton=v;
 	}
 
-	@Override
+	/*@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 		if(keyCode==KeyEvent.KEYCODE_MENU){
-			mPopupWindow.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#b0000000")));
+			mPopupWindow.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#ffffff")));
 			mPopupWindow.showAtLocation(buttomBarGroup, Gravity.BOTTOM, 0, 0);
 			mPopupWindow.setAnimationStyle(R.style.app_pop);
 			mPopupWindow.setOutsideTouchable(true);
@@ -151,6 +151,6 @@ public class MainActivity extends SlidingFragmentActivity {
 		}
 		return super.onKeyDown(keyCode, event);
 		
-	}
+	}*/
 
 }
