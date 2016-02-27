@@ -2,7 +2,56 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
+    <!-- 顶部工具栏 -->
+   <RelativeLayout
+        android:id="@+id/tool_bar"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentTop="true"
+        android:gravity="center_vertical"
+        android:orientation="horizontal" 
+        android:background="@color/white">
+       <Button
+            android:id="@+id/tool_left"
+            android:layout_width="55dp"
+            android:layout_height="25dp"
+            android:layout_alignParentLeft="true"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/ctl_menu"
+            android:padding="0dp"
+            android:textColor="#ffffff"
+            android:textSize="18sp" />
+       
+       <!-- 品牌 -->
+       <ImageView
+           android:id="@+id/title"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_centerHorizontal="true"
+           android:background="@drawable/brand" />
+       
+       <!-- 购物车 -->
+       <ImageView
+           android:id="@+id/cart"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_alignParentRight="true"
+           android:layout_marginRight="50dp"
+           android:background="@drawable/cart" 
+           android:layout_alignTop="@id/left"/>
+        
+       <!-- 礼物 -->
+       <ImageView
+           android:id="@+id/gift"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_alignParentRight="true"
+           android:background="@drawable/gift" 
+           android:layout_alignTop="@id/left"/>
 
+   </RelativeLayout>
+    
     <LinearLayout
         android:id="@+id/buttom_bar_group"
         android:layout_width="match_parent"
@@ -33,6 +82,7 @@
         android:id="@+id/fl_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@id/line" />
+        android:layout_above="@id/line" 
+        android:layout_below="@id/tool_bar"/>
 
 </RelativeLayout>
