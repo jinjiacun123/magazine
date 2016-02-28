@@ -94,18 +94,12 @@ public class HomeFragment extends Fragment {
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		initCount();
+		super.onCreate(savedInstanceState);		
 	}
 	
 	//===========
 	private void setData(String name, String nature, String trade, int type) {
 			Toast.makeText(getActivity(), "setData", 0).show();
-	}
-
-
-	private void initCount() {
-			Toast.makeText(getActivity(), "initCount", 0).show();
 	}
 
 	@Override
