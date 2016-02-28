@@ -2,6 +2,8 @@ package com.jim.magazine;
 
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import com.jeremyfeinstein.slidingmenu.lib.app.SlidingFragmentActivity;
+import com.jim.magazine.fragment.BookselfFragment;
+import com.jim.magazine.fragment.CircleFragment;
 import com.jim.magazine.fragment.HomeFragment;
 
 import android.os.Bundle;
@@ -30,7 +32,7 @@ public class MainActivity extends SlidingFragmentActivity {
 
 	protected static final String TAG = "MainActivity";
 	private Context mContext;
-	private ImageButton mHome,mConstact,mDeynaimic,mSetting;
+	private ImageButton mHome,mBook,mCircle,mMine;
 	private View mPopView;
 	private View currentButton;
 	
@@ -79,7 +81,10 @@ public class MainActivity extends SlidingFragmentActivity {
 	private void findView(){
 		mPopView=LayoutInflater.from(mContext).inflate(R.layout.app_exit, null);
 		buttomBarGroup=(LinearLayout) findViewById(R.id.buttom_bar_group);
-		mHome=(ImageButton) findViewById(R.id.buttom_news);
+		mHome   = (ImageButton) findViewById(R.id.buttom_home);//主页
+		mBook   = (ImageButton) findViewById(R.id.buttom_book);//书架
+		mCircle = (ImageButton) findViewById(R.id.buttom_cicle);//圈子
+		mMine   = (ImageButton) findViewById(R.id.buttom_mine);//我绘		
 		
 		app_cancle=(TextView) mPopView.findViewById(R.id.app_cancle);
 		app_change=(TextView) mPopView.findViewById(R.id.app_change_user);
@@ -87,7 +92,10 @@ public class MainActivity extends SlidingFragmentActivity {
 	}
 	
 	private void init(){
-		mHome.setOnClickListener(newsOnClickListener);
+		mHome.setOnClickListener(homeOnClickListener);
+		mBook.setOnClickListener(bookOnClickListener);
+		mCircle.setOnClickListener(circleOnClickListener);
+		mMine.setOnClickListener(mineOnClickListener);
 		
 		mHome.performClick();
 		
@@ -118,7 +126,8 @@ public class MainActivity extends SlidingFragmentActivity {
 		});
 	}
 	
-	private OnClickListener newsOnClickListener=new OnClickListener() {
+	//主页
+	private OnClickListener homeOnClickListener=new OnClickListener() {
 		@Override
 		public void onClick(View v) {
 			FragmentManager fm=getSupportFragmentManager();
@@ -127,7 +136,45 @@ public class MainActivity extends SlidingFragmentActivity {
 			ft.replace(R.id.fl_content, newsFatherFragment,MainActivity.TAG);
 			ft.commit();
 			setButton(v);
-			
+		}
+	};
+	
+	//书架
+	private OnClickListener bookOnClickListener=new OnClickListener() {
+		@Override
+		public void onClick(View v) {
+			FragmentManager fm=getSupportFragmentManager();
+			FragmentTransaction ft=fm.beginTransaction();
+			BookselfFragment bookselfFragment= new BookselfFragment();
+			ft.replace(R.id.fl_content, bookselfFragment,MainActivity.TAG);
+			ft.commit();
+			setButton(v);
+		}
+	};
+	
+	//圈子
+	private OnClickListener circleOnClickListener=new OnClickListener() {
+		@Override
+		public void onClick(View v) {
+			FragmentManager fm=getSupportFragmentManager();
+			FragmentTransaction ft=fm.beginTransaction();
+			CircleFragment circleFragment= new CircleFragment();
+			ft.replace(R.id.fl_content, circleFragment,MainActivity.TAG);
+			ft.commit();
+			setButton(v);
+		}
+	};
+	
+	//我绘
+	private OnClickListener mineOnClickListener=new OnClickListener() {
+		@Override
+		public void onClick(View v) {
+			FragmentManager fm=getSupportFragmentManager();
+			FragmentTransaction ft=fm.beginTransaction();
+			MineFragment mineFragment= new MineFragment();
+			ft.replace(R.id.fl_content, mineFragment,MainActivity.TAG);
+			ft.commit();
+			setButton(v);
 		}
 	};
 	
