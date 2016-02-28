@@ -58,18 +58,47 @@
         android:layout_height="60dp"
         android:layout_alignParentBottom="true"
         android:gravity="center_vertical"
-        android:orientation="horizontal" >
+        android:orientation="horizontal" 
+        android:background="@color/white">
 
         <RelativeLayout style="@style/ButtomBar" >
-
+           <!-- 主页 -->
             <ImageButton
-                android:id="@+id/buttom_news"
+                android:id="@+id/buttom_home"
                 style="@style/ButtomBarImgBtn"
-                android:background="@drawable/bar_home"
+                android:background="@drawable/home_red"
                 android:contentDescription="@string/app_name" />
         </RelativeLayout>
 
+        <RelativeLayout style="@style/ButtomBar" >
+           <!-- 书架 -->
+            <ImageButton
+                android:id="@+id/buttom_book"
+                style="@style/ButtomBarImgBtn"
+                android:background="@drawable/book_green"
+                android:contentDescription="@string/app_name" />
+        </RelativeLayout>
+        
+        <RelativeLayout style="@style/ButtomBar" >
+           <!-- 圈子 -->
+            <ImageButton
+                android:id="@+id/buttom_cicle"
+                style="@style/ButtomBarImgBtn"
+                android:background="@drawable/cicle_green"
+                android:contentDescription="@string/app_name" />
+        </RelativeLayout>
+        
+        <RelativeLayout style="@style/ButtomBar" >
+           <!-- 我绘 -->
+            <ImageButton
+                android:id="@+id/buttom_mine"
+                style="@style/ButtomBarImgBtn"
+                android:background="@drawable/mine_green"
+                android:contentDescription="@string/app_name" />
+        </RelativeLayout>
     </LinearLayout>
+    
+    
 
     <View
         android:id="@+id/line"
