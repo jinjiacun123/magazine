@@ -1,37 +1,163 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent" >
+<LinearLayout 
+    android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@color/white"
-    android:orientation="vertical">
-        <!-- android:scrollbars="horizontal" -->
-    		<!-- 精品推荐 -->
-    		<!-- 大图 -->
-		    <ImageView
-		       android:id="@+id/best"
-		       android:layout_width="fill_parent"
-		       android:layout_height="wrap_content"
-		       android:layout_centerHorizontal="true"
-		       android:scaleType="fitXY"
-		       android:src="@drawable/best"
-		       />
-		    <!-- 精品期刊 -->
-		    <ImageView
-		       android:id="@+id/comment_pic"
-		       android:layout_width="wrap_content"
-		       android:layout_height="wrap_content"
-		       android:layout_marginLeft="10dp"       
-		       android:scaleType="fitXY"
-		       android:src="@drawable/comment_pic" 
-		       android:layout_below="@id/best"/>
-			    <!-- 本月期刊 -->
+    android:orientation="vertical" 
+    android:background="@color/white">
+
+    <!-- 大图 -->
+    <ImageView
+       android:id="@+id/best"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:layout_centerHorizontal="true"
+       android:scaleType="fitXY"
+       android:src="@drawable/best"
+       />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_horizontal"
+        android:orientation="horizontal" >
+
+         <!-- 精品期刊 -->
+	    <ImageView
+	       android:id="@+id/comment_pic"
+	       android:layout_width="wrap_content"
+	       android:layout_height="wrap_content"
+	       android:layout_marginLeft="10dp"
+	       android:scaleType="fitXY"
+	       android:src="@drawable/comment_pic" />
+	    
+	    <LinearLayout
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:orientation="vertical">
+			<!-- 本月期刊 -->
 			<ImageView
-				android:id="@+id/cur_month"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_marginTop="10dp"
-				android:layout_marginLeft="200dp"     
-				android:scaleType="fitXY"
-				android:src="@drawable/cur_month"
-				android:layout_below="@id/best"/>
-</RelativeLayout>
+			    android:id="@+id/cur_month"
+			    android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+			    android:layout_gravity="left"
+			    android:layout_marginTop="10dp"
+			    android:scaleType="fitXY"
+			    android:src="@drawable/cur_month" />
+			<!-- 本月期刊概述 -->
+			<ImageView
+			    android:id="@+id/cur_month_description"
+			    android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+			    android:layout_gravity="left"
+			    android:scaleType="fitXY"
+			    android:src="@drawable/home_best_content"/>
+			<!--  -->
+			<ImageView
+			    android:id="@+id/cur_month_buttom"
+			    android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+			    android:layout_gravity="left"
+			    android:scaleType="fitXY"
+			    android:src="@drawable/home_best_chg"/>
+		</LinearLayout>
+    </LinearLayout>   
+    
+    <!-- 期刊1 -->
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" 
+        android:layout_marginTop="10dp">
+		<LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical" 
+        android:layout_weight="1">
+	    <!-- 刷新 -->
+        <ImageView
+			    android:id="@+id/home_fresh"
+			    android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+			    android:layout_gravity="left"
+			    android:scaleType="fitXY"
+			    android:src="@drawable/home_btn_fresh"/>
+        </LinearLayout>
+        
+		
+        <ImageView
+			    android:id="@+id/home_date"
+			    android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+			    android:layout_gravity="center"
+			    android:scaleType="fitXY"
+			    android:src="@drawable/home_date"/>
+
+        <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical" 
+        android:layout_weight="1">
+        <ImageView
+            android:id="@+id/home_edit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right|center_vertical"
+            android:scaleType="fitXY"
+            android:src="@drawable/home_edit" 
+            android:layout_marginRight="3.0dip"/>
+        </LinearLayout>
+    </LinearLayout>
+    
+    <!-- p1 -->
+    <ImageView
+            android:id="@+id/p1"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:scaleType="fitXY"
+            android:src="@drawable/p1" />
+    <ImageView
+            android:id="@+id/p1_text"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:scaleType="fitXY"
+            android:src="@drawable/p1_text" />
+    <ImageView
+            android:id="@+id/p1_1"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:scaleType="fitXY"
+            android:src="@drawable/p1_1" />
+    
+    
+    <!-- p2 -->
+    <ImageView
+            android:id="@+id/p2"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:scaleType="fitXY"
+            android:src="@drawable/p2" />
+    <ImageView
+            android:id="@+id/p2_text"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:scaleType="fitXY"
+            android:src="@drawable/p2_text" />
+    <ImageView
+            android:id="@+id/p2_1"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:scaleType="fitXY"
+            android:src="@drawable/p2_1" />
+    
+</LinearLayout> 
+</ScrollView>
