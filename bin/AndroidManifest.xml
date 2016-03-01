@@ -43,31 +43,31 @@
         <activity
             android:name="com.jim.magazine.StartActivity"
             android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Holo.NoActionBar">            
+            android:theme="@android:style/Theme.Holo.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>            
         </activity>
         <!-- 登录 -->
         <activity
             android:name="com.jim.magazine.LoginActivity"
             android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Holo.NoActionBar">          
+            android:theme="@android:style/Theme.Holo.NoActionBar">                      
         </activity>
         <!-- 主框架 -->
        <activity
             android:name="com.jim.magazine.MainActivity"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Holo.NoActionBar"
-            android:windowSoftInputMode="adjustPan">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>          
+            android:windowSoftInputMode="adjustPan">                     
         </activity>
         <!-- 注册 -->
         <activity
             android:name="com.jim.magazine.RegisterActivity"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Holo.NoActionBar"
-            android:windowSoftInputMode="adjustPan">          
+            android:windowSoftInputMode="adjustPan">
         </activity>
         <!-- 分割 -->
         <activity
@@ -83,6 +83,103 @@
             android:theme="@android:style/Theme.Holo.NoActionBar"
             android:windowSoftInputMode="adjustPan">          
         </activity>        
+        <!--协议 -->
+        <activity
+            android:name="com.jim.magazine.fragment.AgreementFragment"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Holo.NoActionBar"
+            android:windowSoftInputMode="adjustPan">          
+        </activity>
+        <!--我的收藏 -->
+        <activity
+            android:name="com.jim.magazine.CollectActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Holo.NoActionBar"
+            android:windowSoftInputMode="adjustPan">
+            <!-- 
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+             -->
+        </activity>
+        
+        
+        
+        <!-- ###################测试######################### -->
+        <!-- tabhost+viewpager -->
+        <activity
+            android:name="com.jim.magazine.test.TabhostViewPager"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Holo.NoActionBar"
+            android:windowSoftInputMode="adjustPan">
+            <!--  
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+             -->
+        </activity>
+        <!-- ActionBar+Viewpager -->
+         <activity
+            android:name="com.jim.magazine.test.SlideTabs2"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Holo.NoActionBar"
+            android:windowSoftInputMode="adjustPan">
+            <!-- 
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+             -->
+        </activity>
+        <!-- TabWidget+ViewPager -->
+         <activity
+            android:name="com.jim.magazine.test.SlideTabs3"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Holo.NoActionBar"
+            android:windowSoftInputMode="adjustPan">
+            <!-- 
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+             -->
+        </activity>
+        <!--gridview image and text--> 
+        <activity
+            android:name="com.jim.magazine.test.TestGrid"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Holo.NoActionBar"
+            android:windowSoftInputMode="adjustPan">
+            <!-- 
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+             -->
+        </activity>
+		 <activity
+            android:name="com.jim.magazine.test.TestCustomGrid"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Holo.NoActionBar"
+            android:windowSoftInputMode="adjustPan">
+        </activity>
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
     </application>
 
 </manifest>

@@ -43,7 +43,11 @@
         <activity
             android:name="com.jim.magazine.StartActivity"
             android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Holo.NoActionBar">            
+            android:theme="@android:style/Theme.Holo.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>            
         </activity>
         <!-- 登录 -->
         <activity
@@ -81,7 +85,7 @@
         </activity>        
         <!--协议 -->
         <activity
-            android:name="com.jim.magazine.AgreementFragment"
+            android:name="com.jim.magazine.fragment.AgreementFragment"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Holo.NoActionBar"
             android:windowSoftInputMode="adjustPan">          
@@ -92,10 +96,12 @@
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Holo.NoActionBar"
             android:windowSoftInputMode="adjustPan">
+            <!-- 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+             -->
         </activity>
         
         
