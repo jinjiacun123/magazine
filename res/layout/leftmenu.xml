@@ -2,29 +2,79 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
-
+    android:orientation="vertical" 
+     android:background="@color/left_menu_bg">
+    
+    <LinearLayout 
+    android:layout_width="fill_parent"
+    android:layout_height="100dp"
+    >
     <ImageView
-        android:id="@+id/imageView1"
+        android:id="@+id/menu_brand"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/start" 
+        android:src="@drawable/left_menu_brand" 
         android:layout_gravity="center"/>
+    </LinearLayout>
     
-    <ListView android:id="@+id/navigate_list"  
+    <LinearLayout 
+    android:layout_width="fill_parent"
+    android:layout_height="20dp"
+    >
+    <ImageView
+        android:id="@+id/menu_search"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/left_menu_search" 
+        android:layout_gravity="center"/>
+    </LinearLayout>
+    
+    <LinearLayout 
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    >
+    	<ListView android:id="@+id/navigate_list"  
             android:layout_width="fill_parent"  
             android:layout_height="fill_parent"
-            android:listSelector="#00000000"  
-            android:cacheColorHint="#00000000">
-            <!-- 
-            <Button android:text="每日推荐"/>
-            <Button android:text="一绘视频"/>
-            <Button android:text="我的书店"/>
-            <Button android:text="新品小店"/>
-            <Button android:text="品牌驿站"/>
-            <Button android:text="关于我们"/>
-             -->
-        </ListView>  
+            android:listSelector="#ffffff"  
+            android:cacheColorHint="#ffffff">
+        </ListView>
+    </LinearLayout>  
 
+    <LinearLayout 
+    android:layout_width="fill_parent"
+    android:layout_height="match_parent"
+    >
+    	<!-- sina -->
+    	<ImageView
+        android:id="@+id/menu_sina"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:src="@drawable/share_sina"/>
+    	
+    	<ImageView
+        android:id="@+id/menu_weixin"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:src="@drawable/share_weixin"/>
+    	
+    	<ImageView
+        android:id="@+id/menu_assess"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:src="@drawable/assess" 
+        />
+    	
+    	<ImageView
+        android:id="@+id/menu_feedback"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:src="@drawable/feedback" 
+        />
+    	
+    	
+    	
+    	
+     </LinearLayout>
     
 </LinearLayout>
