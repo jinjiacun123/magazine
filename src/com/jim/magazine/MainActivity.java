@@ -16,12 +16,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup.LayoutParams;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -45,6 +48,17 @@ public class MainActivity extends SlidingFragmentActivity {
 	private LinearLayout buttomBarGroup;
 	
 	ListView listView ;
+	
+	static final String[] menu_item_names = new String[]{
+		"精品推荐",
+		"一绘视频",
+		"我的书架",
+		"精品书店",
+		"品牌驿站",
+		"关于我们",
+	}; 
+	
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -66,16 +80,22 @@ public class MainActivity extends SlidingFragmentActivity {
 		menu.setFadeDegree(0.35f);
 		
         listView = (ListView) findViewById(R.id.navigate_list);
-        
-        String[] values = new String[] { "Android List View", 
-                                         "Adapter implementation",                                         
-                                        };
-       
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-          android.R.layout.simple_list_item_1, android.R.id.text1, values);
+       
+       ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+          R.layout.menu_item,  R.id.text1,  menu_item_names);
+      
 
         listView.setAdapter(adapter);
+        
+        listView.setOnItemClickListener(new OnItemClickListener() {
+			public void onItemClick(AdapterView<?> parent, View view,
+					int position, long id) {
+			    // When clicked, show a toast with the TextView text
+			    Toast.makeText(getApplicationContext(),
+				((TextView) view).getText(), Toast.LENGTH_SHORT).show();
+			}
+		});
 	}
 	
 	private void findView(){
