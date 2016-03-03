@@ -32,4 +32,5 @@
     <color name="common_title">#F9F9F9</color>
     <color name="gray_font">#818181</color>
     <color name="book_self">#f1f2f6</color>
+    <color name="left_menu_bg">#EEE8DB</color>
 </resources>
