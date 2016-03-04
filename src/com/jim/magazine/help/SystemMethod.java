@@ -1,7 +1,6 @@
 package com.jim.magazine.help;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 
 import android.content.Context;
