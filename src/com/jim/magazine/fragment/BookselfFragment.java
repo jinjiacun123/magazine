@@ -10,13 +10,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.jim.magazine.R;
-import com.jim.magazine.R.drawable;
-import com.jim.magazine.R.id;
-import com.jim.magazine.R.layout;
 import com.jim.magazine.view.CustomGrid;
 
 public class BookselfFragment extends Fragment
