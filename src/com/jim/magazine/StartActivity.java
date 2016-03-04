@@ -2,6 +2,7 @@ package com.jim.magazine;
 
 import com.jim.magazine.R;
 import com.jim.magazine.fragment.AppManager;
+import com.jim.magazine.view.ListCircleView;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -40,7 +41,7 @@ public class StartActivity extends Activity{
 				*/
 				
 				//临时测试
-				int type = 5;
+				int type = 2;
 				switch(type)
 				{
 					case 0://到注册
@@ -79,8 +80,14 @@ public class StartActivity extends Activity{
 						startActivity(intent);
 					}
 					break;
+					case 6:
+					{
+						Intent intent=new Intent(StartActivity.this,ListCircleView.class);
+						startActivity(intent);
+					}
+					break;
 					default:
-						break;
+					break;
 				}
 				manager.killActivity(StartActivity.this);
 			} catch (Exception e) {
