@@ -7,18 +7,17 @@ import com.jim.magazine.fragment.CircleFragment;
 import com.jim.magazine.fragment.HomeFragment;
 
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.view.Gravity;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup.LayoutParams;
+import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -29,7 +28,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 
 public class MainActivity extends SlidingFragmentActivity {
 
@@ -62,6 +60,7 @@ public class MainActivity extends SlidingFragmentActivity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		
 		setContentView(R.layout.activity_main);
 		mContext=this;
 		
@@ -89,6 +88,7 @@ public class MainActivity extends SlidingFragmentActivity {
         listView.setAdapter(adapter);
         
         listView.setOnItemClickListener(new OnItemClickListener() {
+			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
 			    // When clicked, show a toast with the TextView text
@@ -96,6 +96,7 @@ public class MainActivity extends SlidingFragmentActivity {
 				((TextView) view).getText(), Toast.LENGTH_SHORT).show();
 			}
 		});
+        
 	}
 	
 	private void findView(){
@@ -163,6 +164,7 @@ public class MainActivity extends SlidingFragmentActivity {
 	private OnClickListener bookOnClickListener=new OnClickListener() {
 		@Override
 		public void onClick(View v) {
+			Button tool_left = (Button)findViewById(R.id.tool_left);
 			FragmentManager fm=getSupportFragmentManager();
 			FragmentTransaction ft=fm.beginTransaction();
 			BookselfFragment bookselfFragment= new BookselfFragment();
