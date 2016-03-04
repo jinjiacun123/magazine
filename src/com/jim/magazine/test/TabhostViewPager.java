@@ -1,8 +1,6 @@
 package com.jim.magazine.test;
 
-import java.util.Random;
 import com.jim.magazine.R;
-import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -11,14 +9,11 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.ViewGroup;
 import android.widget.TabHost;
 import android.widget.TabHost.OnTabChangeListener;
 import android.widget.TabWidget;
-import android.widget.TextView;
 /**
  * 1. 使用TabHost和ViewPager组合实现一个可以滑动的tab
  * 2. bug：如果当前页为0，则ViewPager第一次不加载。
