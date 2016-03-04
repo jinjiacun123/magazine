@@ -164,7 +164,6 @@ public class MainActivity extends SlidingFragmentActivity {
 	private OnClickListener bookOnClickListener=new OnClickListener() {
 		@Override
 		public void onClick(View v) {
-			Button tool_left = (Button)findViewById(R.id.tool_left);
 			FragmentManager fm=getSupportFragmentManager();
 			FragmentTransaction ft=fm.beginTransaction();
 			BookselfFragment bookselfFragment= new BookselfFragment();
