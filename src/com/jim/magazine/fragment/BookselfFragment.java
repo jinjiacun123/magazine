@@ -1,19 +1,19 @@
 package com.jim.magazine.fragment;
 
-import java.util.Random;
-
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.Toast;
 
 import com.jim.magazine.R;
 import com.jim.magazine.view.CustomGrid;
+import com.jim.magazine.view.TitleBarView;
 
 public class BookselfFragment extends Fragment
 {
@@ -55,6 +55,9 @@ public class BookselfFragment extends Fragment
  
     };
     
+    private View mBaseView;
+	private TitleBarView mTitleBarView;
+    
     public BookselfFragment create(String address)
     {
         //ELog.i(TAG, "@--> MyFragment.create()");
@@ -69,11 +72,11 @@ public class BookselfFragment extends Fragment
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState)
     {
-        Random r = new Random(System.currentTimeMillis());
+        //Random r = new Random(System.currentTimeMillis());
         Bundle b = getArguments();
-        View v = inflater.inflate(R.layout.fragment_bookself, null);
+        mBaseView=inflater.inflate(R.layout.fragment_bookself, null);
         CustomGrid adapter = new CustomGrid(getActivity(), web, imageId);
-        grid=(GridView)v.findViewById(R.id.grid);
+        grid=(GridView)mBaseView.findViewById(R.id.grid);
                 grid.setAdapter(adapter);
                 grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
  
@@ -84,14 +87,25 @@ public class BookselfFragment extends Fragment
  
                     }
                 });
-        /*
-        v.setBackgroundColor(r.nextInt() >> 8 | 0xFF << 24);
-        TextView txvAddress = (TextView) v.findViewById(R.id.textView1);
-        txvAddress.setTextColor(r.nextInt() >> 8 | 0xFF << 24);
-        txvAddress.setBackgroundColor(r.nextInt() >> 8 | 0xFF << 24);
-        txvAddress.setText(b.getString("address", ""));
-        */
-        
-        return v;
+       
+		mTitleBarView=(TitleBarView) mBaseView.findViewById(R.id.title_bar);
+		init();
+		return mBaseView;
     }
+    
+	private void init(){//GONE-隐藏,VISIBLE-显示
+		mTitleBarView.setCommonTitle(View.VISIBLE,
+				                                                       View.GONE, 
+				                                                       View.VISIBLE,
+				                                                       View.GONE);
+		mTitleBarView.setBtnLeft(R.drawable.ctl_menu, 0);
+		mTitleBarView.setTitleText(R.string.brand);
+		mTitleBarView.setBtnRightOnclickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				//mTitleBarView.setPopWindow(mPopupWindow, mTitleBarView);
+				//mCanversLayout.setVisibility(View.VISIBLE);
+			}
+		});
+	}
 }
