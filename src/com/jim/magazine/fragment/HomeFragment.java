@@ -83,10 +83,14 @@ public class HomeFragment extends Fragment {
 		return mBaseView;
 	}
 	
-	private void init(){
-		mTitleBarView.setCommonTitle(View.GONE, View.GONE, View.VISIBLE,
-				View.VISIBLE);
-		mTitleBarView.setBtnRight(R.drawable.skin_conversation_title_right_btn);
+	private void init(){//GONE-隐藏,VISIBLE-显示
+		mTitleBarView.setCommonTitle(View.VISIBLE,
+				                                                       View.VISIBLE, 
+				                                                       View.VISIBLE,
+				                                                       View.VISIBLE);
+		mTitleBarView.setBtnLeft(R.drawable.ctl_menu, 0);
+		mTitleBarView.setTitleText(R.string.brand);
+		mTitleBarView.setBtnRight(R.drawable.cart);
 		mTitleBarView.setBtnRightOnclickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
