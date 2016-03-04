@@ -2,10 +2,6 @@ package com.jim.magazine.view;
 
 
 import com.jim.magazine.R;
-import com.jim.magazine.R.drawable;
-import com.jim.magazine.R.id;
-import com.jim.magazine.R.layout;
-import com.jim.magazine.R.style;
 import com.jim.magazine.help.SystemMethod;
 
 import android.annotation.SuppressLint;
