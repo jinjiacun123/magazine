@@ -4,7 +4,6 @@ import com.jim.magazine.R;
 import com.jim.magazine.view.TitleBarView;
 
 import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
@@ -13,16 +12,12 @@ import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
-import android.view.ViewGroup.LayoutParams;
 import android.widget.LinearLayout;
-import android.widget.PopupWindow;
 import android.widget.Toast;
-import android.widget.PopupWindow.OnDismissListener;
 
 /**
  * 首页
@@ -98,7 +93,6 @@ public class HomeFragment extends Fragment {
 				//mCanversLayout.setVisibility(View.VISIBLE);
 			}
 		});
-
 	}
 
 
