@@ -1,15 +1,10 @@
 package com.jim.magazine.fragment;
 
-import java.util.List;
-
 import com.jim.magazine.R;
-import com.jim.magazine.R.id;
-import com.jim.magazine.R.layout;
-import com.jim.magazine.entity.Company;
-import com.jim.magazine.entity.Exposure_Dynamic;
+import com.jim.magazine.view.TitleBarView;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
@@ -18,15 +13,16 @@ import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageView;
+import android.view.View.OnClickListener;
+import android.view.ViewGroup.LayoutParams;
 import android.widget.LinearLayout;
-import android.widget.TextView;
+import android.widget.PopupWindow;
 import android.widget.Toast;
+import android.widget.PopupWindow.OnDismissListener;
 
 /**
  * 首页
@@ -44,6 +40,9 @@ public class HomeFragment extends Fragment {
 	private ConnectivityManager manager2;// 获取网咯的管理器
 	private long id;
 	private LinearLayout layout;
+	
+	private View mBaseView;
+	private TitleBarView mTitleBarView;
 
 	private Handler handler = new Handler() {
 		
@@ -78,8 +77,26 @@ public class HomeFragment extends Fragment {
 			parent.removeView(view);
 		}
 		*/
-		return view;
+		mBaseView=inflater.inflate(R.layout.activity_home, null);
+		mTitleBarView=(TitleBarView) mBaseView.findViewById(R.id.title_bar);
+		init();
+		return mBaseView;
 	}
+	
+	private void init(){
+		mTitleBarView.setCommonTitle(View.GONE, View.GONE, View.VISIBLE,
+				View.VISIBLE);
+		mTitleBarView.setBtnRight(R.drawable.skin_conversation_title_right_btn);
+		mTitleBarView.setBtnRightOnclickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				//mTitleBarView.setPopWindow(mPopupWindow, mTitleBarView);
+				//mCanversLayout.setVisibility(View.VISIBLE);
+			}
+		});
+
+	}
+
 
 	@Override
 	public void onDestroy() {
