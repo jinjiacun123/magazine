@@ -1,9 +1,6 @@
 package com.jim.magazine.fragment;
 
 import com.jim.magazine.R;
-import com.jim.magazine.R.id;
-import com.jim.magazine.R.layout;
-
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
