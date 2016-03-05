@@ -52,7 +52,7 @@ public class MainActivity extends SlidingFragmentActivity {
 		"品牌驿站",
 		"关于我们",
 	}; 
-	
+	public static  SlidingMenu menu;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -66,9 +66,9 @@ public class MainActivity extends SlidingFragmentActivity {
 				
 		setBehindContentView(R.layout.leftmenu);
 		// configure the SlidingMenu
-		SlidingMenu menu = getSlidingMenu();
+		menu = getSlidingMenu();
 		menu.setMode(SlidingMenu.LEFT);
-		menu.setTouchModeAbove(SlidingMenu.TOUCHMODE_FULLSCREEN);
+		menu.setTouchModeAbove(SlidingMenu.TOUCHMODE_NONE);
 		menu.setShadowWidthRes(R.dimen.shadow_width);
 		menu.setShadowDrawable(R.drawable.shadow);
 		
