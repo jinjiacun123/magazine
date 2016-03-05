@@ -1,6 +1,7 @@
 package com.jim.magazine.view;
 
 
+import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import com.jim.magazine.R;
 import com.jim.magazine.help.SystemMethod;
 
@@ -11,6 +12,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
@@ -54,6 +56,22 @@ public class TitleBarView extends RelativeLayout {
 		btnRight.setVisibility(rightVisibility);
 		tv_center.setVisibility(centerVisibility);
 		common_constact.setVisibility(center1Visibilter);		
+		
+		
+	}
+	
+	//打开(或关闭)slidingmenu
+	public void controlSlidingMenu(final SlidingMenu my_menu)
+	{
+		//设置左菜单控制滑动菜单打开和关闭
+				btnLeft.setOnClickListener(new OnClickListener(){
+
+					@Override
+					public void onClick(View arg0) {
+						my_menu.showMenu();
+					}
+					
+				});
 	}
 	
 	public void setBtnLeft(int icon,int txtRes){
