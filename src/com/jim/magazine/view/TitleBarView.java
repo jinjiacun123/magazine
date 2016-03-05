@@ -2,6 +2,7 @@ package com.jim.magazine.view;
 
 
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
+import com.jim.magazine.MainActivity;
 import com.jim.magazine.R;
 import com.jim.magazine.help.SystemMethod;
 
@@ -68,7 +69,16 @@ public class TitleBarView extends RelativeLayout {
 
 					@Override
 					public void onClick(View arg0) {
-						my_menu.showMenu();
+						if(MainActivity.menu_is_show)
+						{
+							my_menu.showContent(true);
+							MainActivity.menu_is_show = false;	
+						}
+						else
+						{
+							my_menu.showMenu(true);
+							MainActivity.menu_is_show = true;
+						}
 					}
 					
 				});
