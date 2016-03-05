@@ -1,5 +1,6 @@
 package com.jim.magazine.fragment;
 
+import com.jim.magazine.MainActivity;
 import com.jim.magazine.R;
 import com.jim.magazine.view.TitleBarView;
 
@@ -86,6 +87,7 @@ public class HomeFragment extends Fragment {
 		mTitleBarView.setBtnLeft(R.drawable.ctl_menu, 0);
 		mTitleBarView.setTitleText(R.string.brand);
 		mTitleBarView.setBtnRight(R.drawable.cart);
+		mTitleBarView.controlSlidingMenu(MainActivity.menu);
 		mTitleBarView.setBtnRightOnclickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
