@@ -9,6 +9,7 @@ import com.jim.magazine.fragment.HomeFragment;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -53,6 +54,7 @@ public class MainActivity extends SlidingFragmentActivity {
 		"关于我们",
 	}; 
 	public static  SlidingMenu menu;
+	public static boolean menu_is_show = false;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -74,6 +76,7 @@ public class MainActivity extends SlidingFragmentActivity {
 		
 		menu.setBehindOffsetRes(R.dimen.slidingmenu_offset);
 		menu.setFadeDegree(0.35f);
+		menu.showContent();
 		
         listView = (ListView) findViewById(R.id.navigate_list);
 
@@ -89,8 +92,31 @@ public class MainActivity extends SlidingFragmentActivity {
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
 			    // When clicked, show a toast with the TextView text
-			    Toast.makeText(getApplicationContext(),
-				((TextView) view).getText(), Toast.LENGTH_SHORT).show();
+			   // Toast.makeText(getApplicationContext(), ((TextView) view).getText(),  Toast.LENGTH_SHORT).show();
+			    String name =  (String) ( (TextView)view).getText();
+			    switch(name)
+			    {
+			    case "精品推荐":
+			    {
+			    	//mHome.performClick();
+			    	menu.showContent(true);
+			    	menu_is_show = false;
+			    	 Toast.makeText(getApplicationContext(), ((TextView) view).getText(),  Toast.LENGTH_SHORT).show();
+			    }
+			    	break;
+			    case "一绘视频":
+			    {	
+			    	Intent intent = new Intent(MainActivity.this, VideoActivity.class);
+					startActivity(intent);
+			    }
+			    	break;
+			    case "关于我们":
+			    {
+			    	Intent intent = new Intent(MainActivity.this, AboutActivity.class);
+			    	startActivity(intent);
+			    }
+			    	break;
+			    }
 			}
 		});
         
@@ -186,7 +212,7 @@ public class MainActivity extends SlidingFragmentActivity {
 	//我绘
 	private OnClickListener mineOnClickListener=new OnClickListener() {
 		@Override
-		public void onClick(View v) {
+		public void onClick(View v) {		
 			FragmentManager fm=getSupportFragmentManager();
 			FragmentTransaction ft=fm.beginTransaction();
 			MineFragment mineFragment= new MineFragment();
