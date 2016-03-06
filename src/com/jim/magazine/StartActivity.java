@@ -86,6 +86,12 @@ public class StartActivity extends Activity{
 						startActivity(intent);
 					}
 					break;
+					case 7:
+					{
+						Intent intent=new Intent(StartActivity.this,VideoActivity.class);
+						startActivity(intent);
+					}
+					break;
 					default:
 					break;
 				}
