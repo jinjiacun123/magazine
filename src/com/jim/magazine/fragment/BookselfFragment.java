@@ -94,12 +94,12 @@ public class BookselfFragment extends Fragment
     }
     
 	private void init(){//GONE-隐藏,VISIBLE-显示
-		mTitleBarView.setCommonTitle(View.VISIBLE,
-				                                                       View.GONE, 
-				                                                       View.VISIBLE,
-				                                                       View.GONE);
-		mTitleBarView.setBtnLeft(R.drawable.ctl_menu, 0);
+		mTitleBarView.setCommonTitle(View.GONE,
+                View.VISIBLE, 
+                View.VISIBLE,
+                View.GONE);
 		mTitleBarView.setTitleText(R.string.brand);
+		
 		mTitleBarView.setBtnRightOnclickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
