@@ -4,9 +4,12 @@ package com.jim.magazine.view;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import com.jim.magazine.MainActivity;
 import com.jim.magazine.R;
+import com.jim.magazine.RegisterActivity;
+import com.jim.magazine.fragment.AppManager;
 import com.jim.magazine.help.SystemMethod;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -56,9 +59,21 @@ public class TitleBarView extends RelativeLayout {
 		btnLeft.setVisibility(LeftVisibility);
 		btnRight.setVisibility(rightVisibility);
 		tv_center.setVisibility(centerVisibility);
-		common_constact.setVisibility(center1Visibilter);		
-		
-		
+		common_constact.setVisibility(center1Visibilter);	
+	}
+	
+	//设置activity返回
+	public void controlBack(final AppManager manager, final Activity activity)
+	{
+		btnLeft.setOnClickListener(new OnClickListener(){
+			
+			@Override
+			public void onClick(View arg0)
+			{
+				// 返回
+				manager.killActivity(activity);
+			}
+		});
 	}
 	
 	//打开(或关闭)slidingmenu
@@ -82,6 +97,11 @@ public class TitleBarView extends RelativeLayout {
 					}
 					
 				});
+	}
+	
+	public void setBtnLeftImg(int drawable)
+	{
+		btnLeft.setImageResource(drawable);
 	}
 	
 	public void setBtnLeft(int icon,int txtRes){
