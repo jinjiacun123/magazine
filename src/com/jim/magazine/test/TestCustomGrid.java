@@ -1,7 +1,7 @@
 package com.jim.magazine.test;
 
 import com.jim.magazine.R;
-
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,11 +10,14 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
  
+@SuppressLint("Instantiatable")
 public class TestCustomGrid extends BaseAdapter{
       private Context mContext;
       private final String[] web;
       private final int[] Imageid;
  
+      
+      
         public TestCustomGrid(Context c,String[] web,int[] Imageid ) {
             mContext = c;
             this.Imageid = Imageid;
