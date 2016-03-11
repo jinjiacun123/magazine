@@ -4,7 +4,6 @@ package com.jim.magazine.view;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import com.jim.magazine.MainActivity;
 import com.jim.magazine.R;
-import com.jim.magazine.RegisterActivity;
 import com.jim.magazine.fragment.AppManager;
 import com.jim.magazine.help.SystemMethod;
 

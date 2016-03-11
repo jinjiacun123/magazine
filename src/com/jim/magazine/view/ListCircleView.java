@@ -1,9 +1,5 @@
 package com.jim.magazine.view;
 
-import java.util.ArrayList; 
-import java.util.List; 
-   
-
 import com.jim.magazine.R;
 
 import android.app.AlertDialog; 
