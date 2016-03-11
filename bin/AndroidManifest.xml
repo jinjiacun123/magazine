@@ -104,7 +104,39 @@
              -->
         </activity>
         
-        
+        <activity
+            android:name="com.jim.magazine.view.ListCircleView"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Holo.NoActionBar"
+            android:windowSoftInputMode="adjustPan">
+            <!-- 
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+             -->
+        </activity>
+          <activity
+            android:name="com.jim.magazine.VideoActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Holo.NoActionBar"
+            android:windowSoftInputMode="adjustPan"/>
+          <activity
+            android:name="com.jim.magazine.MineFragment"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Holo.NoActionBar"
+            android:windowSoftInputMode="adjustPan"/>
+           <activity
+            android:name="com.jim.magazine.HowmemActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Holo.NoActionBar"
+            android:windowSoftInputMode="adjustPan"/>
+        <activity
+            android:name="com.jim.magazine.AboutActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Holo.NoActionBar"
+            android:windowSoftInputMode="adjustPan"/>
+                 
         
         <!-- ###################测试######################### -->
         <!-- tabhost+viewpager -->
