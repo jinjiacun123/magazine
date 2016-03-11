@@ -1,8 +1,5 @@
 package com.jim.magazine.fragment;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
