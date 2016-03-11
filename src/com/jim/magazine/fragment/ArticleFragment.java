@@ -18,40 +18,21 @@ import com.jim.magazine.view.CustomGrid;
 public class ArticleFragment extends Fragment
 {
 	GridView grid;
+	String[] title= {
+			"2015","2015","2015","2015","2015",
+			"2015","2015","2015","2015","2015",
+			"2015","2015","2015","2015","2015",
+	};
     String[] web = {
-            "Google",
-            "Github",
-            "Instagram",
-            "Facebook",
-            "Flickr",
-            "Pinterest",
-            "Quora",
-            "Twitter",
-            "Vimeo",
-            "WordPress",
-            "Youtube",
-            "Stumbleupon",
-            "SoundCloud",
-            "Reddit",
-            "Blogger"
+            "Google",            "Github",            "Instagram",            "Facebook",            "Flickr",
+            "Pinterest",            "Quora",            "Twitter",            "Vimeo",            "WordPress",
+            "Youtube",            "Stumbleupon",            "SoundCloud",            "Reddit",            "Blogger"
  
     } ;
     int[] imageId = {
-            R.drawable.cover_txt,
-            R.drawable.cover_txt,
-            R.drawable.cover_txt,
-            R.drawable.cover_txt,
-            R.drawable.cover_txt,
-            R.drawable.cover_txt,
-            R.drawable.cover_txt,
-            R.drawable.cover_txt,
-            R.drawable.cover_txt,
-            R.drawable.cover_txt,
-            R.drawable.cover_txt,
-            R.drawable.cover_txt,
-            R.drawable.cover_txt,
-            R.drawable.cover_txt,
-            R.drawable.cover_txt
+            R.drawable.cover_txt,            R.drawable.cover_txt,            R.drawable.cover_txt,            R.drawable.cover_txt,            R.drawable.cover_txt,
+            R.drawable.cover_txt,            R.drawable.cover_txt,            R.drawable.cover_txt,            R.drawable.cover_txt,            R.drawable.cover_txt,
+            R.drawable.cover_txt,            R.drawable.cover_txt,            R.drawable.cover_txt,            R.drawable.cover_txt,            R.drawable.cover_txt
  
     };
     
@@ -72,7 +53,7 @@ public class ArticleFragment extends Fragment
         Random r = new Random(System.currentTimeMillis());
         Bundle b = getArguments();
         View v = inflater.inflate(R.layout.fragment_bookself, null);
-        CustomGrid adapter = new CustomGrid(getActivity(), web, imageId);
+        CustomGrid adapter = new CustomGrid(getActivity(), web, imageId, title);
         grid=(GridView)v.findViewById(R.id.grid);
                 grid.setAdapter(adapter);
                 grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {

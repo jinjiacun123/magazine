@@ -18,41 +18,24 @@ import com.jim.magazine.view.TitleBarView;
 public class BookselfFragment extends Fragment
 {
 	GridView grid;
+	
+	String[] title= {
+			"2015","2015","2015","2015","2015",
+			"2015","2015","2015","2015","2015",
+			"2015","2015","2015","2015","2015",
+	};
+	
     String[] web = {
-            "Google",
-            "Github",
-            "Instagram",
-            "Facebook",
-            "Flickr",
-            "Pinterest",
-            "Quora",
-            "Twitter",
-            "Vimeo",
-            "WordPress",
-            "Youtube",
-            "Stumbleupon",
-            "SoundCloud",
-            "Reddit",
-            "Blogger"
+            "Google",            "Github",            "Instagram",            "Facebook",            "Flickr",
+            "Pinterest",            "Quora",            "Twitter",            "Vimeo",            "WordPress",
+            "Youtube",            "Stumbleupon",            "SoundCloud",            "Reddit",            "Blogger"
  
     } ;
     int[] imageId = {
-            R.drawable.cover_txt,
-            R.drawable.cover_txt,
-            R.drawable.cover_txt,
-            R.drawable.cover_txt,
-            R.drawable.cover_txt,
-            R.drawable.cover_txt,
-            R.drawable.cover_txt,
-            R.drawable.cover_txt,
-            R.drawable.cover_txt,
-            R.drawable.cover_txt,
-            R.drawable.cover_txt,
-            R.drawable.cover_txt,
-            R.drawable.cover_txt,
-            R.drawable.cover_txt,
-            R.drawable.cover_txt
- 
+            R.drawable.cover_txt,            R.drawable.cover_txt,            R.drawable.cover_txt,            R.drawable.cover_txt,            R.drawable.cover_txt,
+            R.drawable.cover_txt,            R.drawable.cover_txt,            R.drawable.cover_txt,            R.drawable.cover_txt,            R.drawable.cover_txt,
+            R.drawable.cover_txt,            R.drawable.cover_txt,            R.drawable.cover_txt,            R.drawable.cover_txt,            R.drawable.cover_txt
+
     };
     
     private View mBaseView;
@@ -75,7 +58,7 @@ public class BookselfFragment extends Fragment
         //Random r = new Random(System.currentTimeMillis());
         Bundle b = getArguments();
         mBaseView=inflater.inflate(R.layout.fragment_bookself, null);
-        CustomGrid adapter = new CustomGrid(getActivity(), web, imageId);
+        CustomGrid adapter = new CustomGrid(getActivity(), web, imageId,title);
         grid=(GridView)mBaseView.findViewById(R.id.grid);
                 grid.setAdapter(adapter);
                 grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {

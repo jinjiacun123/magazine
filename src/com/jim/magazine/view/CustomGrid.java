@@ -12,13 +12,15 @@ import android.widget.TextView;
  
 public class CustomGrid extends BaseAdapter{
       private Context mContext;
+      private final String[] title;
       private final String[] web;
       private final int[] Imageid;
  
-        public CustomGrid(Context c,String[] web,int[] Imageid ) {
+        public CustomGrid(Context c,String[] web,int[] Imageid,String[] title ) {
             mContext = c;
             this.Imageid = Imageid;
             this.web = web;
+            this.title = title;
         }
  
         @Override
@@ -50,8 +52,10 @@ public class CustomGrid extends BaseAdapter{
  
                 grid = new View(mContext);
                 grid = inflater.inflate(R.layout.view_grid_single, null);
+                TextView titleView = (TextView)grid.findViewById(R.id.grid_title);
                 TextView textView = (TextView) grid.findViewById(R.id.grid_text);
                 ImageView imageView = (ImageView)grid.findViewById(R.id.grid_image);
+                titleView.setText(title[position]);
                 textView.setText(web[position]);
                 imageView.setImageResource(Imageid[position]);
             } else {
