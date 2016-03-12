@@ -24,39 +24,27 @@ public class CircleFragment extends Fragment
     private View mBaseView;
 	private TitleBarView mTitleBarView;
 	
-	 //定义四个数组，分别做显示用 
-	 private static String[] applicationNames = new String[] 
-	   {
-		 "this is just a button",
-		 "made by forrest", 
-		 "you can do it",
-		 "come on",
-		 "you will success" 
-		}; 
-	 private static String[] authors = new String[] 
-	   { 
-		 "邵洋江",
-		 "邵洋江",
-		 "邵洋江",
-		 "邵洋江",
-		 "邵洋江" 
-		}; 
-	 private static int[] resIds = new int[] 
-	   {
-		 R.drawable.cover_txt,
-		 R.drawable.cover_txt,
-		 R.drawable.cover_txt, 
-	    R.drawable.cover_txt,
-	    R.drawable.cover_txt,
-	    R.drawable.cover_txt 
-	   }; 
-	 private static float[] applicationRating = new float[] 
-	   { (float) 5.0,
-		 (float) 5.0,
-		 (float) 3.5,
-		 (float) 5.0,
-		 (float) 4.0 
-		}; 
+	//ico
+	private int[] ico={
+			R.drawable.circle_ico,
+			
+	};
+    //title
+	private String[] title={
+			"Pchouse家具杂志"
+	};
+	//content
+	private String[] content={
+			"[畅网圈子必读]在圈子分享好产品,发帖即可赚积分!"
+	};
+	//time
+	private String[] time={
+			"2016-02-28  13:58:00"
+	};
+	//message
+	private String[] message={
+			"100"
+	};
    
 	 String inflater = Context.LAYOUT_INFLATER_SERVICE; 
 	 LayoutInflater layoutInflater; 
@@ -126,14 +114,14 @@ public class CircleFragment extends Fragment
 			  @Override
 			public int getCount() 
 			  { 
-				  return applicationNames.length; 
+				  return title.length; 
 			  } 
 	   
 			   // @Override 
 			  @Override
 			public Object getItem(int position) 
 			  { 
-				  return applicationNames[position]; 
+				  return title[position]; 
 			  } 
 	   
 			   // @Override 
@@ -146,9 +134,7 @@ public class CircleFragment extends Fragment
 			  //设置星行分数 
 			  public void setRating(int position, float rating) 
 			  { 
-				   applicationRating[position] = rating; 
-				   //在adapter的数据发生变化以后通知UI主线程根据新的数据重新画图 
-				   notifyDataSetChanged(); 
+				  
 			  } 
 	   
 			   // @Override 
@@ -157,24 +143,20 @@ public class CircleFragment extends Fragment
 			  {  
 				   //对listview布局 
 				   LinearLayout linearLayout = (LinearLayout) layoutInflater.inflate( 
-				       R.layout.view_circle, null); 
-				   //分别得到五个组件 
-				   ImageView ivLogo = (ImageView) linearLayout 
-				       .findViewById(R.id.ivLogo); 
-				   TextView tvApplicationName = ((TextView) linearLayout 
-				       .findViewById(R.id.tvApplicationName)); 
-				   TextView tvAuthor = (TextView) linearLayout 
-				       .findViewById(R.id.tvAuthor); 
-				   TextView tvRating = (TextView) linearLayout 
-				       .findViewById(R.id.tvRating); 
-				   RatingBar ratingBar = (RatingBar) linearLayout 
-				       .findViewById(R.id.ratingbar); 
-				   //五个组件分别得到内容 
-				   ivLogo.setImageResource(resIds[position]); 
-				   tvApplicationName.setText(applicationNames[position]); 
-				   tvAuthor.setText(authors[position]); 
-				   tvRating.setText(String.valueOf(applicationRating[position])); 
-				   ratingBar.setRating(applicationRating[position]); 
+				       R.layout.view_circle, null);
+				   
+				   ImageView ivIco = (ImageView)linearLayout.findViewById(R.id.ico);
+				   TextView ivTitle = (TextView)linearLayout.findViewById(R.id.title);
+				   TextView ivContent = (TextView)linearLayout.findViewById(R.id.content);
+				   TextView ivTime = (TextView)linearLayout.findViewById(R.id.time);
+				   TextView ivMessage = (TextView)linearLayout.findViewById(R.id.number);
+				   
+				   ivIco.setImageResource(ico[position]);
+				   ivTitle.setText(title[position]);
+				   ivContent.setText(content[position]);
+				   ivTime.setText(time[position]);
+				   ivMessage.setText(message[position]);
+				   
 				   return linearLayout; 
 			  } 
 	 } 
