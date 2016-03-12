@@ -2,7 +2,6 @@ package com.jim.magazine;
 
 import com.jim.magazine.R;
 import com.jim.magazine.fragment.AppManager;
-import com.jim.magazine.view.ListCircleView;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -81,12 +80,6 @@ public class StartActivity extends Activity{
 					}
 					break;
 					case 6:
-					{
-						Intent intent=new Intent(StartActivity.this,ListCircleView.class);
-						startActivity(intent);
-					}
-					break;
-					case 7:
 					{
 						Intent intent=new Intent(StartActivity.this,VideoActivity.class);
 						startActivity(intent);
