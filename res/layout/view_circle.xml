@@ -1,41 +1,123 @@
 <?xml version="1.0" encoding="utf-8"?>
  <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-     android:orientation="horizontal" android:layout_width="fill_parent"
-     android:layout_height="wrap_content" android:gravity="center_vertical"> 
-        
-     <ImageView android:id="@+id/ivLogo"
-         android:layout_width="60dp"
-         android:layout_height="60dp"
-         android:src="@drawable/best"
-         android:paddingLeft="5dp" /> 
+     android:layout_width="fill_parent"
+     android:layout_height="wrap_content"
+     android:orientation="vertical"
+     android:paddingTop="10dp"
+     android:background="@color/white" >
+     
+     <!--first: ico title tag-->
      <RelativeLayout 
-         android:orientation="vertical" android:layout_width="wrap_content"
-         android:layout_height="wrap_content" android:gravity="right"
-         android:padding="10dp"> 
-            
-         <TextView android:id="@+id/tvApplicationName"
+     android:layout_width="fill_parent"
+     android:layout_height="wrap_content"
+      android:orientation="horizontal"
+    >
+         <!-- ico -->   
+         <ImageView 
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:id="@+id/ico"
+            android:src="@drawable/circle_ico"
+            android:layout_alignParentLeft="true"
+         />   
+
+         <!-- title -->
+         <TextView android:id="@+id/title"
              android:layout_width="wrap_content"
              android:layout_height="wrap_content"
-             android:textSize="16dp" /> 
-         <TextView android:id="@+id/tvAuthor"
+             android:text="Pchouse家具杂志"
+             android:layout_toRightOf="@id/ico"
+             android:gravity="center"
+             /> 
+         
+         <!--  tag-->
+        <ImageView 
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:id="@+id/tag"
+            android:src="@drawable/circle_tag"
+            android:layout_alignParentRight="true"
+         /> 
+    </RelativeLayout>
+     
+     <!--second:content-->
+     <RelativeLayout
+     android:layout_width="fill_parent"
+     android:layout_height="wrap_content"
+     android:orientation="vertical" >
+         <!-- content -->
+         <TextView android:id="@+id/content"
              android:layout_width="wrap_content"
              android:layout_height="wrap_content"
-             android:layout_below="@id/tvApplicationName"
-             android:textSize="14dp" /> 
-     </RelativeLayout> 
-     <RelativeLayout 
-         android:orientation="vertical" android:layout_width="fill_parent"
-         android:layout_height="wrap_content" android:gravity="right"
-         android:padding="10dp"> 
-         <TextView android:id="@+id/tvRating"
+             android:text="[畅网圈子必读]在圈子分享好产品,发帖即可赚积分!"
+             android:gravity="left"
+             /> 
+     </RelativeLayout>
+     
+     <!--third:images-->
+     <RelativeLayout
+     android:layout_width="fill_parent"
+     android:layout_height="wrap_content"     
+     android:orientation="horizontal" >
+        <ImageView 
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:id="@+id/img1"
+            android:src="@drawable/circle_img1"
+            android:layout_alignParentLeft="true"
+         />   
+          <ImageView 
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:id="@+id/img2"
+            android:src="@drawable/circle_img2"
+            android:layout_toRightOf="@id/img1" 
+         />   
+          <ImageView 
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:id="@+id/img3"
+            android:src="@drawable/circle_img3"
+            android:layout_toRightOf="@id/img2" 
+         />   
+          <ImageView 
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:id="@+id/img4"
+            android:src="@drawable/circle_img4"
+            android:layout_toRightOf="@id/img3" 
+         />   
+    </RelativeLayout>
+
+     <!--fourth:date time of read-->
+     <RelativeLayout
+     android:layout_width="fill_parent"
+     android:layout_height="wrap_content"
+     android:gravity="center_vertical"
+     android:orientation="vertical" >
+      <!--date-->
+       <TextView android:id="@+id/time"
              android:layout_width="wrap_content"
              android:layout_height="wrap_content"
-             android:text="5.0" /> 
-         <RatingBar android:id="@+id/ratingbar"
+             android:text="2016-02-28  13:58:00"
+             android:layout_alignParentLeft="true"
+             /> 
+      
+       <ImageView 
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:id="@+id/img4"
+            android:src="@drawable/circle_message"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="30dp"
+         /> 
+         <TextView android:id="@+id/number"
              android:layout_width="wrap_content"
              android:layout_height="wrap_content"
-             android:numStars="5"
-             style="?android:attr/ratingBarStyleSmall"
-             android:layout_below="@id/tvRating" /> 
-     </RelativeLayout> 
+             android:text="100"
+             android:layout_alignParentRight="true"
+             android:layout_marginRight="3dp"
+             />   
+     </RelativeLayout>
+
  </LinearLayout>
