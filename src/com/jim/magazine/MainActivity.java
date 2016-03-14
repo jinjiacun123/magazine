@@ -2,6 +2,7 @@ package com.jim.magazine;
 
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu.OnCloseListener;
+import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu.OnClosedListener;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu.OnOpenListener;
 import com.jeremyfeinstein.slidingmenu.lib.app.SlidingFragmentActivity;
 import com.jim.magazine.fragment.BookselfFragment;
@@ -46,6 +47,7 @@ public class MainActivity extends SlidingFragmentActivity {
 	private LinearLayout buttomBarGroup;
 	
 	ListView listView ;
+	private int leftCtl = 0;
 	
 	static final String[] menu_item_names = new String[]{
 		"精品推荐",
@@ -87,12 +89,35 @@ public class MainActivity extends SlidingFragmentActivity {
 		            leftBtn.setImageResource(R.drawable.home_city_red);
 		        }
 		});
+		
 		menu.setOnCloseListener(new OnCloseListener(){
 			@Override
 			public void onClose()
 			{
 				ImageButton leftBtn = (ImageButton)findViewById(R.id.title_btn_left);
 	            leftBtn.setImageResource(R.drawable.home_city_green);
+			}
+		});
+		
+		menu.setOnClosedListener(new OnClosedListener(){
+			@Override
+			public void onClosed()
+			{
+				switch(leftCtl)
+				{
+				case 2:
+				{	
+			    	Intent intent = new Intent(MainActivity.this, VideoActivity.class);
+					startActivity(intent);
+				}
+					break;
+				case 3:
+				{	
+			    	Intent intent = new Intent(MainActivity.this, AboutActivity.class);
+			    	startActivity(intent);
+				}
+					break;
+				}
 			}
 		});
 		
@@ -117,21 +142,21 @@ public class MainActivity extends SlidingFragmentActivity {
 			    {
 			    case "精品推荐":
 			    {
-			    	//mHome.performClick();
-			    	menu.showContent(true);
-			    	 Toast.makeText(getApplicationContext(), ((TextView) view).getText(),  Toast.LENGTH_SHORT).show();
+			    	leftCtl = 1;
+			    	menu.toggle(true);
+			    	 //Toast.makeText(getApplicationContext(), ((TextView) view).getText(),  Toast.LENGTH_SHORT).show();
 			    }
 			    	break;
 			    case "一绘视频":
 			    {	
-			    	Intent intent = new Intent(MainActivity.this, VideoActivity.class);
-					startActivity(intent);
+			    	leftCtl = 2;
+			    	menu.toggle(true);
 			    }
 			    	break;
 			    case "关于我们":
 			    {
-			    	Intent intent = new Intent(MainActivity.this, AboutActivity.class);
-			    	startActivity(intent);
+			    	leftCtl = 3;
+			    	menu.toggle(true);
 			    }
 			    	break;
 			    }
