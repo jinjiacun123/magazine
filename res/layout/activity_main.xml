@@ -18,6 +18,7 @@
                 android:id="@+id/buttom_home"
                 style="@style/ButtomBarImgBtn"
                 android:src="@drawable/home_green"
+                android:background="@color/white"
                 android:contentDescription="@string/app_name" />
         </RelativeLayout>
 
@@ -27,6 +28,7 @@
                 android:id="@+id/buttom_book"
                 style="@style/ButtomBarImgBtn"
                 android:src="@drawable/book_green"
+                android:background="@color/white"
                 android:contentDescription="@string/app_name" />
         </RelativeLayout>
         
@@ -36,6 +38,7 @@
                 android:id="@+id/buttom_cicle"
                 style="@style/ButtomBarImgBtn"
                 android:src="@drawable/circle_green"
+                android:background="@color/white"
                 android:contentDescription="@string/app_name" />
         </RelativeLayout>
         
@@ -45,6 +48,7 @@
                 android:id="@+id/buttom_mine"
                 style="@style/ButtomBarImgBtn"
                 android:src="@drawable/mine_green"
+                android:background="@color/white"
                 android:contentDescription="@string/app_name" />
         </RelativeLayout>
     </LinearLayout>
