@@ -17,7 +17,7 @@
             <ImageButton
                 android:id="@+id/buttom_home"
                 style="@style/ButtomBarImgBtn"
-                android:background="@drawable/home_red"
+                android:src="@drawable/home_green"
                 android:contentDescription="@string/app_name" />
         </RelativeLayout>
 
@@ -26,7 +26,7 @@
             <ImageButton
                 android:id="@+id/buttom_book"
                 style="@style/ButtomBarImgBtn"
-                android:background="@drawable/book_green"
+                android:src="@drawable/book_green"
                 android:contentDescription="@string/app_name" />
         </RelativeLayout>
         
@@ -35,7 +35,7 @@
             <ImageButton
                 android:id="@+id/buttom_cicle"
                 style="@style/ButtomBarImgBtn"
-                android:background="@drawable/cicle_green"
+                android:src="@drawable/circle_green"
                 android:contentDescription="@string/app_name" />
         </RelativeLayout>
         
@@ -44,7 +44,7 @@
             <ImageButton
                 android:id="@+id/buttom_mine"
                 style="@style/ButtomBarImgBtn"
-                android:background="@drawable/mine_green"
+                android:src="@drawable/mine_green"
                 android:contentDescription="@string/app_name" />
         </RelativeLayout>
     </LinearLayout>
