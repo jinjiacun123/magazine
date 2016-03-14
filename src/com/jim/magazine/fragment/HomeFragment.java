@@ -84,10 +84,12 @@ public class HomeFragment extends Fragment {
 				                                                       View.VISIBLE, 
 				                                                       View.VISIBLE,
 				                                                       View.VISIBLE);
-		mTitleBarView.setBtnLeft(R.drawable.ctl_menu, 0);
+		//mTitleBarView.setBtnLeft(R.drawable.home_city_green, 0);
+		mTitleBarView.setBtnLeftImg(R.drawable.home_city_green);
 		mTitleBarView.setTitleText(R.string.brand);
 		mTitleBarView.setBtnRight(R.drawable.cart);
 		mTitleBarView.controlSlidingMenu(MainActivity.menu);
+		/*
 		mTitleBarView.setBtnRightOnclickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -95,6 +97,7 @@ public class HomeFragment extends Fragment {
 				//mCanversLayout.setVisibility(View.VISIBLE);
 			}
 		});
+		*/
 	}
 
 
