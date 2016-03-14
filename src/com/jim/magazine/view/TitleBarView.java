@@ -33,6 +33,8 @@ public class TitleBarView extends RelativeLayout {
 	private Button btn_titleRight;
 	private TextView tv_center;
 	private LinearLayout common_constact;
+	
+	public static Boolean menu_is_show=false;
 	public TitleBarView(Context context){
 		super(context);
 		mContext=context;
@@ -83,18 +85,9 @@ public class TitleBarView extends RelativeLayout {
 
 					@Override
 					public void onClick(View arg0) {
-						if(MainActivity.menu_is_show)
-						{
-							my_menu.showContent(true);
-							MainActivity.menu_is_show = false;	
-						}
-						else
-						{
-							my_menu.showMenu(true);
-							MainActivity.menu_is_show = true;
-						}
-					}
-					
+						//my_menu.showMenu(true);
+						my_menu.toggle();
+					}					
 				});
 	}
 	
@@ -108,8 +101,6 @@ public class TitleBarView extends RelativeLayout {
 		int height=SystemMethod.dip2px(mContext, 20);
 		int width=img.getIntrinsicWidth()*height/img.getIntrinsicHeight();
 		img.setBounds(0, 0, width, height);
-
-		//btnLeft.setCompoundDrawables(img, null, null, null);
 	}
 	
 	public void setBtnLeft(int txtRes){
