@@ -86,7 +86,7 @@ public class TitleBarView extends RelativeLayout {
 					@Override
 					public void onClick(View arg0) {
 						//my_menu.showMenu(true);
-						my_menu.toggle();
+						my_menu.toggle(true);
 					}					
 				});
 	}
