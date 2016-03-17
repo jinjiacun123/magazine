@@ -3,6 +3,7 @@ package com.jim.magazine;
 import com.jim.magazine.R;
 import com.jim.magazine.fragment.AppManager;
 import com.jim.magazine.test.GetMagazine;
+import com.jim.magazine.test.Animation;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -41,7 +42,7 @@ public class StartActivity extends Activity{
 				*/
 				
 				//临时测试
-				int type = 7;
+				int type = 8;
 				switch(type)
 				{
 					case 0://到注册
@@ -89,6 +90,12 @@ public class StartActivity extends Activity{
 					case 7://杂志下载
 					{
 						Intent intent=new Intent(StartActivity.this, GetMagazine.class);
+						startActivity(intent);
+					}
+						break;
+					case 8://动画效果
+					{
+						Intent intent=new Intent(StartActivity.this, Animation.class);
 						startActivity(intent);
 					}
 						break;
