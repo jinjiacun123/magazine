@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="orange_dark">#ffff8800</color>
+    <color name="nav_press">#fffafafa</color>
+    <color name="orange_light">#ffffbb33</color>
+    <color name="white">#ffffffff</color>
+    <color name="black">#ff000000</color>
+    <color name="gray_shadow">#ffcccccc</color>
+    <color name="list_background_normal">#fffcfcfc</color>
+    <color name="gray_2">#ffafafaf</color>
+    <color name="book_shelf_main_bg">#fff0f1f5</color>
+    <color name="bookshelf_head_statistics_type">#ffff8523</color>
+    <color name="magazine_check_color">#88000000</color>
+</resources>

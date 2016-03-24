@@ -1,0 +1,32 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="windowActionBar">false</item>
+    </style>
+
+    <style name="MyActionBar" parent="@style/Widget.AppCompat.ActionBar">
+        <item name="android:textAppearance">@style/MyTextAppearance</item>
+        <item name="android:background">@color/orange_dark</item>
+        <item name="android:divider">@drawable/actionbar_divider</item>
+        <item name="divider">@drawable/actionbar_divider</item>
+        <item name="showDividers">beginning</item>
+        <item name="actionBarSplitStyle">?android:actionBarSplitStyle</item>
+        <item name="actionBarDivider">@drawable/actionbar_divider</item>
+    </style>
+
+    <style name="Match">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">fill_parent</item>
+    </style>
+
+    <style name="MyTextAppearance" parent="@style/TextAppearance.Widget.AppCompat.Toolbar.Title">
+        <item name="android:textSize">18.0sp</item>
+    </style>
+
+    <style name="Wrap">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+</resources>

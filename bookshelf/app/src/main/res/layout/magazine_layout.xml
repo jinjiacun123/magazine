@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:gravity="center"
+    android:orientation="vertical" android:id="@+id/whole_rv"
+    android:background="@drawable/button_rect_list_normal"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_margin="5.0dip"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:materialdesign="http://schemas.android.com/apk/res-auto">
+    <TextView android:textAppearance="?android:textAppearanceLarge"
+        android:textColor="@android:color/darker_gray"
+        android:gravity="center|left"
+        android:id="@+id/year_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <FrameLayout android:orientation="vertical"
+        android:id="@+id/card_cv"
+        android:clickable="false"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/year_title">
+        <LinearLayout android:orientation="vertical"
+            android:id="@+id/magazineLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <FrameLayout android:layout_width="125.0dip" android:layout_height="205.0dip">
+                <ProgressBar android:layout_gravity="center"
+                    android:id="@+id/loadprogress"
+                    android:layout_width="18.0dip"
+                    android:layout_height="18.0dip"
+                    android:indeterminateDrawable="@anim/magazine_cover_loading" />
+                <FrameLayout android:layout_width="fill_parent" android:layout_height="fill_parent">
+                    <ImageView android:layout_gravity="center"
+                        android:id="@+id/imageView"
+                        android:layout_width="125.0dip"
+                        android:layout_height="205.0dip"
+                        android:scaleType="centerCrop" />
+                    <FrameLayout android:layout_gravity="center|right|top"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent">
+                        <ImageView android:layout_gravity="right"
+                            android:id="@+id/magazineStateImg"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                        <com.example.jim.bookshelf.ui.material.CheckBox
+                            android:layout_gravity="right"
+                            android:id="@+id/state_check"
+                            android:background="@color/magazine_check_color"
+                            android:visibility="gone"
+                            android:layout_width="20.0dip"
+                            android:layout_height="20.0dip"
+                            materialdesign:check="false" />
+                        <TextView android:textColor="@color/bookshelf_head_statistics_type"
+                            android:layout_gravity="right"
+                            android:id="@+id/downLoadPercent"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5.0dip" />
+                        <FrameLayout android:layout_gravity="right"
+                            android:id="@+id/unzipPbLayout"
+                            android:background="@drawable/magazine_state_unzip_bg1"
+                            android:visibility="gone"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+                            <ProgressBar android:layout_gravity="right"
+                                android:layout_width="10.0dip"
+                                android:layout_height="10.0dip"
+                                android:layout_marginTop="5.0dip"
+                                android:layout_marginRight="5.0dip"
+                                android:indeterminateDrawable="@anim/magazine_state_unziping" />
+                        </FrameLayout>
+                    </FrameLayout>
+                </FrameLayout>
+            </FrameLayout>
+        </LinearLayout>
+    </FrameLayout>
+    <TextView android:textSize="15.0sp"
+        android:textColor="@android:color/black"
+        android:id="@+id/name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5.0dip"
+        android:text="7月刊"
+        android:layout_below="@id/card_cv"
+        android:layout_alignLeft="@id/card_cv"
+        android:layout_alignStart="@id/card_cv" />
+    <ImageView android:id="@+id/operateImg"
+        android:visibility="invisible"
+        android:layout_width="wrap_content"
+        android:layout_height="20.0dip"
+        android:layout_marginTop="5.0dip"
+        android:layout_marginRight="5.0dip"
+        android:layout_below="@id/card_cv"
+        android:layout_alignRight="@id/card_cv" />
+    <ImageView android:id="@+id/bookmark"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="8.0dip"
+        android:src="@drawable/bookmark"
+        android:layout_below="@id/card_cv"
+        android:layout_alignRight="@id/card_cv"
+        android:layout_alignEnd="@id/card_cv" />
+</RelativeLayout>

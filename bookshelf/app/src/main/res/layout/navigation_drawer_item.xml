@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.example.jim.bookshelf.ui.NavigationDrawerItemView
+    android:orientation="vertical"
+    android:id="@+id/itemRR"
+    android:background="@drawable/button_rect_list_gray"
+    android:layout_width="fill_parent"
+    android:layout_height="60.0dip"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+        <ImageView
+            android:id="@+id/navigationDrawerItemIconIV"
+            android:layout_width="@dimen/navigation_drawer_image_view_size"
+            android:layout_height="@dimen/navigation_drawer_image_view_size"
+            android:layout_marginLeft="@dimen/default_small_padding"
+            android:layout_centerVertical="true"
+            />
+        <TextView
+            android:textSize="18.0sp"
+            android:textStyle="normal"
+            android:textColor="@color/black"
+            android:id="@+id/navigationDrawerItemTitleTV"
+            android:layout_marginLeft="12.0dip"
+            android:text="@string/app_name"
+            android:layout_toRightOf="@id/navigationDrawerItemIconIV"
+            android:layout_centerVertical="true"
+            style="@style/Wrap" />
+        <TextView
+            android:textSize="14.0sp"
+            android:textStyle="normal"
+            android:textColor="@color/gray_shadow"
+            android:ellipsize="end"
+            android:id="@+id/navigationDrawerItemSubTitleTV"
+            android:layout_marginRight="12.0dip"
+            android:text=""
+            android:maxLength="5"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            style="@style/Wrap" />
+</com.example.jim.bookshelf.ui.NavigationDrawerItemView>
