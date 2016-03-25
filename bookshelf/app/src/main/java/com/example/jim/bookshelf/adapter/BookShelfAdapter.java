@@ -171,7 +171,7 @@ public class BookShelfAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
     protected void onBindViewHolder(ViewHolder paramViewHolder, int paramInt)
     {
-        Log.i("slz", "onBindViewHolder" + paramInt);
+       /* Log.i("slz", "onBindViewHolder" + paramInt);
         Magazine localMagazine = (Magazine)this.mMagazines.get(paramInt);
         if (localMagazine == null)
         {
@@ -296,17 +296,20 @@ public class BookShelfAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             {
 
             }
-        }
+        }*/
     }
 
     public ViewHolder onCreateViewHolder(ViewGroup paramViewGroup, int paramInt)
     {
         Log.i("jim", "onCreateViewHolder" + paramInt);
+        LayoutInflater mInflater;
         /*ViewHolder localViewHolder = new ViewHolder(LayoutInflater
                                                     .from(paramViewGroup.getContext())
                                                     .inflate(R.layout.magazine_layout, paramViewGroup, false), this.mBookShelfAction);
         localViewHolder.setIsRecyclable(false);*/
-        View v = LayoutInflater.from(paramViewGroup.getContext()).inflate(R.layout.magazine_layout, paramViewGroup, false);
+        mInflater = LayoutInflater.from(paramViewGroup.getContext());
+        //View v = mInflater.inflate(R.layout.magazine_layout, paramViewGroup, false);
+        View v = mInflater.inflate(R.layout.item_home, paramViewGroup, false);
         ViewHolder vh = new ViewHolder(v,this.mBookShelfAction);
         Log.i("jim","magazine_layout");
         return vh;
