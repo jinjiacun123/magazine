@@ -1,18 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout android:gravity="center"
-    android:orientation="vertical" android:id="@+id/whole_rv"
+<RelativeLayout
+    android:gravity="center"
+    android:orientation="vertical"
+    android:id="@+id/whole_rv"
     android:background="@drawable/button_rect_list_normal"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_margin="5.0dip"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:materialdesign="http://schemas.android.com/apk/res-auto">
-    <TextView android:textAppearance="?android:textAppearanceLarge"
+
+    <TextView
+        android:textAppearance="?android:textAppearanceLarge"
         android:textColor="@android:color/darker_gray"
         android:gravity="center|left"
         android:id="@+id/year_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="hello,world"
+        />
     <FrameLayout android:orientation="vertical"
         android:id="@+id/card_cv"
         android:clickable="false"
@@ -24,21 +34,25 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
             <FrameLayout android:layout_width="125.0dip" android:layout_height="205.0dip">
-                <ProgressBar android:layout_gravity="center"
+                <ProgressBar
+                    android:layout_gravity="center"
                     android:id="@+id/loadprogress"
                     android:layout_width="18.0dip"
                     android:layout_height="18.0dip"
                     android:indeterminateDrawable="@anim/magazine_cover_loading" />
                 <FrameLayout android:layout_width="fill_parent" android:layout_height="fill_parent">
-                    <ImageView android:layout_gravity="center"
+                    <ImageView
+                        android:layout_gravity="center"
                         android:id="@+id/imageView"
                         android:layout_width="125.0dip"
                         android:layout_height="205.0dip"
                         android:scaleType="centerCrop" />
-                    <FrameLayout android:layout_gravity="center|right|top"
+                    <FrameLayout
+                        android:layout_gravity="center|right|top"
                         android:layout_width="fill_parent"
                         android:layout_height="fill_parent">
-                        <ImageView android:layout_gravity="right"
+                        <ImageView
+                            android:layout_gravity="right"
                             android:id="@+id/magazineStateImg"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" />
@@ -49,7 +63,7 @@
                             android:visibility="gone"
                             android:layout_width="20.0dip"
                             android:layout_height="20.0dip"
-                            materialdesign:check="false" />
+                             /><!--materialdesign:check="false"-->
                         <TextView android:textColor="@color/bookshelf_head_statistics_type"
                             android:layout_gravity="right"
                             android:id="@+id/downLoadPercent"

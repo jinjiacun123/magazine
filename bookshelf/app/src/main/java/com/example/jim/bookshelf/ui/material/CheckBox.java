@@ -70,7 +70,7 @@ public class CheckBox extends CustomView
             n = j - 30;
             break label55;
         }*/
-        return 0;
+        return Color.argb(70, 118, 118, 188);
     }
 
     protected void onDraw(Canvas paramCanvas)
@@ -161,9 +161,9 @@ public class CheckBox extends CustomView
             //localLayoutParams.addRule(11, -1);
             //this.checkView.setLayoutParams(localLayoutParams);
             //addView(this.checkView);
-            String str = paramAttributeSet.getAttributeValue("http://schemas.android.com/apk/res/android", "background");
+            /*String str = paramAttributeSet.getAttributeValue("http://schemas.android.com/apk/res/android", "background");
             if (str != null)
-                setBackgroundColor(Color.parseColor(str));
+                setBackgroundColor(Color.parseColor(str));*/
         }
     }
 

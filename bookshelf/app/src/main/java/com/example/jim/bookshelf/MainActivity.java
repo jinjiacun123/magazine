@@ -14,10 +14,12 @@ import android.support.v7.widget.Toolbar;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 
+import com.example.jim.bookshelf.bean.Magazine;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestHandle;
 
+import java.util.LinkedHashMap;
 import java.util.List;
 
 
@@ -34,6 +36,8 @@ public class MainActivity extends BaseActivity
     private Toolbar mToolbar;
     private List<NavigationDrawerItem> navigationItems;
     private String nickName;
+
+    public static LinkedHashMap<String, Magazine> sMagazineMap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

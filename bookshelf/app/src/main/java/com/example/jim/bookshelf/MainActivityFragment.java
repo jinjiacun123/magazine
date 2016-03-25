@@ -24,8 +24,10 @@ import android.widget.Toast;
 import com.example.jim.bookshelf.adapter.BookShelfAdapter;
 import com.example.jim.bookshelf.bean.Magazine;
 import com.example.jim.bookshelf.bean.MagazineData;
+import com.example.jim.bookshelf.config.Env;
 import com.example.jim.bookshelf.misc.RebountItemAnimator;
 import com.example.jim.bookshelf.multidownloader.DownloadManager;
+import com.example.jim.bookshelf.multidownloader.DownloadTask;
 import com.example.jim.bookshelf.service.MagazineDbService;
 import com.example.jim.bookshelf.service.MagazineDownloadService;
 
@@ -41,6 +43,7 @@ import com.loopj.android.http.RequestHandle;
 
 import org.apache.http.Header;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 
@@ -103,9 +106,9 @@ public class MainActivityFragment extends Fragment
                 {
                     //mProgressBarCircularIndetermininate.setVisibility(View.GONE);
                     mMagazineData = JsonUtil.getMagazineData((String) paramAnonymousMessage.obj);
+                    MainActivity.sMagazineMap = new LinkedHashMap();
                     initMagazineState();
-                    LinkedHashMap<String, Magazine> sMagazineMap = new LinkedHashMap();
-                    mBookShelfAdapter = new BookShelfAdapter(sMagazineMap, MainActivityFragment.this);
+                    mBookShelfAdapter = new BookShelfAdapter(MainActivity.sMagazineMap, MainActivityFragment.this);
                     mBookShelfRv.setAdapter(mBookShelfAdapter);
                     mBookShelfAdapter.notifyItemRangeInserted(0, mMagazineData.getMagazines().size());
                     mBookShelfRv.setVisibility(View.VISIBLE);
@@ -135,16 +138,18 @@ public class MainActivityFragment extends Fragment
     //初始化对应杂志下载任务
     private void initMagazineState()
     {
-        /*for (int i = 0; i < mMagazineData.getMagazines().size(); i++)
+        for (int i = 0; i < mMagazineData.getMagazines().size(); i++)
         {
             ((Magazine)mMagazineData.getMagazines().get(i)).setPosition(i);
             String str = ((Magazine)mMagazineData.getMagazines().get(i)).getId();
             ((Magazine)mMagazineData.getMagazines().get(i)).setZipPath(Env.zipFilePath + str);
             ((Magazine)mMagazineData.getMagazines().get(i)).setDirPath(Env.unzipFilePath + str + "/");
             ((Magazine)mMagazineData.getMagazines().get(i)).setCurrentOperateState(MagazineDbService.getInstence(this.mActivity).getMagazineStatus(((Magazine)mMagazineData.getMagazines().get(i)).getUrl()));
-            DownloadTask localDownloadTask = this.downloadManager.buildDownloadTask(((Magazine)mMagazineData.getMagazines().get(i)).getId(), ((Magazine)mMagazineData.getMagazines().get(i)).getUrl(), new File(Env.zipFilePath + ((Magazine)mMagazineData.getMagazines().get(i)).getId() + ".zip"));
+            DownloadTask localDownloadTask = this.downloadManager.buildDownloadTask(((Magazine)mMagazineData.getMagazines().get(i)).getId(),
+                                                                                    ((Magazine)mMagazineData.getMagazines().get(i)).getUrl(),
+                                                                                    new File(Env.zipFilePath + ((Magazine)mMagazineData.getMagazines().get(i)).getId() + ".zip"));
             ((Magazine)mMagazineData.getMagazines().get(i)).setDownloadTask(localDownloadTask);
-            MagazineApplication.sMagazineMap.put(((Magazine)mMagazineData.getMagazines().get(i)).getDownloadTask().getUrl(), mMagazineData.getMagazines().get(i));
+            MainActivity.sMagazineMap.put(((Magazine)mMagazineData.getMagazines().get(i)).getDownloadTask().getUrl(), mMagazineData.getMagazines().get(i));
         }
         if (isFirstIn)
         {
@@ -152,7 +157,7 @@ public class MainActivityFragment extends Fragment
             Intent localIntent = new Intent(this.mActivity, MagazineDownloadService.class);
             localIntent.putExtra("type", 0);
             this.mActivity.startService(localIntent);
-        }*/
+        }
     }
 
    @Override
@@ -172,7 +177,7 @@ public class MainActivityFragment extends Fragment
     {
         this.mActivity = ((MainActivity)getActivity());
         sNeedUpdatePosition = new ArrayList();
-        //this.downloadManager = DownloadManager.getDownloadManager(this.mActivity, "magazine", null);
+        this.downloadManager = DownloadManager.getDownloadManager(this.mActivity, "bookshelf", null);
        // this.receiver = new MagazineReceiver();
        // IntentFilter localIntentFilter = new IntentFilter();
        // localIntentFilter.addAction("com.example.jim.bookshelf.magazinereceiver");
@@ -210,7 +215,7 @@ public class MainActivityFragment extends Fragment
 
                             @Override
                             public void onSuccess(int i, cz.msebera.android.httpclient.Header[] headers, byte[] bytes) {
-                                System.out.println(new String(bytes));
+                                //System.out.println(new String(bytes));
                                 Message localMessage = new Message();
                                 localMessage.what = 0;
                                 localMessage.obj = new String(bytes);
