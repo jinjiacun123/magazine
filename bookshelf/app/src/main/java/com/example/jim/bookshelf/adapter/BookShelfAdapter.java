@@ -301,13 +301,16 @@ public class BookShelfAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
     public ViewHolder onCreateViewHolder(ViewGroup paramViewGroup, int paramInt)
     {
-        Log.i("slz", "onCreateViewHolder" + paramInt);
-        ViewHolder localViewHolder = new ViewHolder(LayoutInflater
-                                                    .from(paramViewGroup
-                                                            .getContext())
-                                         .inflate(R.layout.magazine_layout, paramViewGroup, false), this.mBookShelfAction);
-        localViewHolder.setIsRecyclable(false);
-        return localViewHolder;
+        Log.i("jim", "onCreateViewHolder" + paramInt);
+        /*ViewHolder localViewHolder = new ViewHolder(LayoutInflater
+                                                    .from(paramViewGroup.getContext())
+                                                    .inflate(R.layout.magazine_layout, paramViewGroup, false), this.mBookShelfAction);
+        localViewHolder.setIsRecyclable(false);*/
+        View v = LayoutInflater.from(paramViewGroup.getContext()).inflate(R.layout.magazine_layout, paramViewGroup, false);
+        ViewHolder vh = new ViewHolder(v,this.mBookShelfAction);
+        Log.i("jim","magazine_layout");
+        return vh;
+        //return localViewHolder;
     }
 
     @Override
