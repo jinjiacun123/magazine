@@ -16,73 +16,77 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.jim.bookshelf.BookShelfAction;
+import com.example.jim.bookshelf.MainActivity;
 import com.example.jim.bookshelf.MainActivityFragment;
 import com.example.jim.bookshelf.R;
 import com.example.jim.bookshelf.bean.Magazine;
 import com.example.jim.bookshelf.config.Config;
 import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
+import com.example.jim.bookshelf.MainActivity;
 
+ class ViewHolder extends RecyclerView.ViewHolder
+        implements View.OnClickListener, View.OnLongClickListener
+{
+    BookShelfAction bookShelfAction;
+    ImageView bookmark;
+    TextView downLoadPercent;
+    ImageView imageView;
+    ProgressBar loadprogress;
+    LinearLayout magazineLayout;
+    ImageView magazineStateImg;
+    TextView name;
+    ImageView operateImg;
+    CheckBox stateCheck;
+    FrameLayout unzipPbLayout;
+    RelativeLayout wholeRv;
+    TextView yearTitle;
+
+    public ViewHolder(View paramBookShelfAction, BookShelfAction arg3)
+    {
+        super(paramBookShelfAction);
+        initViews(paramBookShelfAction);
+        bookShelfAction = arg3;
+        paramBookShelfAction.setOnClickListener(this);
+        paramBookShelfAction.setOnLongClickListener(this);
+    }
+
+    private void initViews(View paramView)
+    {
+        this.magazineLayout = ((LinearLayout)paramView.findViewById(R.id.magazineLayout));
+        this.loadprogress = ((ProgressBar)paramView.findViewById(R.id.loadprogress));
+        this.imageView = ((ImageView)paramView.findViewById(R.id.imageView));
+        this.magazineStateImg = ((ImageView)paramView.findViewById(R.id.magazineStateImg));
+        this.downLoadPercent = ((TextView)paramView.findViewById(R.id.downLoadPercent));
+        this.unzipPbLayout = ((FrameLayout)paramView.findViewById(R.id.unzipPbLayout));
+        this.name = ((TextView)paramView.findViewById(R.id.name));
+        this.operateImg = ((ImageView)paramView.findViewById(R.id.operateImg));
+        this.bookmark = ((ImageView)paramView.findViewById(R.id.bookmark));
+        this.stateCheck = ((CheckBox)paramView.findViewById(R.id.state_check));
+        this.yearTitle = ((TextView)paramView.findViewById(R.id.year_title));
+        this.wholeRv = ((RelativeLayout)paramView.findViewById(R.id.whole_rv));
+    }
+
+    public void onClick(View paramView)
+    {
+        this.bookShelfAction.onItemClickListener(paramView, getPosition());
+    }
+
+    public boolean onLongClick(View paramView)
+    {
+        return this.bookShelfAction.onItemLongClickListener(paramView, getPosition());
+    }
+}
 /**
  * Created by jim on 16-3-19.
  */
-public class BookShelfAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
+public class BookShelfAdapter extends RecyclerView.Adapter<ViewHolder>
 {
-    public class ViewHolder extends RecyclerView.ViewHolder
-            implements View.OnClickListener, View.OnLongClickListener
-    {
-        BookShelfAction bookShelfAction;
-        ImageView bookmark;
-        TextView downLoadPercent;
-        ImageView imageView;
-        ProgressBar loadprogress;
-        LinearLayout magazineLayout;
-        ImageView magazineStateImg;
-        TextView name;
-        ImageView operateImg;
-        CheckBox stateCheck;
-        FrameLayout unzipPbLayout;
-        RelativeLayout wholeRv;
-        TextView yearTitle;
 
-        public ViewHolder(View paramBookShelfAction, BookShelfAction arg3)
-        {
-            super(paramBookShelfAction);
-            initViews(paramBookShelfAction);
-            bookShelfAction = arg3;
-            paramBookShelfAction.setOnClickListener(this);
-            paramBookShelfAction.setOnLongClickListener(this);
-        }
-
-        private void initViews(View paramView)
-        {
-            this.magazineLayout = ((LinearLayout)paramView.findViewById(R.id.magazineLayout));
-            this.loadprogress = ((ProgressBar)paramView.findViewById(R.id.loadprogress));
-            this.imageView = ((ImageView)paramView.findViewById(R.id.imageView));
-            this.magazineStateImg = ((ImageView)paramView.findViewById(R.id.magazineStateImg));
-            this.downLoadPercent = ((TextView)paramView.findViewById(R.id.downLoadPercent));
-            this.unzipPbLayout = ((FrameLayout)paramView.findViewById(R.id.unzipPbLayout));
-            this.name = ((TextView)paramView.findViewById(R.id.name));
-            this.operateImg = ((ImageView)paramView.findViewById(R.id.operateImg));
-            this.bookmark = ((ImageView)paramView.findViewById(R.id.bookmark));
-            this.stateCheck = ((CheckBox)paramView.findViewById(R.id.state_check));
-            this.yearTitle = ((TextView)paramView.findViewById(R.id.year_title));
-            this.wholeRv = ((RelativeLayout)paramView.findViewById(R.id.whole_rv));
-        }
-
-        public void onClick(View paramView)
-        {
-            this.bookShelfAction.onItemClickListener(paramView, getPosition());
-        }
-
-        public boolean onLongClick(View paramView)
-        {
-            return this.bookShelfAction.onItemLongClickListener(paramView, getPosition());
-        }
-    }
 
     private BookShelfAction mBookShelfAction;
     private List<Magazine> mMagazines = new ArrayList();
@@ -169,9 +173,10 @@ public class BookShelfAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         return this.mSelectedItems.get(paramInt, false);
     }
 
-    protected void onBindViewHolder(ViewHolder paramViewHolder, int paramInt)
+    @Override
+    public void onBindViewHolder(ViewHolder paramViewHolder, int paramInt)
     {
-       /* Log.i("slz", "onBindViewHolder" + paramInt);
+        Log.i("jim", "onBindViewHolder" + paramInt);
         Magazine localMagazine = (Magazine)this.mMagazines.get(paramInt);
         if (localMagazine == null)
         {
@@ -179,7 +184,9 @@ public class BookShelfAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             return;
         }
         paramViewHolder.imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+        //ImageLoader.getInstance().init(ImageLoaderConfiguration.createDefault(MainActivity.this));
         ImageLoader.getInstance().displayImage(localMagazine.getThumb(), paramViewHolder.imageView);
+        Log.i("jim", localMagazine.getThumb());
         paramViewHolder.name.setText(localMagazine.getIssue());
         if (localMagazine.getId().equals(Config.getInstence(paramViewHolder.bookmark.getContext()).getBookmarkByMagazineId()))
             paramViewHolder.bookmark.setVisibility(View.VISIBLE);
@@ -187,9 +194,10 @@ public class BookShelfAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         {
             String str1="";
             Object localObject;
+            //下载事件
             if (MainActivityFragment.sActionMode != null)
             {
-                Log.i("slz", "sActionMode !=null in adapter" + paramInt);
+                Log.i("jim", "sActionMode !=null in adapter" + paramInt);
                 paramViewHolder.loadprogress.setVisibility(View.INVISIBLE);
                 paramViewHolder.magazineStateImg.setVisibility(View.GONE);
                 if (localMagazine.getDownloadTask().getTaskState() == 4)
@@ -203,7 +211,7 @@ public class BookShelfAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             {
                 String str2 = ((Magazine)this.mMagazines.get(paramInt - 1)).getYear();
                 localObject = str2;
-                paramViewHolder.yearTitle.setText(str1);
+                paramViewHolder.yearTitle.setText(str2);
                 if (str1.equals(localObject))
                     paramViewHolder.yearTitle.setVisibility(View.INVISIBLE);
                 paramViewHolder.itemView.setActivated(this.mSelectedItems.get(paramInt, false));
@@ -294,9 +302,9 @@ public class BookShelfAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             }
             catch (Exception localException)
             {
-
+                return;
             }
-        }*/
+        }
     }
 
     public ViewHolder onCreateViewHolder(ViewGroup paramViewGroup, int paramInt)
@@ -311,15 +319,26 @@ public class BookShelfAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         //View v = mInflater.inflate(R.layout.magazine_layout, paramViewGroup, false);
         View v = mInflater.inflate(R.layout.item_home, paramViewGroup, false);
         ViewHolder vh = new ViewHolder(v,this.mBookShelfAction);
-        Log.i("jim","magazine_layout");
+        Log.i("jim", "magazine_layout");
         return vh;
         //return localViewHolder;
     }
 
-    @Override
+    /*@Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-
-    }
+        Log.i("jim", "onBindViewHolder" + position);
+        Magazine localMagazine = (Magazine)this.mMagazines.get(position);
+        if (localMagazine == null)
+        {
+            holder.wholeRv.setVisibility(View.INVISIBLE);
+            return;
+        }
+        holder.imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+        ImageLoader.getInstance().displayImage(localMagazine.getThumb(), holder.imageView);
+        holder.name.setText(localMagazine.getIssue());
+        if (localMagazine.getId().equals(Config.getInstence(holder.bookmark.getContext()).getBookmarkByMagazineId()))
+            holder.bookmark.setVisibility(View.VISIBLE);
+    }*/
 
     public void onViewAttachedToWindow(ViewHolder paramViewHolder)
     {
