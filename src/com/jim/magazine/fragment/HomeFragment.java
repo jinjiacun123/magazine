@@ -13,9 +13,12 @@ import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -35,9 +38,14 @@ public class HomeFragment extends Fragment {
 	private ConnectivityManager manager2;// 获取网咯的管理器
 	private long id;
 	private LinearLayout layout;
+	private ImageView btn_chg_c;//杂志滑动切换按钮
+	private ImageView btn_chg_b;
+	private ImageView btn_chg_a;
 	
 	private View mBaseView;
 	private TitleBarView mTitleBarView;
+	
+	public static int chg_times=-1; //当前切换次数
 
 	private Handler handler = new Handler() {
 		
@@ -72,8 +80,11 @@ public class HomeFragment extends Fragment {
 			parent.removeView(view);
 		}
 		*/
-		mBaseView=inflater.inflate(R.layout.activity_home, null);
-		mTitleBarView=(TitleBarView) mBaseView.findViewById(R.id.title_bar);
+		mBaseView = inflater.inflate(R.layout.activity_home, null);
+		mTitleBarView = (TitleBarView) mBaseView.findViewById(R.id.title_bar);
+		btn_chg_a = (ImageView)mBaseView.findViewById(R.id.btn_chg_a);
+		btn_chg_b = (ImageView)mBaseView.findViewById(R.id.btn_chg_b);
+		btn_chg_c = (ImageView)mBaseView.findViewById(R.id.btn_chg_c);
 		init();
 		return mBaseView;
 	}
@@ -97,6 +108,60 @@ public class HomeFragment extends Fragment {
 			}
 		});
 		*/
+		
+		//滑动事件
+		btn_chg_c.setOnTouchListener(new View.OnTouchListener() {
+
+			@Override
+			public boolean onTouch(View v, MotionEvent event) {
+				float mPosX=(float) 0.0;
+				float mPosY=(float) 0.0;
+				float mCurrentPosX;
+				float mCurrentPosY;
+				switch (event.getAction()) {
+					// 移动
+				    case MotionEvent.ACTION_DOWN:
+					case MotionEvent.ACTION_MOVE:
+					{
+						mCurrentPosX = event.getX();
+						mCurrentPosY = event.getY();
+
+						//if (mCurrentPosX - mPosX > 0 && Math.abs(mCurrentPosY - mPosY) < 10)
+						//{
+							chg_times++;
+							chg_times = chg_times%3;
+							switch(chg_times)
+							{
+							case 0:
+							{
+								btn_chg_a.setImageResource(R.drawable.home_btn_a); 
+								btn_chg_b.setImageResource(R.drawable.home_btn_b);
+								btn_chg_c.setImageResource(R.drawable.home_btn_c);
+							}
+								break;
+							case 1:
+							{
+								btn_chg_a.setImageResource(R.drawable.home_btn_c); 
+								btn_chg_b.setImageResource(R.drawable.home_btn_a);
+								btn_chg_c.setImageResource(R.drawable.home_btn_b);
+							}
+							break;
+							case 2:
+							{
+								btn_chg_a.setImageResource(R.drawable.home_btn_b); 
+								btn_chg_b.setImageResource(R.drawable.home_btn_c);
+								btn_chg_c.setImageResource(R.drawable.home_btn_a);
+							}
+								break;
+							}
+						}
+					}
+					//break;
+				//}
+				return false;
+			}
+			
+		});
 	}
 
 
