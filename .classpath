@@ -6,5 +6,7 @@
 	<classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.LIBRARIES"/>
 	<classpathentry exported="true" kind="lib" path="libs/android-support-v4.jar"/>
 	<classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.DEPENDENCIES"/>
+	<classpathentry exported="true" kind="lib" path="/opt/jim_project/android/magazine/libs/gson-2.2.jar"/>
+	<classpathentry exported="true" kind="lib" path="/opt/jim_project/android/magazine/libs/zip4j-1.3.2.jar"/>
 	<classpathentry kind="output" path="bin/classes"/>
 </classpath>
