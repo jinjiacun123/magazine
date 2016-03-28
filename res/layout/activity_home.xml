@@ -56,6 +56,7 @@
 			    android:layout_marginTop="10dp"
 			    android:scaleType="fitXY"
 			    android:src="@drawable/cur_month" />
+			
 			<!-- 本月期刊概述 -->
 			<ImageView
 			    android:id="@+id/cur_month_description"
@@ -63,15 +64,37 @@
 			    android:layout_height="wrap_content"
 			    android:layout_gravity="left"
 			    android:scaleType="fitXY"
-			    android:src="@drawable/home_best_content"/>
-			<!--  -->
-			<ImageView
-			    android:id="@+id/cur_month_buttom"
-			    android:layout_width="wrap_content"
-			    android:layout_height="wrap_content"
-			    android:layout_gravity="left"
-			    android:scaleType="fitXY"
-			    android:src="@drawable/home_best_chg"/>
+			    android:src="@drawable/home_best_content"/>			
+			<RelativeLayout
+			     android:layout_width="match_parent"
+    			 android:layout_height="match_parent" >
+				<!--  滑动切换按钮-->
+				<ImageView
+				    android:id="@+id/btn_chg_a"	
+				    android:layout_width="wrap_content"
+				    android:layout_height="wrap_content"
+				    android:layout_gravity="left"
+				    android:scaleType="fitXY"
+				    android:src="@drawable/home_btn_a"/>
+				
+				<ImageView
+				    android:id="@+id/btn_chg_b"
+				    android:layout_width="wrap_content"
+				    android:layout_height="wrap_content"
+				    android:layout_gravity="left"
+				    android:scaleType="fitXY"
+				    android:layout_marginLeft="20dp"
+				    android:src="@drawable/home_btn_b"/>
+				
+				<ImageView
+				    android:id="@+id/btn_chg_c"
+				    android:layout_width="wrap_content"
+				    android:layout_height="wrap_content"
+				    android:layout_gravity="left"
+				    android:scaleType="fitXY"
+				    android:layout_marginLeft="40dp"
+				    android:src="@drawable/home_btn_c"/>
+			</RelativeLayout>
 		</LinearLayout>
     </LinearLayout>   
     
