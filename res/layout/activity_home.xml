@@ -93,7 +93,15 @@
 				    android:layout_gravity="left"
 				    android:scaleType="fitXY"
 				    android:layout_marginLeft="40dp"
-				    android:src="@drawable/home_btn_c"/>
+				    android:src="@drawable/home_btn_c"
+				    />
+				<TextView  
+        android:layout_width="wrap_content"   
+        android:layout_height="wrap_content"  
+        android:text="查看杂志"
+        android:textSize="18dip"   
+         android:layout_marginLeft="40dp"
+    />  
 			</RelativeLayout>
 		</LinearLayout>
     </LinearLayout>   
