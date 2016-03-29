@@ -17,12 +17,14 @@ public class MagazineDbHelpler extends SQLiteOpenHelper
     super(paramContext, "magazine", null, 200);
   }
 
-  public void onCreate(SQLiteDatabase paramSQLiteDatabase)
+  @Override
+public void onCreate(SQLiteDatabase paramSQLiteDatabase)
   {
     paramSQLiteDatabase.execSQL(initSQL);
   }
 
-  public void onUpgrade(SQLiteDatabase paramSQLiteDatabase, int paramInt1, int paramInt2)
+  @Override
+public void onUpgrade(SQLiteDatabase paramSQLiteDatabase, int paramInt1, int paramInt2)
   {
     if (paramInt1 <= 200)
       for (String str : updateDataSQL.split(";"))

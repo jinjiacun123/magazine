@@ -50,7 +50,7 @@ public class MagazineDbService
   public void delMagazine(List<String> paramList)
   {
     for (int i = 0; i < paramList.size(); i++)
-      delMagazine((String)paramList.get(i));
+      delMagazine(paramList.get(i));
   }
 
   public List<String> delMagazineExceptLately(int paramInt)

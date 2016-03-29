@@ -1,8 +1,6 @@
 package com.jim.magazine.service;
 
 import java.io.File;
-import java.util.Iterator;
-
 import com.jim.magazine.MagazineApplication;
 import com.jim.magazine.bean.BeanMagazine;
 import com.jim.magazine.help.ZipUtil;
@@ -20,11 +18,10 @@ import android.os.IBinder;
 import android.os.Message;
 import android.support.v4.app.NotificationCompat;
 
-import java.util.Map.Entry;
-
 public class MagazineDownloadService extends Service {
 	public static DownloadManager downloadManager;
 	private IDownloadUpdate iDownloadUpdate = new IDownloadUpdate() {
+		@Override
 		public void onUpdate(DownloadTask paramAnonymousDownloadTask) {
 			MagazineDownloadService.this
 					.doDownloadTask(paramAnonymousDownloadTask);
@@ -88,7 +85,7 @@ public class MagazineDownloadService extends Service {
 	}
 
 	private void unZipFile(final DownloadTask paramDownloadTask) {
-		final BeanMagazine localMagazine = (BeanMagazine) MagazineApplication.sMagazineMap
+		final BeanMagazine localMagazine = MagazineApplication.sMagazineMap
 				.get(paramDownloadTask.getUrl());
 		localMagazine.setDownloadTask(paramDownloadTask);
 		localMagazine.setCurrentOperateState(1);
@@ -97,6 +94,7 @@ public class MagazineDownloadService extends Service {
 		sendBroadCast(localMagazine);
 		ZipUtil.unzipFile(paramDownloadTask.getFilePath().getAbsolutePath(),
 				localMagazine.getDirPath(), new Handler(getMainLooper()) {
+					@Override
 					public void handleMessage(Message paramAnonymousMessage) {
 						switch (paramAnonymousMessage.what) {
 						default:
@@ -134,10 +132,12 @@ public class MagazineDownloadService extends Service {
 				});
 	}
 
+	@Override
 	public IBinder onBind(Intent paramIntent) {
 		return null;
 	}
 
+	@Override
 	public void onCreate() {
 		super.onCreate();
 		downloadManager = DownloadManager.getDownloadManager(this, "magazine",
@@ -146,11 +146,13 @@ public class MagazineDownloadService extends Service {
 		downloadManager.setNotifyMode(1, 1);
 	}
 
+	@Override
 	public void onDestroy() {
 		super.onDestroy();
 		downloadManager.shutDown();
 	}
 
+	@Override
 	public int onStartCommand(Intent paramIntent, int paramInt1, int paramInt2) {
 		super.onStartCommand(paramIntent, paramInt1, paramInt2);
 		Bundle localBundle = paramIntent.getExtras();
@@ -167,7 +169,7 @@ public class MagazineDownloadService extends Service {
 			this.mPosition = localBundle.getInt("position");
 			DownloadTask localDownloadTask = downloadManager.buildDownloadTask(
 					str1, str2, localFile);
-			BeanMagazine localMagazine = (BeanMagazine) MagazineApplication.sMagazineMap
+			BeanMagazine localMagazine = MagazineApplication.sMagazineMap
 					.get(localDownloadTask.getUrl());
 			localMagazine.setDownloadTask(localDownloadTask);
 			doMagazine(localMagazine);
