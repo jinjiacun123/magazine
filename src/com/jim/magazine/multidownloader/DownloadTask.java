@@ -100,7 +100,8 @@ Callable<String>, Serializable, Cloneable {
 				localBasicHttpParams);
 	}
 
-	  public String call()
+	  @Override
+	public String call()
 	  {
 		HttpGet localHttpGet = new HttpGet(this.url);
 		if (this.downloadManager != null)
@@ -173,7 +174,7 @@ Callable<String>, Serializable, Cloneable {
 						// return null;
 						int m = (int) (System.currentTimeMillis() - this.lastTime);
 						this.speedByKb = ((int) ((this.fileDownSize - this.lastDownloadSize) / m));
-						this.speedByMb = ((float) ((this.fileDownSize - this.lastDownloadSize) / m) / 1024.0F);
+						this.speedByMb = ((this.fileDownSize - this.lastDownloadSize) / m / 1024.0F);
 						this.speedByMb = new BigDecimal(this.speedByMb).setScale(2, 4)
 								.floatValue();
 						if (this.speedByKb != 0) {
@@ -237,7 +238,7 @@ Callable<String>, Serializable, Cloneable {
 	      	int j = (int)(System.currentTimeMillis() - this.lastTime);
 			if ((j - 1000) / 1000 >= this.downloadManager.getNotifyFrequency()) {
 				this.speedByKb = ((int) ((this.fileDownSize - this.lastDownloadSize) / j));
-				this.speedByMb = ((float) ((this.fileDownSize - this.lastDownloadSize) / j) / 1024.0F);
+				this.speedByMb = ((this.fileDownSize - this.lastDownloadSize) / j / 1024.0F);
 				this.speedByMb = new BigDecimal(this.speedByMb).setScale(2, 4)
 						.floatValue();
 				if (this.speedByKb != 0) {
@@ -280,10 +281,11 @@ Callable<String>, Serializable, Cloneable {
 		return downloadTime;
 	  }
 
-	  protected Object clone()
+	  @Override
+	protected Object clone()
 	    throws CloneNotSupportedException
 	  {
-	    return (DownloadTask)super.clone();
+	    return super.clone();
 	  }
 
 	  public String getDownloadTime()

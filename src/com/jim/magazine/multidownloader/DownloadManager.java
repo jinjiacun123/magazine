@@ -59,7 +59,7 @@ public class DownloadManager {
 	  {
 	    if (downloadManagerMap.containsKey(paramString))
 	    {
-	      DownloadManager localDownloadManager2 = (DownloadManager)downloadManagerMap.get(paramString);
+	      DownloadManager localDownloadManager2 = downloadManagerMap.get(paramString);
 	      if (paramIDownloadUpdate != null)
 	        localDownloadManager2.setDownloadUpdate(paramIDownloadUpdate);
 	      return localDownloadManager2;

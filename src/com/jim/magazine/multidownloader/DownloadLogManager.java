@@ -58,7 +58,7 @@ public class DownloadLogManager {
 	  public boolean deleteTaskLog(List<String> paramList)
 	  {
 	    for (int i = 0; i < paramList.size(); i++)
-	      deleteTaskLog((String)paramList.get(i));
+	      deleteTaskLog(paramList.get(i));
 	    return true;
 	  }
 
