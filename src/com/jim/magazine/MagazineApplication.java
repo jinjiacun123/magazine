@@ -1,13 +1,9 @@
 package com.jim.magazine;
 
 import android.net.Uri;
-import android.util.Log;
 import android.webkit.ValueCallback;
 
-import java.util.HashSet;
 import java.util.LinkedHashMap;
-import java.util.Set;
-
 import com.jim.magazine.bean.BeanMagazine;
 import com.jim.magazine.help.DBHelper;
 import com.jim.magazine.help.StorageUtils;
@@ -28,7 +24,8 @@ public class MagazineApplication extends CommonApplication
     new DBHelper(this, 400, "Magazine.db", "", "");
   }
 
-  public void onCreate()
+  @Override
+public void onCreate()
   {
     super.onCreate();
     initdb();

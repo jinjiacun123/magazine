@@ -1,20 +1,10 @@
 package com.jim.magazine;
 
 import android.app.Application;
-import android.content.Context;
-import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
-import android.content.pm.PackageManager.NameNotFoundException;
-import android.content.res.Resources;
-import android.os.Bundle;
-import android.os.Environment;
 import android.util.DisplayMetrics;
-import android.view.Display;
 import android.view.WindowManager;
-
-import java.io.File;
-import java.lang.reflect.Field;
 
 public abstract class CommonApplication extends Application
 {
@@ -98,7 +88,8 @@ public abstract class CommonApplication extends Application
     }
   }
 
-  public void onCreate()
+  @Override
+public void onCreate()
   {
     super.onCreate();
     getAppVersionInfor();
@@ -107,12 +98,14 @@ public abstract class CommonApplication extends Application
     this.statusBarHeight = getStatusBarHeight();
   }
 
-  public void onLowMemory()
+  @Override
+public void onLowMemory()
   {
     super.onLowMemory();
   }
 
-  public void onTerminate()
+  @Override
+public void onTerminate()
   {
     super.onTerminate();
   }

@@ -33,7 +33,7 @@ public class MineFragment extends Fragment implements OnClickListener {
         mBaseView=inflater.inflate(R.layout.fragment_mine, null);
         
         //登陆
-        ImageView login = (ImageView)mBaseView.findViewById(R.id.head);
+       ImageView login = (ImageView)mBaseView.findViewById(R.id.my_login);
         login.setOnClickListener(new OnClickListener(){
 
 			@Override
@@ -46,7 +46,7 @@ public class MineFragment extends Fragment implements OnClickListener {
         
         
         //如何成为会员
-        ImageView how_to_mem = (ImageView)mBaseView.findViewById(R.id.how_to_mem);
+       ImageView how_to_mem = (ImageView)mBaseView.findViewById(R.id.how_to_mem);
         how_to_mem.setOnClickListener(new OnClickListener(){
         	@Override
         	public void onClick(View arg0)
