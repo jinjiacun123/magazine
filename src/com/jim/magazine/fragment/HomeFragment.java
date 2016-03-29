@@ -13,10 +13,10 @@ import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -94,12 +94,12 @@ public class HomeFragment extends Fragment {
 				                                                       View.VISIBLE, 
 				                                                       View.VISIBLE,
 				                                                       View.VISIBLE);
-		//mTitleBarView.setBtnLeft(R.drawable.home_city_green, 0);
+		mTitleBarView.setBtnLeft(R.drawable.home_city_green, 0);
 		mTitleBarView.setBtnLeftImg(R.drawable.home_city_green);
 		mTitleBarView.setTitleText(R.string.brand);
 		mTitleBarView.setBtnRight(R.drawable.cart);
 		mTitleBarView.controlSlidingMenu(MainActivity.menu);
-		/*
+		
 		mTitleBarView.setBtnRightOnclickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -107,7 +107,6 @@ public class HomeFragment extends Fragment {
 				//mCanversLayout.setVisibility(View.VISIBLE);
 			}
 		});
-		*/
 		
 		//滑动事件
 		btn_chg_c.setOnTouchListener(new View.OnTouchListener() {
