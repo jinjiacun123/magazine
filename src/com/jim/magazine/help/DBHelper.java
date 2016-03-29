@@ -23,6 +23,7 @@ public class DBHelper extends SQLiteOpenHelper {
 			upgradeSQL += paramString3;
 	}
 
+	@Override
 	public void onCreate(SQLiteDatabase paramSQLiteDatabase) {
 		Log.i(TAG, "Initialize database");
 		String[] arrayOfString = initSQL.split(";");
@@ -36,6 +37,7 @@ public class DBHelper extends SQLiteOpenHelper {
 		}
 	}
 
+	@Override
 	public void onUpgrade(SQLiteDatabase paramSQLiteDatabase, int paramInt1,
 			int paramInt2) {
 		Log.i(TAG, "Upgrade database");
