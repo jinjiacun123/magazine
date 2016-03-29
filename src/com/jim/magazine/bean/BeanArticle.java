@@ -16,6 +16,7 @@ public class BeanArticle {
 	private String title;
 	private String url;
 
+	@Override
 	public boolean equals(Object paramObject) {
 		if (this == paramObject)
 			;
@@ -32,7 +33,7 @@ public class BeanArticle {
 	public BeanArticlePage getArticlePage(int paramInt) {
 		if ((paramInt < 0) || (paramInt > -1 + this.pageList.size()))
 			return null;
-		return (BeanArticlePage) this.pageList.get(paramInt);
+		return this.pageList.get(paramInt);
 	}
 
 	public String getAuthor() {
@@ -79,6 +80,7 @@ public class BeanArticle {
 		return this.title;
 	}
 
+	@Override
 	public int hashCode() {
 		return this.id.hashCode();
 	}
