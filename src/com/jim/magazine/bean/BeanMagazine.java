@@ -98,7 +98,7 @@ public class BeanMagazine implements Serializable {
 	public BeanArticle getArticle(int paramInt) {
 		if ((paramInt < 0) || (paramInt > -1 + this.articleList.size()))
 			return null;
-		return (BeanArticle) this.articleList.get(paramInt);
+		return this.articleList.get(paramInt);
 	}
 
 	public List<BeanArticle> getArticleList() {
