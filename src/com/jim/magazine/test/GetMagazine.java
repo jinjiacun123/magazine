@@ -1,8 +1,6 @@
 package com.jim.magazine.test;
 
 import com.jim.magazine.R;
-import com.jim.magazine.StartActivity;
-import com.jim.magazine.fragment.AppManager;
 import com.jim.magazine.service.MagazineDownloadService;
 import com.jim.magazine.bean.BeanMagazine;
 
