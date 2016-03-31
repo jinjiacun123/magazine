@@ -42,7 +42,7 @@ public class StartActivity extends Activity{
 				*/
 				
 				//临时测试
-				int type = 2;
+				int type = 9;
 				switch(type)
 				{
 					case 0://到注册
@@ -99,6 +99,12 @@ public class StartActivity extends Activity{
 						startActivity(intent);
 					}
 						break;
+					case 9://下拉刷新
+					{
+						Intent intent=new Intent(StartActivity.this, TestActivity.class);
+						startActivity(intent);
+					}
+						break;	
 					default:
 					break;
 				}
@@ -108,6 +114,5 @@ public class StartActivity extends Activity{
 			}
 			super.run();
 		}
-	}
-	
+	}	
 }
