@@ -72,22 +72,26 @@ public class HomeFragment extends Fragment implements OnPageChangeListener{
 	
 	    //title
 		private String[] title={
+				"",
 				"1月26日",
 				"1月25日"
 		};
 		//content
 		private String[] content={
+				"",
 				"一绘视频|发现身边被忽略的美",
 				"精选|爱她就为她打造一座爱的城堡"
 		};
 		//p1
 		private int[] p1={
+				0,
 			R.drawable.p1,
 			R.drawable.p1_1
 		};
 		
 		//p2
 		private int[] p2={
+				0,
 			R.drawable.p2,
 			R.drawable.p2_1
 		};
@@ -116,47 +120,29 @@ public class HomeFragment extends Fragment implements OnPageChangeListener{
 	public View onCreateView(LayoutInflater inflater, 
 			                 ViewGroup container,
 			                 Bundle savedInstanceState) {
-		if (view == null) {
-			view = inflater.inflate(R.layout.activity_home, null);
+		if (mBaseView == null) {
+			mBaseView = inflater.inflate(R.layout.activity_home, null);
 		}
-		/*
-		ViewGroup parent = (ViewGroup) view.getParent();
+		
+		ViewGroup parent = (ViewGroup) mBaseView.getParent();
 		if (parent != null) {
-			parent.removeView(view);
+			parent.removeView(mBaseView);
 		}
-		*/
-		
-		mBaseView = inflater.inflate(R.layout.activity_home, null);
-		
-		viewPager = (ViewPager) mBaseView.findViewById(R.id.home_ad);
-		
-		imgIdArray = new int[]{
-				R.drawable.item01, R.drawable.item02, R.drawable.item03, R.drawable.item04,
-				R.drawable.item05,R.drawable.item06, R.drawable.item07, R.drawable.item08
-		};
-		
-		mImageViews = new ImageView[imgIdArray.length];
-		for(int i=0; i<mImageViews.length; i++){
-			ImageView imageView = new ImageView(getActivity());
-			mImageViews[i] = imageView;
-			imageView.setBackgroundResource(imgIdArray[i]);
-		}
-	
-		viewPager.setAdapter(new MyAdapter());
-		viewPager.setOnPageChangeListener(this);
-		viewPager.setCurrentItem((mImageViews.length) * 100);
 		
 		
-		/*raAdapter = new HomeAdapter(getActivity()); 
-		ListView listView = (ListView)mBaseView.findViewById(R.id.list);
-		//listView.setListAdapter(raAdapter);
-		listView.setAdapter(raAdapter);*/
-		
+		//mBaseView = inflater.inflate(R.layout.activity_home, null);
 		mTitleBarView = (TitleBarView) mBaseView.findViewById(R.id.title_bar);
-		btn_chg_a = (ImageView)mBaseView.findViewById(R.id.btn_chg_a);
+	/*	btn_chg_a = (ImageView)mBaseView.findViewById(R.id.btn_chg_a);
 		btn_chg_b = (ImageView)mBaseView.findViewById(R.id.btn_chg_b);
 		btn_chg_c = (ImageView)mBaseView.findViewById(R.id.btn_chg_c);
+		*/
+		
 		init();
+		
+		raAdapter = new HomeAdapter(getActivity()); 
+		ListView listView = (ListView)mBaseView.findViewById(R.id.home_magazine_list);
+		//listView.setListAdapter(raAdapter);
+		listView.setAdapter(raAdapter);
 		
 		return mBaseView;
 	}
@@ -180,7 +166,7 @@ public class HomeFragment extends Fragment implements OnPageChangeListener{
 			}
 		});
 		
-		//滑动事件
+/*		//滑动事件
 		btn_chg_c.setOnTouchListener(new View.OnTouchListener() {
 
 			@Override
@@ -232,7 +218,7 @@ public class HomeFragment extends Fragment implements OnPageChangeListener{
 				return false;
 			}
 			
-		});
+		});*/
 	}
 
 	@Override
@@ -293,8 +279,7 @@ public class HomeFragment extends Fragment implements OnPageChangeListener{
 				  //@Override 
 				  @Override
 				public int getCount() 
-				  { 
-					  Log.i("jim", String.valueOf(title.length));
+				  {  
 					  return title.length; 
 				  } 
 		   
@@ -311,47 +296,71 @@ public class HomeFragment extends Fragment implements OnPageChangeListener{
 				  { 
 					  return position; 
 				  } 
-			  
-				  //设置星行分数 
-				  public void setRating(int position, float rating) 
-				  { 
-					  
-				  } 
 		   
 				   // @Override 
 				  @Override
 				public View getView(int position, View convertView, ViewGroup parent) 
 				  {  
-					   //对listview布局 
-					   LinearLayout linearLayout = (LinearLayout) layoutInflater.inflate( 
-					       R.layout.view_home_list_item, null);
-					   
-	                   ImageView home_list_item_refresh   = (ImageView)linearLayout.findViewById(R.id.home_list_item_refresh);
-					   TextView     home_list_item_title          = (TextView)linearLayout.findViewById(R.id.home_list_item_title);
-					   ImageView home_list_item_edit          = (ImageView)linearLayout.findViewById(R.id.home_list_item_edit);
-					   ImageView home_list_item_p_1           = (ImageView)linearLayout.findViewById(R.id.home_list_item_p_1);
-					   TextView home_list_item_content      = (TextView)linearLayout.findViewById(R.id.home_list_item_content);
-					   ImageView home_list_item_p_2           = (ImageView)linearLayout.findViewById(R.id.home_list_item_p_2);
-					   
-					   home_list_item_refresh.setVisibility(View.GONE);
-					   home_list_item_edit.setVisibility(View.GONE);
-					   
-					   Log.i("jim", String.valueOf(position));
-					   
-					   if(0 == position)
-					   {
-						   home_list_item_refresh.setVisibility(View.VISIBLE);
-						   home_list_item_edit.setVisibility(View.VISIBLE);
-						   home_list_item_refresh.setImageResource(R.drawable.home_btn_fresh);
-						   home_list_item_edit.setImageResource(R.drawable.home_edit);
-					   }
-					   
-					   home_list_item_title.setText(title[position]);
-					   home_list_item_content.setText(content[position]);
-					   home_list_item_p_1.setImageResource(p1[position]);
-					   home_list_item_p_2.setImageResource(p2[position]);
-	                   
-					   return linearLayout; 
+					  LinearLayout linearLayout = null;
+					  if(position == 0)
+					  {
+						  //对listview布局 
+						  linearLayout  = (LinearLayout) layoutInflater.inflate( 
+						       R.layout.home_list_item_first, null);
+						  
+							//广告左滑
+							viewPager = (ViewPager) linearLayout.findViewById(R.id.home_ad);
+							
+							imgIdArray = new int[]{
+									R.drawable.item01, R.drawable.item02, R.drawable.item03, R.drawable.item04,
+									R.drawable.item05,R.drawable.item06, R.drawable.item07, R.drawable.item08
+							};
+							
+							mImageViews = new ImageView[imgIdArray.length];
+							for(int i=0; i<mImageViews.length; i++){
+								ImageView imageView = new ImageView(getActivity());
+								mImageViews[i] = imageView;
+								imageView.setBackgroundResource(imgIdArray[i]);
+							}
+						
+							viewPager.setAdapter(new MyAdapter());
+							viewPager.setOnPageChangeListener(null);
+							viewPager.setCurrentItem((mImageViews.length) * 100);
+						  
+						  
+					  }
+					  else
+					  {
+						  //对listview布局 
+						    linearLayout = (LinearLayout) layoutInflater.inflate( 
+						       R.layout.view_home_list_item, null);
+						   
+		                   ImageView home_list_item_refresh   = (ImageView)linearLayout.findViewById(R.id.home_list_item_refresh);
+						   TextView     home_list_item_title          = (TextView)linearLayout.findViewById(R.id.home_list_item_title);
+						   ImageView home_list_item_edit          = (ImageView)linearLayout.findViewById(R.id.home_list_item_edit);
+						   ImageView home_list_item_p_1           = (ImageView)linearLayout.findViewById(R.id.home_list_item_p_1);
+						  TextView home_list_item_content      = (TextView)linearLayout.findViewById(R.id.home_list_item_content);
+						 // ImageView home_list_item_p_2           = (ImageView)linearLayout.findViewById(R.id.home_list_item_p_2);
+						   
+						   home_list_item_refresh.setVisibility(View.GONE);
+						   home_list_item_edit.setVisibility(View.GONE);
+						   
+						  if(1 == position)
+						   {
+							   home_list_item_refresh.setVisibility(View.VISIBLE);
+							   home_list_item_edit.setVisibility(View.VISIBLE);
+							   home_list_item_refresh.setImageResource(R.drawable.home_btn_fresh);
+							   home_list_item_edit.setImageResource(R.drawable.home_edit);
+						   }
+						   
+						   home_list_item_title.setText(title[position]);
+						   home_list_item_content.setText(content[position]);
+						   home_list_item_p_1.setImageResource(p1[position]);
+						   //home_list_item_p_2.setImageResource(p2[position]);
+		                   
+					  }
+					  
+					  return linearLayout;
 				  } 
 		 } 
 		 
