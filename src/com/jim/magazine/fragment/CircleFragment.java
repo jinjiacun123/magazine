@@ -26,22 +26,26 @@ public class CircleFragment extends Fragment
 	//ico
 	private int[] ico={
 			R.drawable.circle_ico,
-			
+			R.drawable.circle_ico
 	};
     //title
 	private String[] title={
+			"Pchouse家具杂志",
 			"Pchouse家具杂志"
 	};
 	//content
 	private String[] content={
+			"[畅网圈子必读]在圈子分享好产品,发帖即可赚积分!",
 			"[畅网圈子必读]在圈子分享好产品,发帖即可赚积分!"
 	};
 	//time
 	private String[] time={
+			"2016-02-28  13:58:00",
 			"2016-02-28  13:58:00"
 	};
 	//message
 	private String[] message={
+			"100",
 			"100"
 	};
    
