@@ -53,7 +53,7 @@ public class CircleFragment extends Fragment
 	 LayoutInflater layoutInflater; 
 	 private RatingAdapter raAdapter; 
     
-    public BookselfFragment create(String address)
+/*    public BookselfFragment create(String address)
     {
         //ELog.i(TAG, "@--> MyFragment.create()");
     	BookselfFragment f = new BookselfFragment();
@@ -61,7 +61,7 @@ public class CircleFragment extends Fragment
         b.putString("address", address);
         f.setArguments(b);
         return f;
-    }
+    }*/
     @SuppressLint("NewApi")
 	@Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
