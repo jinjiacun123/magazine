@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
- <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+ <LinearLayout 
+     xmlns:android="http://schemas.android.com/apk/res/android"
      android:layout_width="fill_parent"
      android:layout_height="wrap_content"
      android:orientation="vertical"
-     android:paddingTop="10dp"
      android:background="@color/white" >
      
      <!--first: ico title tag-->
      <RelativeLayout 
      android:layout_width="fill_parent"
-     android:layout_height="30dp"
+     android:layout_height="wrap_content"
      android:orientation="horizontal"
     >
          <!-- refresh -->   
@@ -25,7 +25,7 @@
          <TextView android:id="@+id/home_list_item_title"
              android:layout_width="wrap_content"
              android:layout_height="wrap_content"
-             android:text="1月26日"
+             android:text="x月x日"
              android:layout_centerHorizontal="true"
              android:layout_centerVertical="true"
              /> 
@@ -43,13 +43,17 @@
      <!--second:content-->
 
         <!-- big image -->
+          <RelativeLayout
+     android:layout_width="fill_parent"
+     android:layout_height="wrap_content"     
+     android:orientation="horizontal" >
         <ImageView 
             android:layout_height="wrap_content"
             android:layout_width="fill_parent"
             android:id="@+id/home_list_item_p_1"
             android:src="@drawable/p1"
          />   
-
+   </RelativeLayout>
      
      <!--third:explain-->
      <RelativeLayout
@@ -64,11 +68,16 @@
     </RelativeLayout>
 
      <!--fourth:picture 2-->
+         <RelativeLayout
+     android:layout_width="fill_parent"
+     android:layout_height="wrap_content"     
+     android:orientation="horizontal" >
        <ImageView 
             android:layout_height="wrap_content"
             android:layout_width="fill_parent"
             android:id="@+id/home_list_item_p_2"
             android:src="@drawable/p2"
          />        
-
+</RelativeLayout>
+       
  </LinearLayout>
