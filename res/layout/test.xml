@@ -4,6 +4,11 @@
     android:layout_height="match_parent"
     tools:context=".TestActivity" >
 
+    <TextView 
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="hello"
+        />
     <com.jim.magazine.widget.AutoListView
         android:id="@+id/lstv"
         android:layout_width="match_parent"
