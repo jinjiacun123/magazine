@@ -183,9 +183,9 @@ public class MainActivity extends SlidingFragmentActivity {
 		mCircle.setOnClickListener(circleOnClickListener);
 		mMine.setOnClickListener(mineOnClickListener);
 		
-		//mHome.performClick();
+		mHome.performClick();
 		//mCircle.performClick();
-		mMine.performClick();
+		//mMine.performClick();
 		
 		mPopupWindow=new PopupWindow(mPopView, LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT, true);
 		
