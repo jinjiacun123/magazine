@@ -42,7 +42,7 @@ public class StartActivity extends Activity{
 				*/
 				
 				//临时测试
-				int type = 9;
+				int type = 2;
 				switch(type)
 				{
 					case 0://到注册
