@@ -105,6 +105,12 @@ public class StartActivity extends Activity{
 						startActivity(intent);
 					}
 						break;	
+					case 10://设置
+					{
+						Intent intent=new Intent(StartActivity.this, SettingActivity.class);
+						startActivity(intent);
+					}
+					break;
 					default:
 					break;
 				}
