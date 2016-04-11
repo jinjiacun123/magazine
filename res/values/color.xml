@@ -34,4 +34,5 @@
     <color name="book_self">#f1f2f6</color>
     <color name="left_menu_bg">#EEE8DB</color>
     <color name="mine_bg">#F0F7ED</color>
+    <color name="setting_bg">#F1F2F6</color>
 </resources>
