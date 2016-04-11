@@ -1,0 +1,174 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" 
+    android:background="@color/setting_bg"
+    android:orientation="vertical" >
+    
+    //导航
+    <RelativeLayout 
+        android:layout_width="fill_parent"
+        android:layout_height="20dp"
+        android:orientation="horizontal" 
+        android:layout_gravity="center_horizontal"
+        android:background="@color/white">
+        <ImageView 
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:id="@+id/back"
+            android:src="@drawable/direct_left"/>
+        <TextView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/title"
+            android:text="设置"
+             android:layout_centerHorizontal="true"
+             android:layout_centerVertical="true"  
+            />
+    </RelativeLayout>
+
+    <!-- qq账号 -->
+     <RelativeLayout 
+        android:layout_width="fill_parent"
+        android:layout_height="20dp"
+        android:orientation="horizontal" 
+        android:layout_gravity="center_horizontal"
+        android:background="@color/white">
+       
+        <TextView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/title"
+            android:text="QQ账号"
+            />
+         <ImageView 
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:src="@drawable/bind"
+            android:layout_alignParentRight="true"
+            />
+    </RelativeLayout>
+    
+    <!-- 新浪账号 -->
+        <RelativeLayout 
+        android:layout_width="fill_parent"
+        android:layout_height="20dp"
+        android:orientation="horizontal" 
+        android:layout_gravity="center_horizontal"
+        android:background="@color/white">
+       
+        <TextView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/title"
+            android:text="新浪账号"
+            />
+         <ImageView 
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:src="@drawable/bind"
+            android:layout_alignParentRight="true"
+            />
+    </RelativeLayout>
+    
+    <!-- 清理杂志 -->
+     <RelativeLayout 
+        android:layout_width="fill_parent"
+        android:layout_height="20dp"
+        android:orientation="horizontal" 
+        android:layout_gravity="center_horizontal"
+        android:background="@color/white"
+        android:layout_marginTop="20dp">
+       
+        <TextView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/title"
+            android:text="清理杂志"
+            />
+        
+    </RelativeLayout>
+    
+    <!-- 清理缓存 -->
+    <RelativeLayout 
+        android:layout_width="fill_parent"
+        android:layout_height="20dp"
+        android:orientation="horizontal" 
+        android:layout_gravity="center_horizontal"
+        android:background="@color/white">
+       
+        <TextView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/title"
+            android:text="清理缓存"
+            />
+        
+    </RelativeLayout>
+    
+    <!-- 意见反馈 -->
+    <RelativeLayout 
+        android:layout_width="fill_parent"
+        android:layout_height="20dp"
+        android:orientation="horizontal" 
+        android:layout_gravity="center_horizontal"
+        android:background="@color/white"
+        android:layout_marginTop="20dp">
+        <TextView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="意见反馈"
+            />
+        <ImageView 
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:src="@drawable/tag_right"
+            android:layout_marginRight="10dp"
+            android:layout_alignParentRight="true"
+            />
+    </RelativeLayout>
+    
+    <!-- 关于我们 -->
+    <RelativeLayout 
+        android:layout_width="fill_parent"
+        android:layout_height="20dp"
+        android:orientation="horizontal" 
+        android:layout_gravity="center_horizontal"
+        android:background="@color/white">
+      
+        <TextView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/title"
+            android:text="关于我们"
+             android:layout_alignParentLeft="true"
+            />
+         <ImageView 
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:src="@drawable/tag_right"
+            android:layout_marginRight="10dp"
+            android:layout_alignParentRight="true"
+            />
+    </RelativeLayout>
+    
+    <!-- 退出登陆 -->
+     <RelativeLayout 
+        android:layout_width="fill_parent"
+        android:layout_height="20dp"
+        android:orientation="horizontal" 
+        android:layout_gravity="center_horizontal"
+        android:background="@color/white"
+        android:layout_marginTop="40dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp">
+         <ImageView 
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:src="@drawable/settint_quit"
+			  android:layout_centerHorizontal="true"
+             android:layout_centerVertical="true"  
+            />
+    </RelativeLayout>
+    
+</LinearLayout>
