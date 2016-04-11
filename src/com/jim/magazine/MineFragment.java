@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 public class MineFragment extends Fragment implements OnClickListener {
 
@@ -55,7 +56,29 @@ public class MineFragment extends Fragment implements OnClickListener {
         		startActivity(intent);
         	}
         });
+        
+        //我的收藏
+        TextView mine_collect = (TextView) mBaseView.findViewById(R.id.mine_collect);
+        mine_collect.setOnClickListener(new OnClickListener(){
+        	@Override
+        	public void onClick(View arg0)
+        	{
+        		Intent intent = new Intent(getActivity(), CollectActivity.class);
+        		startActivity(intent);
+        	}
+        });
     
+        //设置
+        TextView mine_setting = (TextView) mBaseView.findViewById(R.id.mine_setting);
+        mine_setting.setOnClickListener(new OnClickListener(){
+        	@Override
+        	public void onClick(View arg0)
+        	{
+        		Intent intent = new Intent(getActivity(), SettingActivity.class);
+        		startActivity(intent);
+        	}
+        });
+        
 		return mBaseView;
 }
 }
