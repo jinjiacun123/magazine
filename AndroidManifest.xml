@@ -136,7 +136,11 @@
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Holo.NoActionBar"
             android:windowSoftInputMode="adjustPan"/>
-                 
+       <activity
+            android:name="com.jim.magazine.SettingActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Holo.NoActionBar"
+            android:windowSoftInputMode="adjustPan"/>          
         
         <!-- ###################测试######################### -->
         <!-- tabhost+viewpager -->
