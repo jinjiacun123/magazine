@@ -7,6 +7,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.webkit.WebView;
 
 public class VideoActivity extends Activity {
 	
@@ -41,5 +42,8 @@ public class VideoActivity extends Activity {
 					//mCanversLayout.setVisibility(View.VISIBLE);
 				}
 			});
+			//视频
+			WebView wv_clause = (WebView) findViewById(R.id.wv_clause);
+			wv_clause.loadUrl("file:///android_asset/video.html");
 		}
 }
