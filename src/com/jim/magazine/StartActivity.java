@@ -111,6 +111,12 @@ public class StartActivity extends Activity{
 						startActivity(intent);
 					}
 					break;
+					case 11://关于我们
+					{
+						Intent intent=new Intent(StartActivity.this, AboutActivity.class);
+						startActivity(intent);
+					}
+					break;
 					default:
 					break;
 				}
