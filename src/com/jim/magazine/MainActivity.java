@@ -104,18 +104,24 @@ public class MainActivity extends SlidingFragmentActivity {
 			{
 				switch(leftCtl)
 				{
-				case 2:
+				case 2://一绘视频
 				{	
 			    	Intent intent = new Intent(MainActivity.this, VideoActivity.class);
 					startActivity(intent);
 				}
 					break;
-				case 3:
+				case 3://关于我们
 				{	
 			    	Intent intent = new Intent(MainActivity.this, AboutActivity.class);
 			    	startActivity(intent);
 				}
 					break;
+				case 4://我的书架
+				{
+					Intent intent = new Intent(MainActivity.this, CollectActivity.class);
+			    	startActivity(intent);
+				}
+				break;
 				}
 			}
 		});
@@ -155,6 +161,12 @@ public class MainActivity extends SlidingFragmentActivity {
 			    case "关于我们":
 			    {
 			    	leftCtl = 3;
+			    	menu.toggle(true);
+			    }
+			    	break;
+			    case "我的书架":
+			    {
+			    	leftCtl = 4;
 			    	menu.toggle(true);
 			    }
 			    	break;
