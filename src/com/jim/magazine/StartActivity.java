@@ -4,6 +4,7 @@ import com.jim.magazine.R;
 import com.jim.magazine.fragment.AppManager;
 import com.jim.magazine.test.GetMagazine;
 import com.jim.magazine.test.Animation;
+import com.jim.magazine.test.GetRemote;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -114,6 +115,12 @@ public class StartActivity extends Activity{
 					case 11://关于我们
 					{
 						Intent intent=new Intent(StartActivity.this, AboutActivity.class);
+						startActivity(intent);
+					}
+					break;
+					case 12://测试获取远程图片
+					{
+						Intent intent=new Intent(StartActivity.this, GetRemote.class);
 						startActivity(intent);
 					}
 					break;
