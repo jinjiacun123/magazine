@@ -222,7 +222,13 @@
             android:windowSoftInputMode="adjustPan"
             android:hardwareAccelerated="false">
         </activity> 
-       
+       <activity
+            android:name="com.jim.magazine.test.GetRemote"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Holo.NoActionBar"
+            android:windowSoftInputMode="adjustPan"
+            android:hardwareAccelerated="false">
+        </activity> 
          
          
          
