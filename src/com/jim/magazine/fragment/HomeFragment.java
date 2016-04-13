@@ -1,11 +1,20 @@
 package com.jim.magazine.fragment;
 
+import java.io.BufferedInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.jim.magazine.MainActivity;
 import com.jim.magazine.R;
 import com.jim.magazine.adapter.ListViewAdapter;
+import com.jim.magazine.entity.HomeArticle;
+import com.jim.magazine.help.Request;
 import com.jim.magazine.view.TitleBarView;
 
 import android.annotation.SuppressLint;
@@ -14,7 +23,10 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.ConnectivityManager;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -53,9 +65,9 @@ public class HomeFragment extends Fragment implements OnPageChangeListener{
 	private ConnectivityManager manager2;// 获取网咯的管理器
 	private long id;
 	private LinearLayout layout;
-	private ImageView btn_chg_c;//杂志滑动切换按钮
+	/*private ImageView btn_chg_c;//杂志滑动切换按钮
 	private ImageView btn_chg_b;
-	private ImageView btn_chg_a;
+	private ImageView btn_chg_a;*/
 	
 	private View mBaseView;
 	private TitleBarView mTitleBarView;
@@ -66,9 +78,20 @@ public class HomeFragment extends Fragment implements OnPageChangeListener{
 	LayoutInflater layoutInflater; 
 	private HomeAdapter raAdapter; 
 	
-	private int[] imgIdArray ;
 	private ViewPager viewPager;
+	private String[] image_url = {
+			"http://192.168.1.131/yms_api/Public/media/ad/item01.jpg",
+			"http://192.168.1.131/yms_api/Public/media/ad/item02.jpg",
+			"http://192.168.1.131/yms_api/Public/media/ad/item03.jpg",
+			"http://192.168.1.131/yms_api/Public/media/ad/item04.jpg",
+			"http://192.168.1.131/yms_api/Public/media/ad/item05.jpg"
+	};
+	//private int[] imgIdArray ;
+	private ArrayList<ImageEntity> imgIdArray = new ArrayList<ImageEntity>();
+	//private Map imgIdArray=new HashMap();
 	private ImageView[] mImageViews;
+	
+	private ArrayList<HomeArticle> article_array = new ArrayList<HomeArticle>();
 	
 	    //title
 		private String[] title={
@@ -79,14 +102,12 @@ public class HomeFragment extends Fragment implements OnPageChangeListener{
 		//content
 		private String[] content={
 				"",
-				"一绘视频|发现身边被忽略的美",
-				"精选|爱她就为她打造一座爱的城堡"
+				
 		};
 		//p1
 		private int[] p1={
 				0,
-			R.drawable.p1,
-			R.drawable.p1_1
+			
 		};
 		
 		//p2
@@ -137,13 +158,35 @@ public class HomeFragment extends Fragment implements OnPageChangeListener{
 		btn_chg_c = (ImageView)mBaseView.findViewById(R.id.btn_chg_c);
 		*/
 		
+		
+		//初始化文章数据
+		HomeArticle home_article; 
+		home_article= new HomeArticle();
+		home_article.setTitle("");
+		home_article.setContent("");
+		home_article.setP1(0);
+		home_article.setP2(0);
+		article_array.add(home_article);
+		home_article= new HomeArticle();
+		home_article.setTitle("1月26日");
+		home_article.setContent("一绘视频|发现身边被忽略的美");
+		home_article.setP1(R.drawable.p1);
+		home_article.setP2(R.drawable.p2);
+		article_array.add(home_article);
+		home_article= new HomeArticle();
+		home_article.setTitle("1月25日");
+		home_article.setContent("精选|爱她就为她打造一座爱的城堡");
+		home_article.setP1(R.drawable.p1_1);
+		home_article.setP2(R.drawable.p2_1);
+		article_array.add(home_article);
+		
 		init();
 		
 		raAdapter = new HomeAdapter(getActivity()); 
 		ListView listView = (ListView)mBaseView.findViewById(R.id.home_magazine_list);
 		//listView.setListAdapter(raAdapter);
 		listView.setAdapter(raAdapter);
-		
+		//new DownPictureThread(image_url).start();
 		return mBaseView;
 	}
 	
@@ -280,14 +323,14 @@ public class HomeFragment extends Fragment implements OnPageChangeListener{
 				  @Override
 				public int getCount() 
 				  {  
-					  return title.length; 
+					  return article_array.size(); 
 				  } 
 		   
 				   // @Override 
 				  @Override
 				public Object getItem(int position) 
 				  { 
-					  return title[position]; 
+					  return article_array.get(position); 
 				  } 
 		   
 				   // @Override 
@@ -311,23 +354,32 @@ public class HomeFragment extends Fragment implements OnPageChangeListener{
 							//广告左滑
 							viewPager = (ViewPager) linearLayout.findViewById(R.id.home_ad);
 							
-							imgIdArray = new int[]{
+							//下载图片
+							/*imgIdArray = new int[]{
 									R.drawable.item01, R.drawable.item02, R.drawable.item03, R.drawable.item04,
 									R.drawable.item05,R.drawable.item06, R.drawable.item07, R.drawable.item08
-							};
+							};*/
+							for (int i = 0; i < 5; i++) {
+								ImageEntity b = new ImageEntity();
+								b.setImage(BitmapFactory.decodeResource(getResources(),
+										R.drawable.ic_launcher));
+
+								imgIdArray.add(b);
+							}
 							
-							mImageViews = new ImageView[imgIdArray.length];
+							mImageViews = new ImageView[imgIdArray.size()];
 							for(int i=0; i<mImageViews.length; i++){
 								ImageView imageView = new ImageView(getActivity());
 								mImageViews[i] = imageView;
-								imageView.setBackgroundResource(imgIdArray[i]);
+								//imageView.setBackgroundResource(imgIdArray.get(i));
+								imageView.setImageBitmap((Bitmap)imgIdArray.get(i).getImage());
 							}
-						
-							viewPager.setAdapter(new MyAdapter());
+						  MyAdapter my_adapter = new MyAdapter(getActivity(), imgIdArray); 
+							
+							viewPager.setAdapter(my_adapter);
 							viewPager.setOnPageChangeListener(null);
 							viewPager.setCurrentItem((mImageViews.length) * 100);
-						  
-						  
+							new ImageLoadTask(getActivity(), my_adapter).execute(image_url);
 					  }
 					  else
 					  {
@@ -340,7 +392,7 @@ public class HomeFragment extends Fragment implements OnPageChangeListener{
 						   ImageView home_list_item_edit          = (ImageView)linearLayout.findViewById(R.id.home_list_item_edit);
 						   ImageView home_list_item_p_1           = (ImageView)linearLayout.findViewById(R.id.home_list_item_p_1);
 						  TextView home_list_item_content      = (TextView)linearLayout.findViewById(R.id.home_list_item_content);
-						 // ImageView home_list_item_p_2           = (ImageView)linearLayout.findViewById(R.id.home_list_item_p_2);
+						  ImageView home_list_item_p_2           = (ImageView)linearLayout.findViewById(R.id.home_list_item_p_2);
 						   
 						   home_list_item_refresh.setVisibility(View.GONE);
 						   home_list_item_edit.setVisibility(View.GONE);
@@ -353,10 +405,10 @@ public class HomeFragment extends Fragment implements OnPageChangeListener{
 							   home_list_item_edit.setImageResource(R.drawable.home_edit);
 						   }
 						   
-						   home_list_item_title.setText(title[position]);
-						   home_list_item_content.setText(content[position]);
-						   home_list_item_p_1.setImageResource(p1[position]);
-						   //home_list_item_p_2.setImageResource(p2[position]);
+						   home_list_item_title.setText(article_array.get(position).getTitle());
+						   home_list_item_content.setText(article_array.get(position).getContent());
+						   home_list_item_p_1.setImageResource(article_array.get(position).getP1());
+						   home_list_item_p_2.setImageResource(article_array.get(position).getP2());
 		                   
 					  }
 					  
@@ -366,11 +418,20 @@ public class HomeFragment extends Fragment implements OnPageChangeListener{
 		 
 		 //广告图片左右切换
 			public class MyAdapter extends PagerAdapter{
-
+				
+				private Context _context;
+				private ArrayList<ImageEntity> _list;
+				
+				public MyAdapter(Context context, ArrayList<ImageEntity> imageList) {
+					this._context = context;
+					this._list = imageList;
+				}
+				
 				@Override
 				public int getCount() {
 					Log.i("jim", String.valueOf(Integer.MAX_VALUE));
-					return Integer.MAX_VALUE;
+					//return Integer.MAX_VALUE;
+					return 5;
 				}
 
 				@Override
@@ -384,16 +445,15 @@ public class HomeFragment extends Fragment implements OnPageChangeListener{
 					
 				}
 
-				/**
-				 * ����ͼƬ��ȥ���õ�ǰ��position ���� ͼƬ���鳤��ȡ�����ǹؼ�
-				 */
+				public Object getItem(int position) {
+					return _list.get(position);
+				}
+			
 				@Override
 				public Object instantiateItem(View container, int position) {
 					((ViewPager)container).addView(mImageViews[position % mImageViews.length], 0);
 					return mImageViews[position % mImageViews.length];
 				}
-				
-				
 				
 			}
 
@@ -414,10 +474,6 @@ public class HomeFragment extends Fragment implements OnPageChangeListener{
 			//setImageBackground(arg0 % mImageViews.length);
 		}
 		
-		/**
-		 * ����ѡ�е�tip�ı���
-		 * @param selectItems
-		 */
 		private void setImageBackground(int selectItems){
 			
 		/*	for(int i=0; i<tips.length; i++){
@@ -428,5 +484,48 @@ public class HomeFragment extends Fragment implements OnPageChangeListener{
 				}
 			}*/
 			
+		}
+		
+		public class ImageLoadTask extends AsyncTask<String, Void, Void> {
+			private MyAdapter adapter;
+
+			// ��ʼ��
+			public ImageLoadTask(Context context, MyAdapter adapter) {
+				this.adapter = adapter;
+			}
+
+			@Override
+			protected Void doInBackground(String... params) {
+				String url = params[0];
+				String p2 = params[1];
+				for (int i = 0; i < adapter.getCount(); i++) {
+					ImageEntity bean = (ImageEntity) adapter.getItem(i);
+					Bitmap bitmap = BitmapFactory.decodeStream(Request
+							.HandlerData(params[i]));
+					bean.setImage(bitmap);
+					publishProgress(); 
+				}
+
+				return null;
+			}
+
+			public void onProgressUpdate(Void... voids) {
+				if (isCancelled())
+					return;
+				adapter.notifyDataSetChanged();
+			}
+		}
+
+		public class ImageEntity {
+			private Bitmap image;
+
+			public Bitmap getImage() {
+				return image;
+			}
+
+			public void setImage(Bitmap image) {
+				this.image = image;
+			}
+
 		}
 }
