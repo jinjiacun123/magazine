@@ -10,13 +10,46 @@ import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONObject;
 
 public class BeanBase {
+	protected int         status;
+
+	/**
+	 * @return the status
+	 */
+	public int getStatus() {
+		return status;
+	}
+
+	/**
+	 * @param status the status to set
+	 */
+	public void setStatus(int status) {
+		this.status = status;
+	}
 
 	//接口调用方法索引
 	public enum API_METHOD_INDEX {
-		//user
+		//user1-(0,9)
 		API_USER_EXISTS_NAME, //检查用户名是否存在
 		API_USER_REGISTER,    //用户注册
 		API_USER_LOGIN,       //登录
+		API_USER_3,
+		API_USER_4,
+		API_USER_5,
+		API_USER_6,
+		API_USER_7,
+		API_USER_8,
+		API_USER_9,
+		//help2-(10,19)
+		API_HELP_HOME_FIVE_IMG_URL,   //10
+		API_HELP_HOME_TEN_ARTICLE,     //11
+		API_HELP_HOME_2,
+		API_HELP_HOME_3,
+		API_HELP_HOME_4,
+		API_HELP_HOME_5,
+		API_HELP_HOME_6,
+		API_HELP_HOME_7,
+		API_HELP_HOME_8,
+		API_HELP_HOME_9,
 		NULL;
 	};	
 	
@@ -26,6 +59,9 @@ public class BeanBase {
 	    put(0, "User.exists_name"); //检查用户名是否存在
 	    put(1, "User.register");    //用户注册
 	    put(2, "User.login");		//登录
+	    //help
+	    put(10, "Help.home_five_img_url");//获取首页广告图片
+	    put(11, "Help.home_ten_article"); //获取首页文章列表
 	}};
 	
 	//接口方法模板
@@ -41,6 +77,11 @@ public class BeanBase {
 		put(2,   new HashMap<String, Object>(){{//登录
 			put("name", null);
 			put("passwd", null);
+		}});
+		//help
+		put(10,   new HashMap<String, Object>(){{//获取首页广告图片
+		}});
+		put(11,   new HashMap<String, Object>(){{//获取首页文章列表
 		}});
 	}};
 	
