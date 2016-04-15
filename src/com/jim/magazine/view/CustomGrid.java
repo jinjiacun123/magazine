@@ -1,6 +1,9 @@
 package com.jim.magazine.view;
 
+import java.util.ArrayList;
+
 import com.jim.magazine.R;
+import com.jim.magazine.entity.MagazineEntity;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -12,38 +15,38 @@ import android.widget.TextView;
  
 public class CustomGrid extends BaseAdapter{
       private Context mContext;
-      private final String[] title;
-      private final String[] web;
-      private final int[] Imageid;
+      ArrayList<MagazineEntity> magazine_array=new ArrayList<MagazineEntity>() ;
  
-        public CustomGrid(Context c,String[] web,int[] Imageid,String[] title ) {
+        public CustomGrid(Context c, ArrayList<MagazineEntity> magazine_array) {
             mContext = c;
-            this.Imageid = Imageid;
-            this.web = web;
-            this.title = title;
+            MagazineEntity my_magazine_entity;
+            for(int i=0; i<magazine_array.size(); i++)
+            {
+            	my_magazine_entity = new MagazineEntity();
+            	my_magazine_entity.setTitle(magazine_array.get(i).getTitle());
+            	my_magazine_entity.setYear(magazine_array.get(i).getYear());
+            	my_magazine_entity.setImg(magazine_array.get(i).getImg());
+            	this.magazine_array.add(my_magazine_entity);
+            }
         }
  
         @Override
         public int getCount() {
-            // TODO Auto-generated method stub
-            return web.length;
+            return magazine_array.size();
         }
  
         @Override
         public Object getItem(int position) {
-            // TODO Auto-generated method stub
-            return null;
+            return magazine_array.get(position);
         }
  
         @Override
         public long getItemId(int position) {
-            // TODO Auto-generated method stub
             return 0;
         }
  
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
-            // TODO Auto-generated method stub
             View grid;
             LayoutInflater inflater = (LayoutInflater) mContext
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -55,9 +58,9 @@ public class CustomGrid extends BaseAdapter{
                 TextView titleView = (TextView)grid.findViewById(R.id.grid_title);
                 TextView textView = (TextView) grid.findViewById(R.id.grid_text);
                 ImageView imageView = (ImageView)grid.findViewById(R.id.grid_image);
-                titleView.setText(title[position]);
-                textView.setText(web[position]);
-                imageView.setImageResource(Imageid[position]);
+                titleView.setText(magazine_array.get(position).getYear());
+                textView.setText(magazine_array.get(position).getTitle());
+               // imageView.setImageBitmap(magazine_array.get(position).getImg());
             } else {
                 grid = convertView;
             }
