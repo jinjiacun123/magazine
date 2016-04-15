@@ -10,13 +10,19 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.http.NameValuePair;
+
 import com.jim.magazine.MainActivity;
 import com.jim.magazine.R;
 import com.jim.magazine.adapter.HomeArticleAdapter;
 import com.jim.magazine.adapter.HomeImgAdapter;
 import com.jim.magazine.adapter.ListViewAdapter;
+import com.jim.magazine.bean.BeanBase.API_METHOD_INDEX;
+import com.jim.magazine.bean.BeanHelp;
+import com.jim.magazine.config.Config;
 import com.jim.magazine.entity.HomeArticle;
 import com.jim.magazine.entity.ImageEntity;
+import com.jim.magazine.help.HttpPostThread;
 import com.jim.magazine.help.Request;
 import com.jim.magazine.view.TitleBarView;
 
@@ -58,8 +64,39 @@ import android.widget.Toast;
  * @author jim
  * 
  */
-public class HomeFragment extends Fragment implements OnPageChangeListener{
-
+public class HomeFragment extends Fragment implements OnPageChangeListener{	
+	//--------------------------------------------网络数据:begin--------------------------------------------------------------
+	///切换图片
+	private String[] image_url = new String[5];
+	//下拉文章
+	private ArrayList<HomeArticle> article_array = new ArrayList<HomeArticle>();
+	private void InitNetworkData()
+	{
+		this.InitNetworkArticleList();
+		this.InitNetworkImg();
+	}
+	////初始化切换图片url
+	private void InitNetworkImg()
+	{	
+		BeanHelp bean_help = new BeanHelp(); 
+		//发送请求
+		Map<String,Object> my_request = new HashMap<String, Object>();
+		List<NameValuePair> params = bean_help.CallApi(API_METHOD_INDEX.API_HELP_HOME_FIVE_IMG_URL, 
+				                                       my_request);
+		new HttpPostThread(params, handler, Config.HOME_IMG).start();
+	}
+	////初始化下拉文章列表
+	private void InitNetworkArticleList()
+	{
+		BeanHelp bean_help = new BeanHelp(); 
+		//发送请求
+		Map<String,Object> my_request = new HashMap<String, Object>();
+		List<NameValuePair> params = bean_help.CallApi(API_METHOD_INDEX.API_HELP_HOME_TEN_ARTICLE, 
+				                                       my_request);
+		new HttpPostThread(params, handler, Config.HOME_ARTICLE).start();
+	}
+	//--------------------------------------------网络数据:end--------------------------------------------------------------
+	
 	private View view;// 缓存Fragment view
 	private PackageManager manager;// 包管理器
 	private PackageInfo packageinfo;// 当前项目的包
@@ -70,38 +107,48 @@ public class HomeFragment extends Fragment implements OnPageChangeListener{
 	private LinearLayout layout;
 	
 	private View mBaseView;
-	private TitleBarView mTitleBarView;
-	
+	private TitleBarView mTitleBarView;	
 	public static int chg_times=-1; //当前切换次数
+	private HomeArticleAdapter home_article_adapter;
 
-	private HomeArticleAdapter home_article_adapter; 
-	
-	private String[] image_url= {
-	"http://192.168.1.131/yms_api/Public/media/ad/item01.jpg",
-	"http://192.168.1.131/yms_api/Public/media/ad/item02.jpg",
-	"http://192.168.1.131/yms_api/Public/media/ad/item03.jpg",
-	"http://192.168.1.131/yms_api/Public/media/ad/item04.jpg",
-	"http://192.168.1.131/yms_api/Public/media/ad/item05.jpg"
-};
-	
-	
-	private ArrayList<HomeArticle> article_array = new ArrayList<HomeArticle>();
-	
-	private Handler handler = new Handler() {
-		
+	private Handler handler = new Handler() {		
 		@Override
 		@SuppressLint("NewApi")
 		public void handleMessage(android.os.Message msg) {
 			switch (msg.what) {
-				case 1:
-					String result1 = msg.obj.toString();
-					if ("null".equals(result1)) {
-						Toast.makeText(getActivity(), "无信号",
-								Toast.LENGTH_SHORT).show();
-					} else {
-						Toast.makeText(getActivity(), "有信号",                                       
-								Toast.LENGTH_SHORT).show();
+				case Config.HOME_IMG://首页切换图片
+				{
+					BeanHelp bean_help = new BeanHelp();
+					image_url  = bean_help.ParseHomeImgResult((String)msg.obj);
+				}
+				break;
+				case Config.HOME_ARTICLE://首页文章列表
+				{
+					BeanHelp bean_help = new BeanHelp();
+					//初始化文章数据
+					HomeArticle home_article; 
+					home_article= new HomeArticle();
+					home_article.setTitle("");
+					home_article.setContent("");
+					home_article.setP1("");
+					home_article.setP2("");
+					article_array.add(home_article);
+					
+					ArrayList<HomeArticle> tmp_home_article =bean_help.ParseHomeArticleListResult((String)msg.obj);
+					for(int i=0; i< tmp_home_article.size(); i++)
+					{
+						home_article = new HomeArticle();
+						home_article.setTitle(tmp_home_article.get(i).getTitle());
+						home_article.setContent(tmp_home_article.get(i).getContent());
+						home_article.setP1(tmp_home_article.get(i).getP1());
+						home_article.setP2(tmp_home_article.get(i).getP2());
+						article_array.add(home_article);
 					}
+					
+					home_article_adapter = new HomeArticleAdapter(getActivity(), article_array, image_url); 
+					ListView listView = (ListView)mBaseView.findViewById(R.id.home_magazine_list);
+					listView.setAdapter(home_article_adapter);
+				}
 				break;
 			}
 		};
@@ -119,40 +166,17 @@ public class HomeFragment extends Fragment implements OnPageChangeListener{
 		if (parent != null) {
 			parent.removeView(mBaseView);
 		}
+		InitNetworkData();
 		
 		mTitleBarView = (TitleBarView) mBaseView.findViewById(R.id.title_bar);
-		
-		
-		//初始化文章数据
-		HomeArticle home_article; 
-		home_article= new HomeArticle();
-		home_article.setTitle("");
-		home_article.setContent("");
-		home_article.setP1(0);
-		home_article.setP2(0);
-		article_array.add(home_article);
-		home_article= new HomeArticle();
-		home_article.setTitle("1月26日");
-		home_article.setContent("一绘视频|发现身边被忽略的美");
-		home_article.setP1(R.drawable.p1);
-		home_article.setP2(R.drawable.p2);
-		article_array.add(home_article);
-		home_article= new HomeArticle();
-		home_article.setTitle("1月25日");
-		home_article.setContent("精选|爱她就为她打造一座爱的城堡");
-		home_article.setP1(R.drawable.p1_1);
-		home_article.setP2(R.drawable.p2_1);
-		article_array.add(home_article);
-		
+
 		init();
-		
-		home_article_adapter = new HomeArticleAdapter(getActivity(), article_array, image_url); 
-		ListView listView = (ListView)mBaseView.findViewById(R.id.home_magazine_list);
-		listView.setAdapter(home_article_adapter);
+
 		return mBaseView;
 	}
 	
 	private void init(){//GONE-隐藏,VISIBLE-显示
+		
 		mTitleBarView.setCommonTitle(View.VISIBLE,
 				                                                       View.VISIBLE, 
 				                                                       View.VISIBLE,
@@ -213,36 +237,33 @@ public class HomeFragment extends Fragment implements OnPageChangeListener{
 			e.printStackTrace();
 		}
 	}
-	
 
+	@Override
+	public void onPageScrollStateChanged(int arg0) {
+		// TODO Auto-generated method stub
 		
+	}
 
-		@Override
-		public void onPageScrollStateChanged(int arg0) {
-			// TODO Auto-generated method stub
-			
-		}
-
-		@Override
-		public void onPageScrolled(int arg0, float arg1, int arg2) {
-			// TODO Auto-generated method stub
-			
-		}
-
-		@Override
-		public void onPageSelected(int arg0) {
-			//setImageBackground(arg0 % mImageViews.length);
-		}
+	@Override
+	public void onPageScrolled(int arg0, float arg1, int arg2) {
+		// TODO Auto-generated method stub
 		
-		private void setImageBackground(int selectItems){
-			
-		/*	for(int i=0; i<tips.length; i++){
-				if(i == selectItems){
-					tips[i].setBackgroundResource(R.drawable.page_indicator_focused);
-				}else{
-					tips[i].setBackgroundResource(R.drawable.page_indicator_unfocused);
-				}
-			}*/
-			
-		}
+	}
+
+	@Override
+	public void onPageSelected(int arg0) {
+		//setImageBackground(arg0 % mImageViews.length);
+	}
+		
+	private void setImageBackground(int selectItems){
+		
+	/*	for(int i=0; i<tips.length; i++){
+			if(i == selectItems){
+				tips[i].setBackgroundResource(R.drawable.page_indicator_focused);
+			}else{
+				tips[i].setBackgroundResource(R.drawable.page_indicator_unfocused);
+			}
+		}*/
+		
+	}
 }
