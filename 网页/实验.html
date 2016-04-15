@@ -1,39 +1,61 @@
 <!doctype html>
-<html>
+<!--[if lt IE 7]> <html class="ie6 oldie"> <![endif]-->
+<!--[if IE 7]>    <html class="ie7 oldie"> <![endif]-->
+<!--[if IE 8]>    <html class="ie8 oldie"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="">
+<!--<![endif]-->
 <head>
 <meta charset="utf-8">
-<title>无标题文档</title> 
-</head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>无标题文档</title>
+<link href="boilerplate.css" rel="stylesheet" type="text/css">
+<link href="Untitled-1.css" rel="stylesheet" type="text/css">
+<!-- 
+要详细了解文件顶部 html 标签周围的条件注释:
+paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/
 
+如果您使用的是 modernizr (http://www.modernizr.com/) 的自定义内部版本，请执行以下操作:
+* 在此处将链接插入 js 
+* 将下方链接移至 html5shiv
+* 将“no-js”类添加到顶部的 html 标签
+* 如果 modernizr 内部版本中包含 MQ Polyfill，您也可以将链接移至 respond.min.js 
+-->
+<!--[if lt IE 9]>
+<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+<script src="respond.min.js"></script>
+<script type="text/javascript" src="jwplayer-6.12.4956/jwplayer.js"></script>
+<script type="text/javascript" src="jwplayer-6.12.4956/jwplayer.html5.js"></script> 
+<script type="text/javascript">jwplayer.key="30Mdte24PpRGgyxwvEn6EtxfxrTFXikNdMozfw==";</script>
+</head>
 <body>
-<p><img src="image/3.bmp" width="400"></p>
+<div class="gridContainer clearfix">
+  <p><img src="image/3.bmp"></p>
 <p>
   <!-- 嵌入播放器开始 -->
-<div id="mediaplayer"></div>
-<script type="text/javascript" src="jwplayer.js"></script> 
-<script type="text/javascript">jwplayer.key="e+EBEWvYetPbB7ZfAz4pEwFBApUinQHpph5smQ==";</script>
-<script type="text/javascript">
+<div id="mediaplayer">努力加载中。。。</div>
+
+<p>
+  <script type="text/javascript">
+  
   jwplayer("mediaplayer").setup({
-   flashplayer: "jwplayer.flash.swf",
+   flashplayer: "jwplayer-6.12.4956/jwplayer.flash.swf",
    file: "image/Video001_baofeng_baofeng.mp4",
-   width: "400",
-   height: "400",
-   skin: "glow.zip",
-   image: "",
-   levels: 
-   [
-               { file: "image/Video001_baofeng_baofeng.mp4" }, // H.264 version
-               { file: "image/Video001_baofeng.swf" } // WebM version
-    ],
+   width: "54%",
+   overstretch: "none",
    modes: [  
    { type: "html5" },  
-   { type: "flash", src: "jwplayer.flash.swf" }    
-   ],
-  });
-</script> 
+   { type: "flash", src: "jwplayer-6.12.4956/jwplayer.flash.swf" }    
+   ]
+  })
+  </script> 
+  
   <!-- 嵌入播放器开始 -->
-</p>
-<p><img src="image/1.bmp" width="400"></p>
-<p><img src="image/2.bmp" width="400"></p>
+  </p>
+<img src="image/1.bmp"></p>
+<p><img src="image/2.bmp"> </p>
+
+</div>
 </body>
 </html>
