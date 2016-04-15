@@ -1,6 +1,9 @@
 package com.jim.magazine.fragment;
 
+import java.util.ArrayList;
+
 import android.annotation.SuppressLint;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -12,6 +15,7 @@ import android.widget.GridView;
 import android.widget.Toast;
 
 import com.jim.magazine.R;
+import com.jim.magazine.entity.MagazineEntity;
 import com.jim.magazine.view.CustomGrid;
 import com.jim.magazine.view.TitleBarView;
 
@@ -19,24 +23,8 @@ public class BookselfFragment extends Fragment
 {
 	GridView grid;
 	
-	String[] title= {
-			"2015","2015","2015","2015","2015",
-			"2015","2015","2015","2015","2015",
-			"2015","2015","2015","2015","2015",
-	};
+	private ArrayList<MagazineEntity> magazine_array = new ArrayList<MagazineEntity>();
 	
-    String[] web = {
-            "Google",            "Github",            "Instagram",            "Facebook",            "Flickr",
-            "Pinterest",            "Quora",            "Twitter",            "Vimeo",            "WordPress",
-            "Youtube",            "Stumbleupon",            "SoundCloud",            "Reddit",            "Blogger"
- 
-    } ;
-    int[] imageId = {
-            R.drawable.cover_txt,            R.drawable.cover_txt,            R.drawable.cover_txt,            R.drawable.cover_txt,            R.drawable.cover_txt,
-            R.drawable.cover_txt,            R.drawable.cover_txt,            R.drawable.cover_txt,            R.drawable.cover_txt,            R.drawable.cover_txt,
-            R.drawable.cover_txt,            R.drawable.cover_txt,            R.drawable.cover_txt,            R.drawable.cover_txt,            R.drawable.cover_txt
-
-    };
     
     private View mBaseView;
 	private TitleBarView mTitleBarView;
@@ -56,9 +44,17 @@ public class BookselfFragment extends Fragment
             Bundle savedInstanceState)
     {
         //Random r = new Random(System.currentTimeMillis());
+    	//初始化数据
+    	MagazineEntity my_magazine_entity = new MagazineEntity();
+    	my_magazine_entity.setYear(2016);
+    	my_magazine_entity.setTitle("2月刊");
+    	my_magazine_entity.setImg(BitmapFactory.decodeResource(getResources(),
+										R.drawable.ic_launcher));
+    	magazine_array.add(my_magazine_entity);
+    	
         Bundle b = getArguments();
         mBaseView=inflater.inflate(R.layout.fragment_bookself, null);
-        CustomGrid adapter = new CustomGrid(getActivity(), web, imageId,title);
+        CustomGrid adapter = new CustomGrid(getActivity(), magazine_array);
         grid=(GridView)mBaseView.findViewById(R.id.grid);
                 grid.setAdapter(adapter);
                 grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -66,7 +62,7 @@ public class BookselfFragment extends Fragment
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view,
                                             int position, long id) {
-                        Toast.makeText(getActivity(), "You Clicked at " +web[+ position], Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), "You Clicked at " +magazine_array.get(position).getTitle(), Toast.LENGTH_SHORT).show();
  
                     }
                 });

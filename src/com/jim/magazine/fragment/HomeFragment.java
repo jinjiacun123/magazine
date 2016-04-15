@@ -12,8 +12,11 @@ import java.util.Map;
 
 import com.jim.magazine.MainActivity;
 import com.jim.magazine.R;
+import com.jim.magazine.adapter.HomeArticleAdapter;
+import com.jim.magazine.adapter.HomeImgAdapter;
 import com.jim.magazine.adapter.ListViewAdapter;
 import com.jim.magazine.entity.HomeArticle;
+import com.jim.magazine.entity.ImageEntity;
 import com.jim.magazine.help.Request;
 import com.jim.magazine.view.TitleBarView;
 
@@ -65,58 +68,25 @@ public class HomeFragment extends Fragment implements OnPageChangeListener{
 	private ConnectivityManager manager2;// 获取网咯的管理器
 	private long id;
 	private LinearLayout layout;
-	/*private ImageView btn_chg_c;//杂志滑动切换按钮
-	private ImageView btn_chg_b;
-	private ImageView btn_chg_a;*/
 	
 	private View mBaseView;
 	private TitleBarView mTitleBarView;
 	
 	public static int chg_times=-1; //当前切换次数
+
+	private HomeArticleAdapter home_article_adapter; 
 	
-	String inflater = Context.LAYOUT_INFLATER_SERVICE; 
-	LayoutInflater layoutInflater; 
-	private HomeAdapter raAdapter; 
+	private String[] image_url= {
+	"http://192.168.1.131/yms_api/Public/media/ad/item01.jpg",
+	"http://192.168.1.131/yms_api/Public/media/ad/item02.jpg",
+	"http://192.168.1.131/yms_api/Public/media/ad/item03.jpg",
+	"http://192.168.1.131/yms_api/Public/media/ad/item04.jpg",
+	"http://192.168.1.131/yms_api/Public/media/ad/item05.jpg"
+};
 	
-	private ViewPager viewPager;
-	private String[] image_url = {
-			"http://192.168.1.131/yms_api/Public/media/ad/item01.jpg",
-			"http://192.168.1.131/yms_api/Public/media/ad/item02.jpg",
-			"http://192.168.1.131/yms_api/Public/media/ad/item03.jpg",
-			"http://192.168.1.131/yms_api/Public/media/ad/item04.jpg",
-			"http://192.168.1.131/yms_api/Public/media/ad/item05.jpg"
-	};
-	//private int[] imgIdArray ;
-	private ArrayList<ImageEntity> imgIdArray = new ArrayList<ImageEntity>();
-	//private Map imgIdArray=new HashMap();
-	private ImageView[] mImageViews;
 	
 	private ArrayList<HomeArticle> article_array = new ArrayList<HomeArticle>();
 	
-	    //title
-		private String[] title={
-				"",
-				"1月26日",
-				"1月25日"
-		};
-		//content
-		private String[] content={
-				"",
-				
-		};
-		//p1
-		private int[] p1={
-				0,
-			
-		};
-		
-		//p2
-		private int[] p2={
-				0,
-			R.drawable.p2,
-			R.drawable.p2_1
-		};
-
 	private Handler handler = new Handler() {
 		
 		@Override
@@ -182,10 +152,10 @@ public class HomeFragment extends Fragment implements OnPageChangeListener{
 		
 		init();
 		
-		raAdapter = new HomeAdapter(getActivity()); 
+		home_article_adapter = new HomeArticleAdapter(getActivity(), article_array, image_url); 
 		ListView listView = (ListView)mBaseView.findViewById(R.id.home_magazine_list);
 		//listView.setListAdapter(raAdapter);
-		listView.setAdapter(raAdapter);
+		listView.setAdapter(home_article_adapter);
 		//new DownPictureThread(image_url).start();
 		return mBaseView;
 	}
@@ -306,156 +276,8 @@ public class HomeFragment extends Fragment implements OnPageChangeListener{
 		}
 	}
 	
-	//下拉杂志列表
-	//自定义一个Adapter继承BaseAdapter，要重写getCount(),getItem(),getItemId(),getView()四种方法 
-		 private class HomeAdapter extends BaseAdapter 
-		 { 
-			  	private Context context; 
-			  	//构造函数 
-				  public HomeAdapter(Context context) 
-				  { 
-					   this.context = context; 
-					   layoutInflater = (LayoutInflater) context 
-					       .getSystemService(inflater); 
-				  } 
-		   
-				  //@Override 
-				  @Override
-				public int getCount() 
-				  {  
-					  return article_array.size(); 
-				  } 
-		   
-				   // @Override 
-				  @Override
-				public Object getItem(int position) 
-				  { 
-					  return article_array.get(position); 
-				  } 
-		   
-				   // @Override 
-				  @Override
-				public long getItemId(int position) 
-				  { 
-					  return position; 
-				  } 
-		   
-				   // @Override 
-				  @Override
-				public View getView(int position, View convertView, ViewGroup parent) 
-				  {  
-					  LinearLayout linearLayout = null;
-					  if(position == 0)
-					  {
-						  //对listview布局 
-						  linearLayout  = (LinearLayout) layoutInflater.inflate( 
-						       R.layout.home_list_item_first, null);
-						  
-							//广告左滑
-							viewPager = (ViewPager) linearLayout.findViewById(R.id.home_ad);
-							
-							//下载图片
-							/*imgIdArray = new int[]{
-									R.drawable.item01, R.drawable.item02, R.drawable.item03, R.drawable.item04,
-									R.drawable.item05,R.drawable.item06, R.drawable.item07, R.drawable.item08
-							};*/
-							for (int i = 0; i < 5; i++) {
-								ImageEntity b = new ImageEntity();
-								b.setImage(BitmapFactory.decodeResource(getResources(),
-										R.drawable.ic_launcher));
 
-								imgIdArray.add(b);
-							}
-							
-							mImageViews = new ImageView[imgIdArray.size()];
-							for(int i=0; i<mImageViews.length; i++){
-								ImageView imageView = new ImageView(getActivity());
-								mImageViews[i] = imageView;
-								//imageView.setBackgroundResource(imgIdArray.get(i));
-								imageView.setImageBitmap((Bitmap)imgIdArray.get(i).getImage());
-							}
-						  MyAdapter my_adapter = new MyAdapter(getActivity(), imgIdArray); 
-							
-							viewPager.setAdapter(my_adapter);
-							viewPager.setOnPageChangeListener(null);
-							viewPager.setCurrentItem((mImageViews.length) * 100);
-							new ImageLoadTask(getActivity(), my_adapter).execute(image_url);
-					  }
-					  else
-					  {
-						  //对listview布局 
-						    linearLayout = (LinearLayout) layoutInflater.inflate( 
-						       R.layout.view_home_list_item, null);
-						   
-		                   ImageView home_list_item_refresh   = (ImageView)linearLayout.findViewById(R.id.home_list_item_refresh);
-						   TextView     home_list_item_title          = (TextView)linearLayout.findViewById(R.id.home_list_item_title);
-						   ImageView home_list_item_edit          = (ImageView)linearLayout.findViewById(R.id.home_list_item_edit);
-						   ImageView home_list_item_p_1           = (ImageView)linearLayout.findViewById(R.id.home_list_item_p_1);
-						  TextView home_list_item_content      = (TextView)linearLayout.findViewById(R.id.home_list_item_content);
-						  ImageView home_list_item_p_2           = (ImageView)linearLayout.findViewById(R.id.home_list_item_p_2);
-						   
-						   home_list_item_refresh.setVisibility(View.GONE);
-						   home_list_item_edit.setVisibility(View.GONE);
-						   
-						  if(1 == position)
-						   {
-							   home_list_item_refresh.setVisibility(View.VISIBLE);
-							   home_list_item_edit.setVisibility(View.VISIBLE);
-							   home_list_item_refresh.setImageResource(R.drawable.home_btn_fresh);
-							   home_list_item_edit.setImageResource(R.drawable.home_edit);
-						   }
-						   
-						   home_list_item_title.setText(article_array.get(position).getTitle());
-						   home_list_item_content.setText(article_array.get(position).getContent());
-						   home_list_item_p_1.setImageResource(article_array.get(position).getP1());
-						   home_list_item_p_2.setImageResource(article_array.get(position).getP2());
-		                   
-					  }
-					  
-					  return linearLayout;
-				  } 
-		 } 
-		 
-		 //广告图片左右切换
-			public class MyAdapter extends PagerAdapter{
-				
-				private Context _context;
-				private ArrayList<ImageEntity> _list;
-				
-				public MyAdapter(Context context, ArrayList<ImageEntity> imageList) {
-					this._context = context;
-					this._list = imageList;
-				}
-				
-				@Override
-				public int getCount() {
-					Log.i("jim", String.valueOf(Integer.MAX_VALUE));
-					//return Integer.MAX_VALUE;
-					return 5;
-				}
-
-				@Override
-				public boolean isViewFromObject(View arg0, Object arg1) {
-					return arg0 == arg1;
-				}
-
-				@Override
-				public void destroyItem(View container, int position, Object object) {
-					((ViewPager)container).removeView(mImageViews[position % mImageViews.length]);
-					
-				}
-
-				public Object getItem(int position) {
-					return _list.get(position);
-				}
-			
-				@Override
-				public Object instantiateItem(View container, int position) {
-					((ViewPager)container).addView(mImageViews[position % mImageViews.length], 0);
-					return mImageViews[position % mImageViews.length];
-				}
-				
-			}
+		
 
 		@Override
 		public void onPageScrollStateChanged(int arg0) {
@@ -484,48 +306,5 @@ public class HomeFragment extends Fragment implements OnPageChangeListener{
 				}
 			}*/
 			
-		}
-		
-		public class ImageLoadTask extends AsyncTask<String, Void, Void> {
-			private MyAdapter adapter;
-
-			// ��ʼ��
-			public ImageLoadTask(Context context, MyAdapter adapter) {
-				this.adapter = adapter;
-			}
-
-			@Override
-			protected Void doInBackground(String... params) {
-				String url = params[0];
-				String p2 = params[1];
-				for (int i = 0; i < adapter.getCount(); i++) {
-					ImageEntity bean = (ImageEntity) adapter.getItem(i);
-					Bitmap bitmap = BitmapFactory.decodeStream(Request
-							.HandlerData(params[i]));
-					bean.setImage(bitmap);
-					publishProgress(); 
-				}
-
-				return null;
-			}
-
-			public void onProgressUpdate(Void... voids) {
-				if (isCancelled())
-					return;
-				adapter.notifyDataSetChanged();
-			}
-		}
-
-		public class ImageEntity {
-			private Bitmap image;
-
-			public Bitmap getImage() {
-				return image;
-			}
-
-			public void setImage(Bitmap image) {
-				this.image = image;
-			}
-
 		}
 }
