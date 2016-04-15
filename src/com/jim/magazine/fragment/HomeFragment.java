@@ -120,13 +120,7 @@ public class HomeFragment extends Fragment implements OnPageChangeListener{
 			parent.removeView(mBaseView);
 		}
 		
-		
-		//mBaseView = inflater.inflate(R.layout.activity_home, null);
 		mTitleBarView = (TitleBarView) mBaseView.findViewById(R.id.title_bar);
-	/*	btn_chg_a = (ImageView)mBaseView.findViewById(R.id.btn_chg_a);
-		btn_chg_b = (ImageView)mBaseView.findViewById(R.id.btn_chg_b);
-		btn_chg_c = (ImageView)mBaseView.findViewById(R.id.btn_chg_c);
-		*/
 		
 		
 		//初始化文章数据
@@ -154,9 +148,7 @@ public class HomeFragment extends Fragment implements OnPageChangeListener{
 		
 		home_article_adapter = new HomeArticleAdapter(getActivity(), article_array, image_url); 
 		ListView listView = (ListView)mBaseView.findViewById(R.id.home_magazine_list);
-		//listView.setListAdapter(raAdapter);
 		listView.setAdapter(home_article_adapter);
-		//new DownPictureThread(image_url).start();
 		return mBaseView;
 	}
 	
@@ -178,60 +170,6 @@ public class HomeFragment extends Fragment implements OnPageChangeListener{
 				//mCanversLayout.setVisibility(View.VISIBLE);
 			}
 		});
-		
-/*		//滑动事件
-		btn_chg_c.setOnTouchListener(new View.OnTouchListener() {
-
-			@Override
-			public boolean onTouch(View v, MotionEvent event) {
-				float mPosX=(float) 0.0;
-				float mPosY=(float) 0.0;
-				float mCurrentPosX;
-				float mCurrentPosY;
-				switch (event.getAction()) {
-					// 移动
-				    case MotionEvent.ACTION_DOWN:
-					case MotionEvent.ACTION_MOVE:
-					{
-						mCurrentPosX = event.getX();
-						mCurrentPosY = event.getY();
-
-						//if (mCurrentPosX - mPosX > 0 && Math.abs(mCurrentPosY - mPosY) < 10)
-						//{
-							chg_times++;
-							chg_times = chg_times%3;
-							switch(chg_times)
-							{
-							case 0:
-							{
-								btn_chg_a.setImageResource(R.drawable.home_btn_a); 
-								btn_chg_b.setImageResource(R.drawable.home_btn_b);
-								btn_chg_c.setImageResource(R.drawable.home_btn_c);
-							}
-								break;
-							case 1:
-							{
-								btn_chg_a.setImageResource(R.drawable.home_btn_c); 
-								btn_chg_b.setImageResource(R.drawable.home_btn_a);
-								btn_chg_c.setImageResource(R.drawable.home_btn_b);
-							}
-							break;
-							case 2:
-							{
-								btn_chg_a.setImageResource(R.drawable.home_btn_b); 
-								btn_chg_b.setImageResource(R.drawable.home_btn_c);
-								btn_chg_c.setImageResource(R.drawable.home_btn_a);
-							}
-								break;
-							}
-						}
-					}
-					//break;
-				//}
-				return false;
-			}
-			
-		});*/
 	}
 
 	@Override
