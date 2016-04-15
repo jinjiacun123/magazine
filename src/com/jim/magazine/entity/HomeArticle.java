@@ -14,21 +14,21 @@ public class HomeArticle {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	public int getP1() {
+	public String getP1() {
 		return p1;
 	}
-	public void setP1(int p1) {
+	public void setP1(String p1) {
 		this.p1 = p1;
 	}
-	public int getP2() {
+	public String getP2() {
 		return p2;
 	}
-	public void setP2(int p2) {
+	public void setP2(String p2) {
 		this.p2 = p2;
 	}
 	private String content;
-	private int p1;
-	private int p2;
+	private String p1;
+	private String p2;
 	
 	
 }
