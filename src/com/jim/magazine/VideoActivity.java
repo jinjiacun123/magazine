@@ -44,6 +44,6 @@ public class VideoActivity extends Activity {
 			});
 			//视频
 			WebView wv_clause = (WebView) findViewById(R.id.wv_clause);
-			wv_clause.loadUrl("file:///android_asset/video.html");
+			wv_clause.loadUrl("file:///android_asset/video1.html");
 		}
 }
