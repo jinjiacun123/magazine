@@ -1,10 +1,5 @@
 package com.jim.magazine.fragment;
 
-import java.io.BufferedInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -15,8 +10,6 @@ import org.apache.http.NameValuePair;
 import com.jim.magazine.MainActivity;
 import com.jim.magazine.R;
 import com.jim.magazine.adapter.HomeArticleAdapter;
-import com.jim.magazine.adapter.HomeImgAdapter;
-import com.jim.magazine.adapter.ListViewAdapter;
 import com.jim.magazine.bean.BeanBase.API_METHOD_INDEX;
 import com.jim.magazine.bean.BeanHelp;
 import com.jim.magazine.config.Config;
@@ -38,24 +31,14 @@ import android.net.ConnectivityManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.Message;
-import android.os.Parcelable;
 import android.support.v4.app.Fragment;
-import android.support.v4.view.PagerAdapter;
-import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
-import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.ViewGroup.LayoutParams;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 /**
@@ -71,9 +54,9 @@ public class HomeFragment extends Fragment implements OnPageChangeListener{
 	//下拉文章
 	private ArrayList<HomeArticle> article_array = new ArrayList<HomeArticle>();
 	private void InitNetworkData()
-	{
-		this.InitNetworkArticleList();
-		this.InitNetworkImg();
+	{	
+		//this.InitNetworkImg();
+		InitNetworkArticleList();
 	}
 	////初始化切换图片url
 	private void InitNetworkImg()
@@ -119,7 +102,7 @@ public class HomeFragment extends Fragment implements OnPageChangeListener{
 				case Config.HOME_IMG://首页切换图片
 				{
 					BeanHelp bean_help = new BeanHelp();
-					image_url  = bean_help.ParseHomeImgResult((String)msg.obj);
+					//image_url  = bean_help.ParseHomeImgResult((String)msg.obj);
 				}
 				break;
 				case Config.HOME_ARTICLE://首页文章列表
@@ -148,11 +131,17 @@ public class HomeFragment extends Fragment implements OnPageChangeListener{
 					home_article_adapter = new HomeArticleAdapter(getActivity(), article_array, image_url); 
 					ListView listView = (ListView)mBaseView.findViewById(R.id.home_magazine_list);
 					listView.setAdapter(home_article_adapter);
+					new ImageLoadTask1(getActivity(), home_article_adapter).execute(image_url);
 				}
 				break;
 			}
 		};
 	};
+	
+	public void onCreate()
+	{
+		
+	}
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, 
@@ -264,6 +253,37 @@ public class HomeFragment extends Fragment implements OnPageChangeListener{
 				tips[i].setBackgroundResource(R.drawable.page_indicator_unfocused);
 			}
 		}*/
+	}
+	
+	public class ImageLoadTask1 extends AsyncTask<String, Void, Void> {
+		private HomeArticleAdapter adapter;
+
+		public ImageLoadTask1(Context context, HomeArticleAdapter adapter) {
+			this.adapter = adapter;
+		}
+
 		
+		@Override
+		protected Void doInBackground(String... params) {
+			String url = params[0];
+			String p2 = params[1];
+			
+			for (int i = 0; i < adapter.getCount(); i++) {
+				ImageEntity bean = (ImageEntity) adapter.getItem(i);
+				Bitmap bitmap = BitmapFactory.decodeStream(Request
+						.HandlerData(params[i]));
+				bean.setImage(bitmap);
+				publishProgress(); 
+			}
+			
+			return null;
+		}
+
+		@Override
+		public void onProgressUpdate(Void... voids) {
+			if (isCancelled())
+				return;
+			adapter.notifyDataSetChanged();
+		}
 	}
 }
