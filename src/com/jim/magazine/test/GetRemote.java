@@ -6,28 +6,13 @@ import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-import com.jim.magazine.AboutActivity;
-import com.jim.magazine.LoginActivity;
-import com.jim.magazine.MainActivity;
 import com.jim.magazine.R;
-import com.jim.magazine.RegisterActivity;
-import com.jim.magazine.SettingActivity;
-import com.jim.magazine.SlidingActivity;
-import com.jim.magazine.StartActivity;
-import com.jim.magazine.TestActivity;
-import com.jim.magazine.VideoActivity;
-import com.jim.magazine.WelcomeActivity;
-import com.jim.magazine.fragment.AppManager;
-import com.jim.magazine.help.ImageLoader;
-
 import android.app.Activity;
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.os.StrictMode;
 import android.util.Log;
 import android.widget.ImageView;
 
