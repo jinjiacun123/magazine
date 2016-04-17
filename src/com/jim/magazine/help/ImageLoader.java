@@ -208,7 +208,8 @@ public class ImageLoader {
        }  
        
        
-       public void run() {  
+       @Override
+	public void run() {  
            if (imageViewReused(photoToLoad))  
                return;  
            if (bitmap != null) {  
