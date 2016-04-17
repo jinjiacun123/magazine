@@ -28,6 +28,7 @@ public class TestActivity extends Activity implements OnRefreshListener,
 	private ListViewAdapter adapter;
 	private List<String> list = new ArrayList<String>();
 	private Handler handler = new Handler() {
+		@Override
 		public void handleMessage(Message msg) {
 			List<String> result = (List<String>) msg.obj;
 			switch (msg.what) {
