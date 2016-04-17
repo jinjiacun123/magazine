@@ -17,7 +17,6 @@ import android.widget.TextView;
 import com.jim.magazine.R;
 import com.jim.magazine.entity.HomeArticle;
 import com.jim.magazine.entity.ImageEntity;
-import com.jim.magazine.help.ImageLoadTask;
 
 //下拉杂志列表
 //自定义一个Adapter继承BaseAdapter，要重写getCount(),getItem(),getItemId(),getView()四种方法 
@@ -96,14 +95,14 @@ public class HomeArticleAdapter extends BaseAdapter
 						for(int i=0; i<mImageViews.length; i++){
 							ImageView imageView = new ImageView(this.context);
 							mImageViews[i] = imageView;
-							imageView.setImageBitmap((Bitmap)image_entity_array.get(i).getImage());
+							imageView.setImageBitmap(image_entity_array.get(i).getImage());
 						}
 					  HomeImgAdapter home_img_adapter = new HomeImgAdapter(this.context, image_entity_array, mImageViews); 
 						
 						viewPager.setAdapter(home_img_adapter);
 						viewPager.setOnPageChangeListener(null);
 						viewPager.setCurrentItem((mImageViews.length) * 100);
-						new ImageLoadTask(this.context, home_img_adapter).execute(image_url);
+						//new ImageLoadTask(this.context, home_img_adapter).execute(image_url);
 				  }
 				  else
 				  {
@@ -131,7 +130,7 @@ public class HomeArticleAdapter extends BaseAdapter
 					   
 					   home_list_item_title.setText(article_array.get(position).getTitle());
 					   home_list_item_content.setText(article_array.get(position).getContent());
-					  // home_list_item_p_1.setImageResource(article_array.get(position).getP1());
+					 // home_list_item_p_1.setImageBitmap(article_array.get(position).getP1());
 					   //home_list_item_p_2.setImageResource(article_array.get(position).getP2());
 	                   
 				  }
