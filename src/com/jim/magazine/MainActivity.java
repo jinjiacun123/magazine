@@ -198,6 +198,7 @@ public class MainActivity extends SlidingFragmentActivity {
 		mHome.performClick();
 		//mCircle.performClick();
 		//mMine.performClick();
+		//mBook.performClick();
 		
 		mPopupWindow=new PopupWindow(mPopView, LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT, true);
 		
