@@ -38,6 +38,7 @@ public class BookselfFragment extends Fragment
         f.setArguments(b);
         return f;
     }
+    
     @SuppressLint("NewApi")
 	@Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -52,26 +53,62 @@ public class BookselfFragment extends Fragment
 										R.drawable.ic_launcher));
     	magazine_array.add(my_magazine_entity);
     	
-        Bundle b = getArguments();
+        //Bundle b = getArguments();
         mBaseView=inflater.inflate(R.layout.fragment_bookself, null);
         CustomGrid adapter = new CustomGrid(getActivity(), magazine_array);
-        grid=(GridView)mBaseView.findViewById(R.id.grid);
-                grid.setAdapter(adapter);
-                grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
- 
-                    @Override
-                    public void onItemClick(AdapterView<?> parent, View view,
-                                            int position, long id) {
-                        Toast.makeText(getActivity(), "You Clicked at " +magazine_array.get(position).getTitle(), Toast.LENGTH_SHORT).show();
- 
-                    }
-                });
+		grid = (GridView) mBaseView.findViewById(R.id.grid);
+		grid.setAdapter(adapter);
+		grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view,
+					int position, long id) {
+				Toast.makeText(
+						getActivity(),
+						"You Clicked at "
+								+ magazine_array.get(position).getTitle(),
+						Toast.LENGTH_SHORT).show();
+
+			}
+		});
        
 		mTitleBarView=(TitleBarView) mBaseView.findViewById(R.id.title_bar);
 		init();
 		return mBaseView;
     }
     
+	public GridView getGrid() {
+		return grid;
+	}
+
+	public void setGrid(GridView grid) {
+		this.grid = grid;
+	}
+
+	public ArrayList<MagazineEntity> getMagazine_array() {
+		return magazine_array;
+	}
+
+	public void setMagazine_array(ArrayList<MagazineEntity> magazine_array) {
+		this.magazine_array = magazine_array;
+	}
+
+	public View getmBaseView() {
+		return mBaseView;
+	}
+
+	public void setmBaseView(View mBaseView) {
+		this.mBaseView = mBaseView;
+	}
+
+	public TitleBarView getmTitleBarView() {
+		return mTitleBarView;
+	}
+
+	public void setmTitleBarView(TitleBarView mTitleBarView) {
+		this.mTitleBarView = mTitleBarView;
+	}
+
 	private void init(){//GONE-隐藏,VISIBLE-显示
 		mTitleBarView.setCommonTitle(View.GONE,
                 View.VISIBLE, 
