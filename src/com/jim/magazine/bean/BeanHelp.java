@@ -58,8 +58,8 @@ public class BeanHelp extends BeanBase implements IHelp{
 							home_article = new HomeArticle();
 							home_article.setTitle(json_object.getString("title"));
 							home_article.setContent(json_object.getString("content"));
-							home_article.setP1(json_object.getString("p1"));
-							home_article.setP2(json_object.getString("p2"));
+							home_article.setP1(json_object.getString("p1").replaceAll("\\\\", ""));
+							home_article.setP2(json_object.getString("p2").replaceAll("\\\\", ""));
 							article_list.add(home_article);
 						}
 					}
