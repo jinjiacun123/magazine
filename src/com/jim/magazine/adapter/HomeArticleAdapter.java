@@ -17,11 +17,13 @@ import android.widget.TextView;
 import com.jim.magazine.R;
 import com.jim.magazine.entity.HomeArticle;
 import com.jim.magazine.entity.ImageEntity;
+import com.jim.magazine.help.ImageLoadTask;
 
 //下拉杂志列表
 //自定义一个Adapter继承BaseAdapter，要重写getCount(),getItem(),getItemId(),getView()四种方法 
 public class HomeArticleAdapter extends BaseAdapter 
  { 
+			private String[] image_url;
 		  	private Context context; 
 		  	LayoutInflater layout_inflater; 
 		  	String inflater = Context.LAYOUT_INFLATER_SERVICE;
@@ -30,9 +32,10 @@ public class HomeArticleAdapter extends BaseAdapter
 		  	private ArrayList<HomeArticle> article_array = new ArrayList<HomeArticle>();//文章列表
 		  	private ArrayList<ImageEntity> image_entity_array = new ArrayList<ImageEntity>();//图片列表
 		  	//构造函数 
-			  public HomeArticleAdapter(Context context, ArrayList<HomeArticle> article_array) 
+			  public HomeArticleAdapter(Context context, ArrayList<HomeArticle> article_array, String[] image_url) 
 			  { 
 				   this.context = context;
+				   this.image_url = image_url;
 				   layout_inflater = (LayoutInflater) context 
 				       .getSystemService(inflater);
 				 this.article_array = article_array;
@@ -91,7 +94,7 @@ public class HomeArticleAdapter extends BaseAdapter
 						viewPager.setAdapter(home_img_adapter);
 						viewPager.setOnPageChangeListener(null);
 						viewPager.setCurrentItem((mImageViews.length) * 100);
-						//new ImageLoadTask(this.context, home_img_adapter).execute(image_url);
+						new ImageLoadTask(this.context, home_img_adapter).execute(image_url);
 				  }
 				  else
 				  {
