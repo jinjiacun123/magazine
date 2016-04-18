@@ -55,8 +55,8 @@ public class HomeFragment extends Fragment implements OnPageChangeListener{
 	private ArrayList<HomeArticle> article_array = new ArrayList<HomeArticle>();
 	private void InitNetworkData()
 	{	
-		//this.InitNetworkImg();
-		InitNetworkArticleList();
+		this.InitNetworkImg();
+		//InitNetworkArticleList();
 	}
 	////初始化切换图片url
 	private void InitNetworkImg()
@@ -102,9 +102,10 @@ public class HomeFragment extends Fragment implements OnPageChangeListener{
 				case Config.HOME_IMG://首页切换图片
 				{
 					BeanHelp bean_help = new BeanHelp();
-					//image_url  = bean_help.ParseHomeImgResult((String)msg.obj);
+					image_url  = bean_help.ParseHomeImgResult((String)msg.obj);
+					InitNetworkArticleList();
 				}
-				break;
+				break;				
 				case Config.HOME_ARTICLE://首页文章列表
 				{
 					BeanHelp bean_help = new BeanHelp();
@@ -134,7 +135,7 @@ public class HomeFragment extends Fragment implements OnPageChangeListener{
 						article_array.add(home_article);
 					}
 					
-					home_article_adapter = new HomeArticleAdapter(getActivity(), article_array); 
+					home_article_adapter = new HomeArticleAdapter(getActivity(), article_array, image_url); 
 					ListView listView = (ListView)mBaseView.findViewById(R.id.home_magazine_list);
 					listView.setAdapter(home_article_adapter);
 					new ImageLoadTask1(getActivity(), home_article_adapter).execute();
