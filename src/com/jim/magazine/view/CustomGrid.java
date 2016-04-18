@@ -20,14 +20,7 @@ public class CustomGrid extends BaseAdapter{
         public CustomGrid(Context c, ArrayList<MagazineEntity> magazine_array) {
             mContext = c;
             MagazineEntity my_magazine_entity;
-            for(int i=0; i<magazine_array.size(); i++)
-            {
-            	my_magazine_entity = new MagazineEntity();
-            	my_magazine_entity.setTitle(magazine_array.get(i).getTitle());
-            	my_magazine_entity.setYear(magazine_array.get(i).getYear());
-            	my_magazine_entity.setImg(magazine_array.get(i).getImg());
-            	this.magazine_array.add(my_magazine_entity);
-            }
+           this.magazine_array = magazine_array;
         }
  
         @Override
@@ -58,7 +51,7 @@ public class CustomGrid extends BaseAdapter{
                 TextView titleView = (TextView)grid.findViewById(R.id.grid_title);
                 TextView textView = (TextView) grid.findViewById(R.id.grid_text);
                 ImageView imageView = (ImageView)grid.findViewById(R.id.grid_image);
-                titleView.setText(magazine_array.get(position).getYear());
+                titleView.setText(String.valueOf(magazine_array.get(position).getYear()));
                 textView.setText(magazine_array.get(position).getTitle());
                // imageView.setImageBitmap(magazine_array.get(position).getImg());
             } else {
