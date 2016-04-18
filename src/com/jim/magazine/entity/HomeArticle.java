@@ -30,5 +30,18 @@ public class HomeArticle {
 	private String p1;
 	private String p2;
 	
-	
+	public ImageEntity getP1_e() {
+		return p1_e;
+	}
+	public void setP1_e(ImageEntity p1_e) {
+		this.p1_e = p1_e;
+	}
+	public ImageEntity getP2_e() {
+		return p2_e;
+	}
+	public void setP2_e(ImageEntity p2_e) {
+		this.p2_e = p2_e;
+	}
+	private ImageEntity p1_e;
+	private ImageEntity p2_e;
 }
