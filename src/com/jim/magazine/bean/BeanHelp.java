@@ -29,8 +29,7 @@ public class BeanHelp extends BeanBase implements IHelp{
 					JSONArray json_array = object2.getJSONArray("list");
 					JSONObject json_object;
 					for (int i = 0; i < json_array.length(); i++) {
-						json_object = (JSONObject) json_array.get(i);
-						img_url[i] = json_object.toString();
+						img_url[i] = json_array.get(i).toString().replaceAll("\\\\", "");
 					}
 				}
 			}
