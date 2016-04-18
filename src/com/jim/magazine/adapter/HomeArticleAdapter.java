@@ -22,7 +22,6 @@ import com.jim.magazine.entity.ImageEntity;
 //自定义一个Adapter继承BaseAdapter，要重写getCount(),getItem(),getItemId(),getView()四种方法 
 public class HomeArticleAdapter extends BaseAdapter 
  { 
-			private String[] image_url ;
 		  	private Context context; 
 		  	LayoutInflater layout_inflater; 
 		  	String inflater = Context.LAYOUT_INFLATER_SERVICE;
@@ -31,22 +30,12 @@ public class HomeArticleAdapter extends BaseAdapter
 		  	private ArrayList<HomeArticle> article_array = new ArrayList<HomeArticle>();//文章列表
 		  	private ArrayList<ImageEntity> image_entity_array = new ArrayList<ImageEntity>();//图片列表
 		  	//构造函数 
-			  public HomeArticleAdapter(Context context, ArrayList<HomeArticle> article_array,String[] image_url) 
+			  public HomeArticleAdapter(Context context, ArrayList<HomeArticle> article_array) 
 			  { 
-				   this.context = context; 
-				   this.image_url = image_url;
+				   this.context = context;
 				   layout_inflater = (LayoutInflater) context 
 				       .getSystemService(inflater);
-				   HomeArticle home_article;
-				   for(int i=0; i<article_array.size(); i++)
-				   {
-					   home_article = new HomeArticle();
-					   home_article.setTitle(article_array.get(i).getTitle());
-					   home_article.setContent(article_array.get(i).getContent());
-					   home_article.setP1(article_array.get(i).getP1());
-					   home_article.setP2(article_array.get(i).getP2());
-					   this.article_array.add(home_article);
-				   }
+				 this.article_array = article_array;
 			  } 
 	   
 			  @Override
@@ -130,9 +119,16 @@ public class HomeArticleAdapter extends BaseAdapter
 					   
 					   home_list_item_title.setText(article_array.get(position).getTitle());
 					   home_list_item_content.setText(article_array.get(position).getContent());
-					 // home_list_item_p_1.setImageBitmap(article_array.get(position).getP1());
-					   //home_list_item_p_2.setImageResource(article_array.get(position).getP2());
-	                   
+					   //p1
+					   if(article_array.get(position).getP1_e().getImage() != null)
+					   {
+						   home_list_item_p_1.setImageBitmap(article_array.get(position).getP1_e().getImage());
+					   }
+					   //p2
+					   if(article_array.get(position).getP2_e().getImage() != null)
+					   {
+						   home_list_item_p_2.setImageBitmap(article_array.get(position).getP2_e().getImage());
+					   }	                   
 				  }
 				  
 				  return linearLayout;
