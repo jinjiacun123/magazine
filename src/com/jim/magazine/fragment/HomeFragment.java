@@ -117,31 +117,32 @@ public class HomeFragment extends Fragment implements OnPageChangeListener{
 					home_article.setP2("");
 					article_array.add(home_article);
 					
+					System.out.println(msg.obj.toString());
+					
 					ArrayList<HomeArticle> tmp_home_article =bean_help.ParseHomeArticleListResult((String)msg.obj);
-					for(int i=0; i< tmp_home_article.size(); i++)
-					{
-						home_article = new HomeArticle();
-						home_article.setTitle(tmp_home_article.get(i).getTitle());
-						home_article.setContent(tmp_home_article.get(i).getContent());
-						home_article.setP1(tmp_home_article.get(i).getP1());
-						home_article.setP2(tmp_home_article.get(i).getP2());
+					for (int i = 0; i < tmp_home_article.size(); i++) {
+						home_article = (HomeArticle)tmp_home_article.get(i);
+						ImageEntity b;
+						b= new ImageEntity();
+						b.setImage(BitmapFactory.decodeResource(getResources(),
+								R.drawable.ic_launcher));
+						home_article.setP1_e(b);
+						b= new ImageEntity();
+						b.setImage(BitmapFactory.decodeResource(getResources(),
+								R.drawable.ic_launcher));
+						home_article.setP2_e(b);
 						article_array.add(home_article);
 					}
 					
-					home_article_adapter = new HomeArticleAdapter(getActivity(), article_array, image_url); 
+					home_article_adapter = new HomeArticleAdapter(getActivity(), article_array); 
 					ListView listView = (ListView)mBaseView.findViewById(R.id.home_magazine_list);
 					listView.setAdapter(home_article_adapter);
-					new ImageLoadTask1(getActivity(), home_article_adapter).execute(image_url);
+					new ImageLoadTask1(getActivity(), home_article_adapter).execute();
 				}
 				break;
 			}
 		};
 	};
-	
-	public void onCreate()
-	{
-		
-	}
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, 
@@ -241,18 +242,7 @@ public class HomeFragment extends Fragment implements OnPageChangeListener{
 
 	@Override
 	public void onPageSelected(int arg0) {
-		//setImageBackground(arg0 % mImageViews.length);
-	}
-		
-	private void setImageBackground(int selectItems){
-		
-	/*	for(int i=0; i<tips.length; i++){
-			if(i == selectItems){
-				tips[i].setBackgroundResource(R.drawable.page_indicator_focused);
-			}else{
-				tips[i].setBackgroundResource(R.drawable.page_indicator_unfocused);
-			}
-		}*/
+	
 	}
 	
 	public class ImageLoadTask1 extends AsyncTask<String, Void, Void> {
@@ -265,14 +255,18 @@ public class HomeFragment extends Fragment implements OnPageChangeListener{
 		
 		@Override
 		protected Void doInBackground(String... params) {
-			String url = params[0];
-			String p2 = params[1];
-			
-			for (int i = 0; i < adapter.getCount(); i++) {
-				ImageEntity bean = (ImageEntity) adapter.getItem(i);
-				Bitmap bitmap = BitmapFactory.decodeStream(Request
-						.HandlerData(params[i]));
-				bean.setImage(bitmap);
+			HomeArticle bean = null;
+			Bitmap bitmap = null;
+			for (int i = 1; i < adapter.getCount(); i++) {
+				bean = (HomeArticle) adapter.getItem(i);
+				//p1
+				bitmap = BitmapFactory.decodeStream(Request
+						.HandlerData(bean.getP1()));
+				bean.getP1_e().setImage(bitmap);
+				//p2
+				bitmap = BitmapFactory.decodeStream(Request
+						.HandlerData(bean.getP2()));
+				bean.getP2_e().setImage(bitmap);
 				publishProgress(); 
 			}
 			
