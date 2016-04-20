@@ -13,6 +13,10 @@
     android:layout_height="fill_parent"
     android:layout_below="@id/title_bar"
      >
+     
+   <!-- 广告 -->
+   <include android:id="@+id/ad" layout="@layout/home_list_item_first"  />
+     
   <ListView android:id="@+id/home_magazine_list" 
       android:layout_width="wrap_content" 
       android:layout_height="wrap_content"
