@@ -10,12 +10,14 @@ import org.apache.http.NameValuePair;
 import com.jim.magazine.MainActivity;
 import com.jim.magazine.R;
 import com.jim.magazine.adapter.HomeArticleAdapter;
+import com.jim.magazine.adapter.HomeImgAdapter;
 import com.jim.magazine.bean.BeanBase.API_METHOD_INDEX;
 import com.jim.magazine.bean.BeanHelp;
 import com.jim.magazine.config.Config;
 import com.jim.magazine.entity.HomeArticle;
 import com.jim.magazine.entity.ImageEntity;
 import com.jim.magazine.help.HttpPostThread;
+import com.jim.magazine.help.ImageLoadTask;
 import com.jim.magazine.help.Request;
 import com.jim.magazine.view.TitleBarView;
 
@@ -32,11 +34,13 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -56,7 +60,7 @@ public class HomeFragment extends Fragment implements OnPageChangeListener{
 	private void InitNetworkData()
 	{	
 		this.InitNetworkImg();
-		//InitNetworkArticleList();
+		InitNetworkArticleList();
 	}
 	////初始化切换图片url
 	private void InitNetworkImg()
@@ -89,6 +93,10 @@ public class HomeFragment extends Fragment implements OnPageChangeListener{
 	private long id;
 	private LinearLayout layout;
 	
+	private ViewPager viewPager;
+	private ImageView[] mImageViews;//切换图片显示控件
+	private ArrayList<ImageEntity> image_entity_array = new ArrayList<ImageEntity>();//图片列表
+	
 	private View mBaseView;
 	private TitleBarView mTitleBarView;	
 	public static int chg_times=-1; //当前切换次数
@@ -103,24 +111,38 @@ public class HomeFragment extends Fragment implements OnPageChangeListener{
 				{
 					BeanHelp bean_help = new BeanHelp();
 					image_url  = bean_help.ParseHomeImgResult((String)msg.obj);
-					InitNetworkArticleList();
+					  
+						//广告左滑
+						viewPager = (ViewPager) mBaseView.findViewById(R.id.home_ad);
+						
+						//5张图片切换
+						for (int i = 0; i < 5; i++) {
+							ImageEntity b = new ImageEntity();
+							b.setImage(BitmapFactory.decodeResource(getActivity().getResources(),
+									R.drawable.ic_launcher));
+
+							image_entity_array.add(b);
+						}
+						
+						mImageViews = new ImageView[image_entity_array.size()];
+						for(int i=0; i<mImageViews.length; i++){
+							ImageView imageView = new ImageView(getActivity());
+							mImageViews[i] = imageView;
+							imageView.setImageBitmap(image_entity_array.get(i).getImage());
+						}
+					  HomeImgAdapter home_img_adapter = new HomeImgAdapter(getActivity(), image_entity_array, mImageViews); 
+						
+						viewPager.setAdapter(home_img_adapter);
+						viewPager.setOnPageChangeListener(null);
+						viewPager.setCurrentItem((mImageViews.length) * 100);
+						new ImageLoadTask(getActivity(), home_img_adapter).execute(image_url);
 				}
 				break;				
 				case Config.HOME_ARTICLE://首页文章列表
 				{
 					BeanHelp bean_help = new BeanHelp();
-					//初始化文章数据
-					HomeArticle home_article; 
-					home_article= new HomeArticle();
-					home_article.setTitle("");
-					home_article.setContent("");
-					home_article.setP1("");
-					home_article.setP2("");
-					article_array.add(home_article);
-					
-					System.out.println(msg.obj.toString());
-					
 					ArrayList<HomeArticle> tmp_home_article =bean_help.ParseHomeArticleListResult((String)msg.obj);
+					HomeArticle home_article; 
 					for (int i = 0; i < tmp_home_article.size(); i++) {
 						home_article = (HomeArticle)tmp_home_article.get(i);
 						ImageEntity b;
@@ -135,7 +157,7 @@ public class HomeFragment extends Fragment implements OnPageChangeListener{
 						article_array.add(home_article);
 					}
 					
-					home_article_adapter = new HomeArticleAdapter(getActivity(), article_array, image_url); 
+					home_article_adapter = new HomeArticleAdapter(getActivity(), article_array); 
 					ListView listView = (ListView)mBaseView.findViewById(R.id.home_magazine_list);
 					listView.setAdapter(home_article_adapter);
 					new ImageLoadTask1(getActivity(), home_article_adapter).execute();
@@ -258,7 +280,7 @@ public class HomeFragment extends Fragment implements OnPageChangeListener{
 		protected Void doInBackground(String... params) {
 			HomeArticle bean = null;
 			Bitmap bitmap = null;
-			for (int i = 1; i < adapter.getCount(); i++) {
+			for (int i = 0; i < adapter.getCount(); i++) {
 				bean = (HomeArticle) adapter.getItem(i);
 				//p1
 				bitmap = BitmapFactory.decodeStream(Request
