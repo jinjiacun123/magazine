@@ -4,6 +4,7 @@
     <!--自定义dialog-->
     <string name="dialog_default_title">Here\'s a message!</string>
     <string name="dialog_ok">确定</string>
+    <string name="dialog_finish">完成</string>
     <string name="dialog_cancel">取消</string>
     
     <string name="app_name">一绘</string>
@@ -85,36 +86,7 @@
     <string name="man">男</string>
     <string name="woman">女</string>
     <string name="icon_name">头像</string>
-    <!-- 曝光 -->
-    <string name="nature_name">公司性质:</string>
-    <string name="industry_name">所属行业:</string>
-    <string name="name">公司名称:</string>
-    <string name="ed_name">请输入公司名</string>
-    <string name="money_name">涉及金额:</string>
-    <string name="ed_money_name">请输入涉及金额</string>
-    <string name="url_name">公司网址:</string>
-    <string name="ed_url_name">请输入网址</string>
-    <string name="content_name">曝光内容:</string>
-    <string name="ed_content_name">请输入曝光内容</string>
-    <string name="up_name">附件上传:</string>
-    <string name="no_up_name">未选择文件</string>
-    <string name="title_activity_search">SearchActivity</string>
-    <string name="title_activity_comment_reply">CommentReplyActivity</string>
-    <string name="title_activity_exosure_reply">ExosureReplyActivity</string>
-    <string name="title_activity_news_text">NewsTextActivity</string>
-    <string name="title_activity_news_reply">NewsReplyActivity</string>
-    <string name="title_activity_win_xin">WinXinActivity</string>
-    <string name="title_activity_wxentry">WXEntryActivity</string>
-    <string name="errcode_success">分享微信成功</string>
-    <string name="errcode_cancel">分享微信已取消</string>
-    <string name="errcode_deny">分享微信失败</string>
-    <string name="errcode_unknown">分享微信失败</string>
-    <string name="errcode_success1">登录成功</string>
-    <string name="errcode_cancel1">登录已取消</string>
-    <string name="errcode_deny1">登录失败</string>
-    <string name="errcode_unknown1">登录失败</string>
-    <string name="title_activity_test">TestActivity</string>
-    <string name="title_activity_account_binding">AccountBindingActivity</string>
+
     <!-- 会员单位 -->
     <string name="vip_left">会员单位  ( 共</string>
     <string name="vip_right">家  )</string>
@@ -142,4 +114,10 @@
 <string name="lastUpdateTime">最近更新：%s</string>
 <string name="pull_to_refresh">下拉可以刷新</string>
 <string name="release_to_refresh">松开可以刷新</string>
+<!-- 反馈意见 -->
+<string name="cancel">取消</string>
+<string name="finish">完成</string>
+<string name="feedback">反馈意见</string>
+<string name="relation">联系方式(Email/手机号码):</string>
+<string name="feedback_content">反馈内容</string>
 </resources>
