@@ -22,20 +22,16 @@ import com.jim.magazine.help.ImageLoadTask;
 //下拉杂志列表
 //自定义一个Adapter继承BaseAdapter，要重写getCount(),getItem(),getItemId(),getView()四种方法 
 public class HomeArticleAdapter extends BaseAdapter 
- { 
-			private String[] image_url;
+ { 		
 		  	private Context context; 
 		  	LayoutInflater layout_inflater; 
 		  	String inflater = Context.LAYOUT_INFLATER_SERVICE;
-		  	private ViewPager viewPager;
-		  	private ImageView[] mImageViews;//切换图片显示控件
+		  	
 		  	private ArrayList<HomeArticle> article_array = new ArrayList<HomeArticle>();//文章列表
-		  	private ArrayList<ImageEntity> image_entity_array = new ArrayList<ImageEntity>();//图片列表
 		  	//构造函数 
-			  public HomeArticleAdapter(Context context, ArrayList<HomeArticle> article_array, String[] image_url) 
+			  public HomeArticleAdapter(Context context, ArrayList<HomeArticle> article_array) 
 			  { 
 				   this.context = context;
-				   this.image_url = image_url;
 				   layout_inflater = (LayoutInflater) context 
 				       .getSystemService(inflater);
 				 this.article_array = article_array;
@@ -65,38 +61,6 @@ public class HomeArticleAdapter extends BaseAdapter
 			public View getView(int position, View convertView, ViewGroup parent) 
 			  {  
 				  LinearLayout linearLayout = null;
-				  if(position == 0)
-				  {
-					  //对listview布局 
-					  linearLayout  = (LinearLayout) layout_inflater.inflate( 
-					       R.layout.home_list_item_first, null);
-					  
-						//广告左滑
-						viewPager = (ViewPager) linearLayout.findViewById(R.id.home_ad);
-						
-						//5张图片切换
-						for (int i = 0; i < 5; i++) {
-							ImageEntity b = new ImageEntity();
-							b.setImage(BitmapFactory.decodeResource(this.context.getResources(),
-									R.drawable.ic_launcher));
-
-							image_entity_array.add(b);
-						}
-						
-						mImageViews = new ImageView[image_entity_array.size()];
-						for(int i=0; i<mImageViews.length; i++){
-							ImageView imageView = new ImageView(this.context);
-							mImageViews[i] = imageView;
-							imageView.setImageBitmap(image_entity_array.get(i).getImage());
-						}
-					  HomeImgAdapter home_img_adapter = new HomeImgAdapter(this.context, image_entity_array, mImageViews); 
-						
-						viewPager.setAdapter(home_img_adapter);
-						viewPager.setOnPageChangeListener(null);
-						viewPager.setCurrentItem((mImageViews.length) * 100);
-						new ImageLoadTask(this.context, home_img_adapter).execute(image_url);
-				  }
-				  else
 				  {
 					  //对listview布局 
 					    linearLayout = (LinearLayout) layout_inflater.inflate( 
