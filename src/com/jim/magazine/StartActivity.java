@@ -43,7 +43,7 @@ public class StartActivity extends Activity{
 				*/
 				
 				//临时测试
-				int type = 2;
+				int type = 13;
 				switch(type)
 				{
 					case 0://到注册
@@ -121,6 +121,12 @@ public class StartActivity extends Activity{
 					case 12://测试获取远程图片
 					{
 						Intent intent=new Intent(StartActivity.this, GetRemote.class);
+						startActivity(intent);
+					}
+					break;
+					case 13://意见反馈
+					{
+						Intent intent=new Intent(StartActivity.this, FeedbackActivity.class);
 						startActivity(intent);
 					}
 					break;
