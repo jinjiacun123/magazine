@@ -21,6 +21,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupWindow;
@@ -29,7 +30,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 
-public class MainActivity extends SlidingFragmentActivity {
+public class MainActivity extends SlidingFragmentActivity implements OnClickListener {
 
 	protected static final String TAG = "MainActivity";
 	private Context mContext;
@@ -122,17 +123,21 @@ public class MainActivity extends SlidingFragmentActivity {
 			    	startActivity(intent);
 				}
 				break;
+				case 5://意见反馈
+				{
+					Intent intent = new Intent(MainActivity.this, CollectActivity.class);
+			    	startActivity(intent);
+				}
+				break;
 				}
 			}
 		});
-		
-		
+
+		//列表
         listView = (ListView) findViewById(R.id.navigate_list);
 
-       
        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
           R.layout.menu_item,  R.id.text1,  menu_item_names);
-      
 
         listView.setAdapter(adapter);
         
@@ -174,7 +179,12 @@ public class MainActivity extends SlidingFragmentActivity {
 			}
 		});
         
+        //反馈意见
+        ImageView menu_feedback = (ImageView) findViewById(R.id.menu_feedback);
+        menu_feedback.setOnClickListener(this);
 	}
+	
+	
 	
 	private void findView(){
 		mPopView=LayoutInflater.from(mContext).inflate(R.layout.app_exit, null);
@@ -303,18 +313,18 @@ public class MainActivity extends SlidingFragmentActivity {
 		currentButton=v;
 	}
 
-	/*@Override
-	public boolean onKeyDown(int keyCode, KeyEvent event) {
-		if(keyCode==KeyEvent.KEYCODE_MENU){
-			mPopupWindow.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#ffffff")));
-			mPopupWindow.showAtLocation(buttomBarGroup, Gravity.BOTTOM, 0, 0);
-			mPopupWindow.setAnimationStyle(R.style.app_pop);
-			mPopupWindow.setOutsideTouchable(true);
-			mPopupWindow.setFocusable(true);
-			mPopupWindow.update();
+	@Override
+	public void onClick(View v) {
+		// TODO Auto-generated method stub
+		switch(v.getId())
+		{
+		case R.id.menu_feedback://反馈意见
+			{
+				leftCtl = 5;
+				menu.toggle(true);
+			}
+			break;
 		}
-		return super.onKeyDown(keyCode, event);
-		
-	}*/
+	}
 
 }
