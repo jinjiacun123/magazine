@@ -96,12 +96,13 @@
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Holo.NoActionBar"
             android:windowSoftInputMode="adjustPan">
-            <!-- 
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-             -->
+        </activity>
+        <!-- 反馈意见 -->
+         <activity
+            android:name="com.jim.magazine.FeedbackActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Holo.NoActionBar"
+            android:windowSoftInputMode="adjustPan">
         </activity>
         
         <activity
@@ -109,12 +110,6 @@
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Holo.NoActionBar"
             android:windowSoftInputMode="adjustPan">
-            <!-- 
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-             -->
         </activity>
           <activity
             android:name="com.jim.magazine.VideoActivity"
@@ -149,12 +144,6 @@
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Holo.NoActionBar"
             android:windowSoftInputMode="adjustPan">
-            <!--  
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-             -->
         </activity>
         <!-- ActionBar+Viewpager -->
          <activity
@@ -162,12 +151,6 @@
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Holo.NoActionBar"
             android:windowSoftInputMode="adjustPan">
-            <!-- 
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-             -->
         </activity>
         <!-- TabWidget+ViewPager -->
          <activity
@@ -175,12 +158,6 @@
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Holo.NoActionBar"
             android:windowSoftInputMode="adjustPan">
-            <!-- 
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-             -->
         </activity>
         <!--gridview image and text--> 
         <activity
@@ -188,12 +165,6 @@
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Holo.NoActionBar"
             android:windowSoftInputMode="adjustPan">
-            <!-- 
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-             -->
         </activity>
 		 <activity
             android:name="com.jim.magazine.test.TestCustomGrid"
